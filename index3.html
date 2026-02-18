@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Impresiones AAA – Imprenta en Vero Beach, FL | Lonas, Vinil, Tarjetas y más</title>
+  <meta name="description" content="Impresiones AAA en Vero Beach, Florida. Servicios de impresión profesional: lonas, vinil, tarjetas de presentación, flyers, rotulación de vehículos y más. Atención en español. Llama al 772-490-1928." />
+  <meta name="keywords" content="imprenta Vero Beach, impresiones Vero Beach Florida, lonas banners Florida, vinil stickers, tarjetas de presentación, rotulación de vehículos, impresión en español" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#edf8ff',
+              100: '#d6efff',
+              200: '#b5e4ff',
+              300: '#83d3ff',
+              400: '#48baff',
+              500: '#1e9bff',
+              600: '#0678f5',
+              700: '#0060e1',
+              800: '#064fb6',
+              900: '#0b438f',
+            },
+            accent: {
+              400: '#ff7c2a',
+              500: '#ff6010',
+              600: '#e84f00',
+            }
+          },
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            body: ['DM Sans', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: #fff; color: #1a1a2e; }
+    h1, h2, h3, .font-display { font-family: 'Syne', sans-serif; }
+
+    /* Sticky Header */
+    #sticky-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      transition: box-shadow 0.3s;
+    }
+    #sticky-header.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.1); }
+
+    /* Hero gradient mesh */
+    .hero-bg {
+      background: linear-gradient(135deg, #edf8ff 0%, #fff 40%, #fff8f4 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -120px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(30,155,255,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(255,96,16,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    /* Buttons */
+    .btn-call {
+      background: linear-gradient(135deg, #0060e1, #1e9bff);
+      color: #fff;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      border-radius: 50px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(0,96,225,0.3);
+    }
+    .btn-call:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,96,225,0.4); }
+
+    .btn-whatsapp {
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      color: #fff;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      border-radius: 50px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(18,140,126,0.3);
+    }
+    .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(18,140,126,0.4); }
+
+    .btn-accent {
+      background: linear-gradient(135deg, #ff6010, #ff7c2a);
+      color: #fff;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      border-radius: 50px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(255,96,16,0.35);
+    }
+    .btn-accent:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,96,16,0.45); }
+
+    .btn-outline {
+      border: 2px solid #0060e1;
+      color: #0060e1;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      border-radius: 50px;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { background: #0060e1; color: #fff; }
+
+    /* Service cards */
+    .service-card {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 16px;
+      transition: transform 0.25s, box-shadow 0.25s;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.12); }
+
+    /* Gallery placeholder */
+    .gallery-img {
+      background: linear-gradient(135deg, #e8f4ff, #d6e8ff);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+    .gallery-img::after {
+      content: attr(data-label);
+      position: absolute; bottom: 10px; left: 12px;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      font-size: 12px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    /* Testimonial */
+    .testimonial-card {
+      background: #f8fbff;
+      border-left: 4px solid #1e9bff;
+      border-radius: 12px;
+    }
+
+    /* Steps */
+    .step-number {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, #0060e1, #1e9bff);
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    /* FAQ */
+    .faq-item details summary { cursor: pointer; list-style: none; }
+    .faq-item details summary::-webkit-details-marker { display: none; }
+    .faq-item details[open] summary .faq-arrow { transform: rotate(180deg); }
+    .faq-arrow { transition: transform 0.25s; }
+
+    /* Form inputs */
+    .form-input {
+      border: 1.5px solid #d1dde8;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      width: 100%;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: #fff;
+    }
+    .form-input:focus { outline: none; border-color: #1e9bff; box-shadow: 0 0 0 3px rgba(30,155,255,0.15); }
+
+    /* Section heading accent */
+    .section-tag {
+      display: inline-block;
+      background: linear-gradient(135deg, #edf8ff, #d6efff);
+      color: #0060e1;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+
+    /* Floating WhatsApp */
+    #float-wa {
+      position: fixed;
+      bottom: 24px; right: 24px;
+      z-index: 200;
+      width: 58px; height: 58px;
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 24px rgba(18,140,126,0.45);
+      transition: transform 0.2s;
+    }
+    #float-wa:hover { transform: scale(1.1); }
+
+    /* Mobile CTA bar */
+    #mobile-cta {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 150;
+      background: #fff;
+      border-top: 1px solid rgba(0,0,0,0.1);
+      padding: 10px 16px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+    }
+    @media (max-width: 640px) {
+      #mobile-cta { display: flex; gap: 10px; }
+    }
+
+    /* Noise grain overlay */
+    .grain::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    /* Animate on scroll */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .fade-up-delay-1 { transition-delay: 0.1s; }
+    .fade-up-delay-2 { transition-delay: 0.2s; }
+    .fade-up-delay-3 { transition-delay: 0.3s; }
+    .fade-up-delay-4 { transition-delay: 0.4s; }
+    .fade-up-delay-5 { transition-delay: 0.5s; }
+
+    /* Lead magnet section */
+    .lead-section {
+      background: linear-gradient(135deg, #0b438f 0%, #0060e1 60%, #0678f5 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .lead-section::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 300px; height: 300px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+    .lead-section::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: 10%;
+      width: 200px; height: 200px;
+      background: rgba(255,96,16,0.15);
+      border-radius: 50%;
+    }
+
+    @media (max-width: 640px) {
+      body { padding-bottom: 80px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ==================== STICKY HEADER ==================== -->
+<header id="sticky-header">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+    <a href="#hero" class="flex items-center gap-2">
+      <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,#0060e1,#1e9bff)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M7 19l2-2h6l2 2"/></svg>
+      </div>
+      <div>
+        <div class="font-display font-800 text-sm leading-tight" style="font-weight:800;font-family:'Syne',sans-serif;color:#1a1a2e">Impresiones AAA</div>
+        <div class="text-xs text-gray-400 leading-tight hidden sm:block">Vero Beach, FL</div>
+      </div>
+    </a>
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
+      <a href="#servicios" class="hover:text-brand-600 transition-colors">Servicios</a>
+      <a href="#galeria" class="hover:text-brand-600 transition-colors">Galería</a>
+      <a href="#catalogo" class="hover:text-brand-600 transition-colors">Catálogo</a>
+      <a href="#proceso" class="hover:text-brand-600 transition-colors">Cotizar</a>
+      <a href="#faq" class="hover:text-brand-600 transition-colors">FAQ</a>
+      <a href="#contacto" class="hover:text-brand-600 transition-colors">Contacto</a>
+    </nav>
+    <!-- Header CTAs -->
+    <div class="flex items-center gap-2">
+      <a href="https://wa.me/17724901928?text=Hola,%20me%20gustaría%20pedir%20una%20cotización" target="_blank" class="btn-whatsapp hidden sm:flex items-center gap-1.5 text-sm px-4 py-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span class="hidden lg:inline">WhatsApp</span>
+      </a>
+      <a href="tel:+17724901928" class="btn-call flex items-center gap-1.5 text-sm px-4 py-2">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.82 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 013.73 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.69a16 16 0 006.29 6.29l1.06-1.06a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Llamar
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== HERO ==================== -->
+<section id="hero" class="hero-bg pt-28 pb-20 md:pt-36 md:pb-28 relative">
+  <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+    <div class="fade-up">
+      <div class="section-tag">📍 Vero Beach, Florida</div>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold leading-tight text-gray-900 mb-5" style="font-weight:800">
+        Impresiones de <span style="background:linear-gradient(135deg,#0060e1,#1e9bff);-webkit-background-clip:text;-webkit-text-fill-color:transparent">alta calidad</span> para tu negocio
+      </h1>
+      <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+        Lonas, vinil, tarjetas, uniformes, rotulación y mucho más. Atención en <strong>español</strong>, precios justos y entrega rápida en Vero Beach y alrededores.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <a href="tel:+17724901928" class="btn-call flex items-center justify-center gap-2 px-7 py-4 text-base">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.82 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 013.73 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.69a16 16 0 006.29 6.29l1.06-1.06a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Llamar ahora · 772-490-1928
+        </a>
+        <a href="https://wa.me/17724901928?text=Hola,%20me%20gustaría%20pedir%20una%20cotización%20de%20impresión" target="_blank" class="btn-whatsapp flex items-center justify-center gap-2 px-7 py-4 text-base">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Cotizar por WhatsApp
+        </a>
+      </div>
+      <p class="text-sm text-gray-400 mt-4">✓ Sin compromiso · Respuesta rápida · Atención en español</p>
+    </div>
+    <!-- Hero visual -->
+    <div class="fade-up fade-up-delay-2 grid grid-cols-2 gap-3">
+      <div class="gallery-img h-44 flex items-center justify-center" data-label="Lonas & Banners">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#1e9bff" stroke-width="1.2" opacity="0.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/></svg>
+      </div>
+      <div class="gallery-img h-44 flex items-center justify-center" style="background:linear-gradient(135deg,#fff8f4,#ffe8d6)" data-label="Tarjetas de presentación">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#ff6010" stroke-width="1.2" opacity="0.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+      </div>
+      <div class="gallery-img h-32 flex items-center justify-center" style="background:linear-gradient(135deg,#f0fff4,#d6f5e3)" data-label="Vinil & Stickers">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#00b46e" stroke-width="1.2" opacity="0.5"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
+      </div>
+      <div class="gallery-img h-32 flex items-center justify-center" style="background:linear-gradient(135deg,#faf0ff,#ead6ff)" data-label="Camisas / Uniformes">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#9333ea" stroke-width="1.2" opacity="0.5"><path d="M20.38 3.46L16 2l-4 2-4-2-4.38 1.46A2 2 0 002 5.38V10h20V5.38a2 2 0 00-1.62-1.92z"/><path d="M2 10v10a2 2 0 002 2h16a2 2 0 002-2V10"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== TRUST STRIP ==================== -->
+<section id="confianza" style="background:#f8fbff;border-top:1px solid rgba(0,0,0,0.06);border-bottom:1px solid rgba(0,0,0,0.06)">
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <div class="text-center mb-10 fade-up">
+      <div class="section-tag">¿Por qué elegirnos?</div>
+      <h2 class="text-2xl md:text-3xl font-display font-extrabold text-gray-900" style="font-weight:800">Calidad que se ve, atención que se siente</h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-5">
+      <div class="fade-up fade-up-delay-1 bg-white rounded-2xl p-5 flex flex-col items-start gap-3 shadow-sm border border-gray-100">
+        <div class="w-11 h-11 rounded-xl flex items-center justify-center" style="background:#edf8ff">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0060e1" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <div class="font-display font-bold text-gray-900 text-sm" style="font-family:'Syne',sans-serif">Atención en español</div>
+          <div class="text-xs text-gray-500 mt-0.5">Te explicamos todo sin complicaciones</div>
+        </div>
+      </div>
+      <div class="fade-up fade-up-delay-2 bg-white rounded-2xl p-5 flex flex-col items-start gap-3 shadow-sm border border-gray-100">
+        <div class="w-11 h-11 rounded-xl flex items-center justify-center" style="background:#fff8f4">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff6010" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+        </div>
+        <div>
+          <div class="font-display font-bold text-gray-900 text-sm" style="font-family:'Syne',sans-serif">Entrega rápida</div>
+          <div class="text-xs text-gray-500 mt-0.5">Proyectos urgentes disponibles</div>
+        </div>
+      </div>
+      <div class="fade-up fade-up-delay-3 bg-white rounded-2xl p-5 flex flex-col items-start gap-3 shadow-sm border border-gray-100">
+        <div class="w-11 h-11 rounded-xl flex items-center justify-center" style="background:#f0fff4">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00b46e" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
+        </div>
+        <div>
+          <div class="font-display font-bold text-gray-900 text-sm" style="font-family:'Syne',sans-serif">Calidad garantizada</div>
+          <div class="text-xs text-gray-500 mt-0.5">Materiales duraderos y colores vivos</div>
+        </div>
+      </div>
+      <div class="fade-up fade-up-delay-1 bg-white rounded-2xl p-5 flex flex-col items-start gap-3 shadow-sm border border-gray-100">
+        <div class="w-11 h-11 rounded-xl flex items-center justify-center" style="background:#faf0ff">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9333ea" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div>
+          <div class="font-display font-bold text-gray-900 text-sm" style="font-family:'Syne',sans-serif">Servicio personalizado</div>
+          <div class="text-xs text-gray-500 mt-0.5">Te ayudamos con el diseño si lo necesitas</div>
+        </div>
+      </div>
+      <div class="fade-up fade-up-delay-2 bg-white rounded-2xl p-5 flex flex-col items-start gap-3 shadow-sm border border-gray-100">
+        <div class="w-11 h-11 rounded-xl flex items-center justify-center" style="background:#fffbeb">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <div>
+          <div class="font-display font-bold text-gray-900 text-sm" style="font-family:'Syne',sans-serif">Precios competitivos</div>
+          <div class="text-xs text-gray-500 mt-0.5">Sin costos ocultos, cotización gratis</div>
+        </div>
+      </div>
+      <div class="fade-up fade-up-delay-3 bg-white rounded-2xl p-5 flex flex-col items-start gap-3 shadow-sm border border-gray-100">
+        <div class="w-11 h-11 rounded-xl flex items-center justify-center" style="background:#edf8ff">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0060e1" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <div class="font-display font-bold text-gray-900 text-sm" style="font-family:'Syne',sans-serif">Servimos Vero Beach y más</div>
+          <div class="text-xs text-gray-500 mt-0.5">Sebastian, Fort Pierce, Port St. Lucie y alrededores</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mini testimonials -->
+    <div class="grid md:grid-cols-3 gap-4 mt-10">
+      <div class="testimonial-card p-5 fade-up fade-up-delay-1">
+        <div class="flex gap-1 mb-3">
+          <span style="color:#f59e0b">★★★★★</span>
+        </div>
+        <p class="text-sm text-gray-700 leading-relaxed">"Me hicieron los uniformes para mi restaurante en tiempo récord. Todo quedó perfecto y el precio fue muy bueno."</p>
+        <div class="mt-3 text-xs text-gray-400 font-semibold">— Cliente local, restaurante en Vero Beach</div>
+      </div>
+      <div class="testimonial-card p-5 fade-up fade-up-delay-2">
+        <div class="flex gap-1 mb-3">
+          <span style="color:#f59e0b">★★★★★</span>
+        </div>
+        <p class="text-sm text-gray-700 leading-relaxed">"Pedí lonas para mi negocio de construcción. La rotulación del camión quedó increíble, muy profesional."</p>
+        <div class="mt-3 text-xs text-gray-400 font-semibold">— Cliente local, empresa de construcción</div>
+      </div>
+      <div class="testimonial-card p-5 fade-up fade-up-delay-3">
+        <div class="flex gap-1 mb-3">
+          <span style="color:#f59e0b">★★★★★</span>
+        </div>
+        <p class="text-sm text-gray-700 leading-relaxed">"Excelente atención, me ayudaron con el diseño porque no tenía archivo. Rápidos y muy amables. Los recomiendo."</p>
+        <div class="mt-3 text-xs text-gray-400 font-semibold">— Cliente local, negocio de limpieza</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SERVICIOS ==================== -->
+<section id="servicios" class="py-20">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-12 fade-up">
+      <div class="section-tag">Lo que hacemos</div>
+      <h2 class="text-3xl md:text-4xl font-display font-extrabold text-gray-900 mb-3" style="font-weight:800">Servicios más solicitados</h2>
+      <p class="text-gray-500 max-w-xl mx-auto">Imprimimos de todo en casi cualquier material. Si no ves lo que buscas, <a href="#contacto" class="text-brand-600 font-semibold hover:underline">pregúntanos</a>, con gusto te ayudamos.</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <!-- Card 1 -->
+      <a href="#contacto" class="service-card p-5 flex flex-col items-start gap-3 fade-up fade-up-delay-1">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#edf8ff,#d6efff)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0060e1" stroke-width="1.8"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+        </div>
+        <div>
+          <div class="font-display font-bold text-gray-900 text-sm leading-tight" style="font-family:'Syne',sans-serif">Tarjetas de presentación</div>
+          <div class="text-xs text-gray-500 mt-1">Impresión full color, acabados premium</div>
+        </div>
+        <span class="text-xs text-brand-600 font-semibold mt-auto">Cotizar →</span>
+      </a>
+      <!-- Card 2 -->
+      <a href="#contacto" class="service-card p-5 flex flex-col items-start gap-3 fade-up fade-up-delay-2">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#fff8f4,#ffe8d6)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff6010" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+        </div>
+        <div>
+          <div class="font-display font-bold text-gray-900 text-sm leading-tight" style="font-family:'Syne',sans-serif">Flyers / Volantes</div>
+          <div class="text-xs text-gray-500 mt-1">Promos, eventos, restaurantes y más</div>
+        </div>
+        <span class="text-xs text-accent-500 font-semibold mt-auto">Cotizar →</span>
+      </a>
+      <!-- Card 3 -->
+      <a href="#contacto" class="service-card p-5 flex flex-col items-start gap-3 fade-up fade-up-delay-3">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#f0fff4,#d6f5e3)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00b46e" stroke-width="1.8"><rect x="3" y="3" width="18" height="14" rx="2"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/></svg>
+        </div>
+        <div>
+          <div class="font-display font-bold text-gray-900 text-sm leading-tight" style="font-family:'Syne',sans-serif">Lonas / Banners</div>
+          <div class="text-xs text-gray-500 mt-1">Interiores y exteriores, cualquier tamaño</div>
+        </div>
+        <span class="text-xs text-green-600 font-semibold mt-auto">Cotizar →</span>
+      </a>
+      <!-- Card 4 -->
+      <a href="#contacto" class="service-card p-5 flex flex-col items-start gap-3 fade-up fade-up-delay-4">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#fffbeb,#fef3c7)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <div>
+          <div class="font-display font-bold text-gray-900 text-sm leading-tight" style="font-family:'Syne',sans-serif">Vinil / Stickers / Etiquetas</div>
+          <div class="text-xs text-gray-500 mt-1">Corte y laminado disponible</div>
+        </div>
+        <span class="text-xs text-yellow-600 font-semibold mt-auto">Cotizar →</span>
+      </a>
+      <!-- Card 5 -->
+      <a href="#contacto" class="service-card p-5 flex flex-col items-start gap-3 fade-up fade-up-delay-1">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#faf0ff,#ead6ff)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9333ea" stroke-width="1.8"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16,8 20,8 23,11 23,16 16,16 16,8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        </div>
+        <div>
+          <div class="font-display font-bold text-gray-900 text-sm leading-tight" style="font-family:'Syne',sans-serif">Rotulación de vehículos</div>
+          <div class="text-xs text-gray-500 mt-1">Parcial o completa, alta durabilidad</div>
+        </div>
+        <span class="text-xs text-purple-600 font-semibold mt-auto">Cotizar →</span>
+      </a>
+      <!-- Card 6 -->
+      <a href="#contacto" class="service-card p-5 flex flex-col items-start gap-3 fade-up fade-up-delay-2">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#fff0f0,#ffdede)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="1.8"><path d="M20.38 3.46L16 2l-4 2-4-2-4.38 1.46A2 2 0 002 5.38V10h20V5.38a2 2 0 00-1.62-1.92z"/><path d="M2 10v10a2 2 0 002 2h16a2 2 0 002-2V10"/></svg>
+        </div>
+        <div>
+          <div class="font-display font-bold text-gray-900 text-sm leading-tight" style="font-family:'Syne',sans-serif">Camisas / Uniformes</div>
+          <div class="text-xs text-gray-500 mt-1">Impresión DTF o serigrafía, sublimación</div>
+        </div>
+        <span class="text-xs text-red-600 font-semibold mt-auto">Cotizar →</span>
+      </a>
+      <!-- Card 7 -->
+      <a href="#contacto" class="service-card p-5 flex flex-col items-start gap-3 fade-up fade-up-delay-3">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#edf8ff,#d6efff)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0060e1" stroke-width="1.8"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        </div>
+        <div>
+          <div class="font-display font-bold text-gray-900 text-sm leading-tight" style="font-family:'Syne',sans-serif">Menús para restaurantes</div>
+          <div class="text-xs text-gray-500 mt-1">Plastificados, encuadernados, formato libre</div>
+        </div>
+        <span class="text-xs text-brand-600 font-semibold mt-auto">Cotizar →</span>
+      </a>
+      <!-- Card 8 -->
+      <a href="#contacto" class="service-card p-5 flex flex-col items-start gap-3 fade-up fade-up-delay-4">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#f0fff4,#d6f5e3)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00b46e" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg>
+        </div>
+        <div>
+          <div class="font-display font-bold text-gray-900 text-sm leading-tight" style="font-family:'Syne',sans-serif">Posters / Anuncios</div>
+          <div class="text-xs text-gray-500 mt-1">Impresión en gran formato con vivos colores</div>
+        </div>
+        <span class="text-xs text-green-600 font-semibold mt-auto">Cotizar →</span>
+      </a>
+      <!-- Card 9 -->
+      <a href="#contacto" class="service-card p-5 flex flex-col items-start gap-3 fade-up fade-up-delay-1 md:col-span-1">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:linear-gradient(135deg,#fff8f4,#ffe8d6)">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ff6010" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+        </div>
+        <div>
+          <div class="font-display font-bold text-gray-900 text-sm leading-tight" style="font-family:'Syne',sans-serif">Señalética</div>
+          <div class="text-xs text-gray-500 mt-1">Interior y exterior, PVC, aluminio, acrílico</div>
+        </div>
+        <span class="text-xs text-accent-500 font-semibold mt-auto">Cotizar →</span>
+      </a>
+    </div>
+
+    <!-- Bloque especial -->
+    <div class="mt-8 rounded-2xl p-6 fade-up" style="background:linear-gradient(135deg,#f8fbff,#edf8ff);border:1.5px dashed #93c5fd">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div>
+          <div class="font-display font-bold text-brand-800 text-lg" style="font-family:'Syne',sans-serif">🎨 ¿Algo diferente? Lo imprimimos también</div>
+          <p class="text-sm text-gray-600 mt-1">Invitaciones, calendarios, playeras, tazas, bolsas, carpetas, display stands, toldos, pisos impresos, magnéticos, placas… Si puedes imaginarlo, nosotros lo imprimimos.</p>
+        </div>
+        <a href="https://wa.me/17724901928?text=Hola,%20tengo%20una%20idea%20especial%20y%20quisiera%20saber%20si%20pueden%20hacerlo" target="_blank" class="btn-whatsapp flex items-center gap-2 px-5 py-3 text-sm whitespace-nowrap">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Preguntar por WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== GALERÍA ==================== -->
+<section id="galeria" style="background:#f8fbff;" class="py-20">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-12 fade-up">
+      <div class="section-tag">Nuestros trabajos</div>
+      <h2 class="text-3xl md:text-4xl font-display font-extrabold text-gray-900 mb-3" style="font-weight:800">Galería de trabajos realizados</h2>
+      <p class="text-gray-500">Cada proyecto es único. Esto es una muestra de lo que hacemos para negocios en Vero Beach y alrededores.</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="gallery-img h-48 fade-up fade-up-delay-1 flex items-center justify-center" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe)" data-label="Lona para negocio local">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="1" opacity="0.5"><rect x="3" y="3" width="18" height="14" rx="2"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="8" y1="21" x2="16" y2="21"/></svg>
+      </div>
+      <div class="gallery-img h-48 fade-up fade-up-delay-2 flex items-center justify-center" style="background:linear-gradient(135deg,#fce7f3,#fbcfe8)" data-label="Rotulación de camioneta">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="1" opacity="0.5"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16,8 20,8 23,11 23,16 16,16 16,8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      </div>
+      <div class="gallery-img h-48 fade-up fade-up-delay-3 flex items-center justify-center" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0)" data-label="Uniformes de restaurante">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1" opacity="0.5"><path d="M20.38 3.46L16 2l-4 2-4-2-4.38 1.46A2 2 0 002 5.38V10h20V5.38a2 2 0 00-1.62-1.92z"/><path d="M2 10v10a2 2 0 002 2h16a2 2 0 002-2V10"/></svg>
+      </div>
+      <div class="gallery-img h-48 fade-up fade-up-delay-4 flex items-center justify-center" style="background:linear-gradient(135deg,#fef3c7,#fde68a)" data-label="Menú plastificado">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="1" opacity="0.5"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+      </div>
+      <div class="gallery-img h-36 md:col-span-2 fade-up fade-up-delay-1 flex items-center justify-center" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe)" data-label="Stickers personalizados">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="1" opacity="0.5"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
+      </div>
+      <div class="gallery-img h-36 fade-up fade-up-delay-2 flex items-center justify-center" style="background:linear-gradient(135deg,#ffedd5,#fed7aa)" data-label="Tarjetas de presentación">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="1" opacity="0.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+      </div>
+      <div class="gallery-img h-36 fade-up fade-up-delay-3 flex items-center justify-center" style="background:linear-gradient(135deg,#fce7f3,#f9a8d4)" data-label="Señalética comercial">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#be185d" stroke-width="1" opacity="0.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+      </div>
+    </div>
+    <div class="text-center mt-8 fade-up">
+      <a href="https://www.facebook.com/impresionesaaa/" target="_blank" class="btn-outline inline-flex items-center gap-2 px-6 py-3 text-sm">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        Ver más en Facebook
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CATÁLOGO LEAD MAGNET ==================== -->
+<section id="catalogo" class="lead-section py-20 relative">
+  <div class="max-w-5xl mx-auto px-4 relative z-10">
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div class="fade-up">
+        <div class="section-tag" style="background:rgba(255,255,255,0.15);color:#fff">📖 Catálogo gratuito</div>
+        <h2 class="text-3xl md:text-4xl font-display font-extrabold text-white mb-4 mt-2" style="font-weight:800">Descarga nuestro catálogo de productos y precios</h2>
+        <p class="text-blue-100 mb-6 leading-relaxed">Conoce todos nuestros productos, materiales disponibles y rangos de precios. Recíbelo directo en tu correo, sin compromiso.</p>
+        <ul class="space-y-2 text-blue-100 text-sm">
+          <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20,6 9,17 4,12"/></svg> Más de 50 tipos de impresión</li>
+          <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20,6 9,17 4,12"/></svg> Precios de referencia actualizados</li>
+          <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20,6 9,17 4,12"/></svg> Guía de formatos de archivo</li>
+          <li class="flex items-center gap-2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20,6 9,17 4,12"/></svg> Tiempos de producción estimados</li>
+        </ul>
+      </div>
+      <div class="bg-white rounded-2xl p-6 shadow-xl fade-up fade-up-delay-2" id="catalogo-form-container">
+        <h3 class="font-display font-bold text-gray-900 text-lg mb-1" style="font-family:'Syne',sans-serif">Recibir catálogo gratis</h3>
+        <p class="text-sm text-gray-500 mb-4">Déjanos tus datos y te lo enviamos de inmediato.</p>
+        <div id="catalogo-form">
+          <div class="space-y-3">
+            <input type="text" id="cat-nombre" placeholder="Tu nombre" class="form-input">
+            <input type="email" id="cat-email" placeholder="Tu correo electrónico" class="form-input">
+            <input type="tel" id="cat-tel" placeholder="Tu teléfono (opcional)" class="form-input">
+            <button onclick="submitCatalogo()" class="btn-accent w-full py-3 text-sm flex items-center justify-center gap-2">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Recibir catálogo gratis
+            </button>
+          </div>
+          <p class="text-xs text-gray-400 mt-3 text-center">Sin spam. Solo lo usaremos para enviarte el catálogo.</p>
+        </div>
+        <div id="catalogo-success" style="display:none" class="text-center py-6">
+          <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3" style="background:#f0fff4">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00b46e" stroke-width="2.5"><polyline points="20,6 9,17 4,12"/></svg>
+          </div>
+          <div class="font-display font-bold text-gray-900 text-base" style="font-family:'Syne',sans-serif">¡Listo! Te contactaremos pronto</div>
+          <p class="text-sm text-gray-500 mt-1">Revisaremos tu correo. También puedes llamarnos al <a href="tel:+17724901928" class="text-brand-600 font-semibold">772-490-1928</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PROCESO DE COTIZACIÓN ==================== -->
+<section id="proceso" class="py-20">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="text-center mb-12 fade-up">
+      <div class="section-tag">Fácil y rápido</div>
+      <h2 class="text-3xl md:text-4xl font-display font-extrabold text-gray-900 mb-3" style="font-weight:800">¿Cómo pido mi cotización?</h2>
+      <p class="text-gray-500">Solo 3 pasos y tendrás tu precio en minutos</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="fade-up fade-up-delay-1 text-center">
+        <div class="step-number mx-auto mb-4">1</div>
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 h-full">
+          <div class="font-display font-bold text-gray-900 text-base mb-2" style="font-family:'Syne',sans-serif">Cuéntanos qué necesitas</div>
+          <p class="text-sm text-gray-500 leading-relaxed">Dinos el tipo de impresión, medidas aproximadas, cantidad y para qué fecha lo necesitas. No necesitas saber los términos técnicos, nosotros te orientamos.</p>
+        </div>
+      </div>
+      <div class="fade-up fade-up-delay-2 text-center">
+        <div class="step-number mx-auto mb-4">2</div>
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 h-full">
+          <div class="font-display font-bold text-gray-900 text-base mb-2" style="font-family:'Syne',sans-serif">Comparte tu diseño o idea</div>
+          <p class="text-sm text-gray-500 leading-relaxed">Envía tu archivo (PDF, AI, PNG de alta resolución) o si aún no tienes diseño, dinos tu idea y te ayudamos. Aceptamos cualquier formato.</p>
+        </div>
+      </div>
+      <div class="fade-up fade-up-delay-3 text-center">
+        <div class="step-number mx-auto mb-4">3</div>
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 h-full">
+          <div class="font-display font-bold text-gray-900 text-base mb-2" style="font-family:'Syne',sans-serif">Recibe tu cotización y aprueba</div>
+          <p class="text-sm text-gray-500 leading-relaxed">Te enviamos precio, tiempo de producción y prueba de impresión si aplica. Apruebas y listo, nosotros nos encargamos del resto.</p>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-8 fade-up">
+      <a href="https://wa.me/17724901928?text=Hola,%20quiero%20pedir%20una%20cotización.%20Necesito%20imprimir..." target="_blank" class="btn-whatsapp inline-flex items-center gap-2 px-7 py-4 text-base">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Solicitar cotización por WhatsApp
+      </a>
+      <div class="text-sm text-gray-400 mt-2">o llama al <a href="tel:+17724901928" class="text-brand-600 font-semibold hover:underline">772-490-1928</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FAQ ==================== -->
+<section id="faq" style="background:#f8fbff" class="py-20">
+  <div class="max-w-3xl mx-auto px-4">
+    <div class="text-center mb-12 fade-up">
+      <div class="section-tag">Preguntas frecuentes</div>
+      <h2 class="text-3xl md:text-4xl font-display font-extrabold text-gray-900 mb-3" style="font-weight:800">Preguntas frecuentes</h2>
+      <p class="text-gray-500">Resolvemos las dudas más comunes de nuestros clientes</p>
+    </div>
+    <div class="space-y-3 faq-item">
+      <details class="bg-white rounded-2xl shadow-sm border border-gray-100 fade-up">
+        <summary class="flex items-center justify-between p-5 font-semibold text-gray-900 text-sm">
+          ¿Cuánto tiempo tarda la producción?
+          <svg class="faq-arrow w-4 h-4 text-gray-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6,9 12,15 18,9"/></svg>
+        </summary>
+        <div class="px-5 pb-5 text-sm text-gray-500 leading-relaxed border-t border-gray-50">
+          Depende del producto. Las tarjetas de presentación y flyers pueden estar listas en 2–3 días hábiles. Las lonas y banners entre 1–3 días. La rotulación de vehículos generalmente 3–5 días. Si tienes urgencia, cuéntanos y buscamos la mejor opción para ti.
+        </div>
+      </details>
+      <details class="bg-white rounded-2xl shadow-sm border border-gray-100 fade-up">
+        <summary class="flex items-center justify-between p-5 font-semibold text-gray-900 text-sm">
+          ¿Qué formato debo enviar para el diseño?
+          <svg class="faq-arrow w-4 h-4 text-gray-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6,9 12,15 18,9"/></svg>
+        </summary>
+        <div class="px-5 pb-5 text-sm text-gray-500 leading-relaxed border-t border-gray-50">
+          Aceptamos PDF, AI (Illustrator), PSD (Photoshop), PNG o JPG de alta resolución (mínimo 300 DPI). Si no tienes diseño, ¡no te preocupes! Podemos ayudarte a crearlo o adaptarlo.
+        </div>
+      </details>
+      <details class="bg-white rounded-2xl shadow-sm border border-gray-100 fade-up">
+        <summary class="flex items-center justify-between p-5 font-semibold text-gray-900 text-sm">
+          ¿Hay un pedido mínimo?
+          <svg class="faq-arrow w-4 h-4 text-gray-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6,9 12,15 18,9"/></svg>
+        </summary>
+        <div class="px-5 pb-5 text-sm text-gray-500 leading-relaxed border-t border-gray-50">
+          Depende del producto. Para tarjetas de presentación el mínimo es 50 piezas, para vinil y stickers puede ser desde 1 pieza. Contáctanos para saber el mínimo de tu pedido específico.
+        </div>
+      </details>
+      <details class="bg-white rounded-2xl shadow-sm border border-gray-100 fade-up">
+        <summary class="flex items-center justify-between p-5 font-semibold text-gray-900 text-sm">
+          ¿Hacen entregas a domicilio?
+          <svg class="faq-arrow w-4 h-4 text-gray-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6,9 12,15 18,9"/></svg>
+        </summary>
+        <div class="px-5 pb-5 text-sm text-gray-500 leading-relaxed border-t border-gray-50">
+          Sí, hacemos entregas en Vero Beach y zonas cercanas como Sebastian, Fort Pierce y Port St. Lucie. Pregúntanos por el costo de entrega en tu área. También puedes pasar a recoger tu pedido.
+        </div>
+      </details>
+      <details class="bg-white rounded-2xl shadow-sm border border-gray-100 fade-up">
+        <summary class="flex items-center justify-between p-5 font-semibold text-gray-900 text-sm">
+          ¿Qué materiales usan para las lonas y señalética?
+          <svg class="faq-arrow w-4 h-4 text-gray-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6,9 12,15 18,9"/></svg>
+        </summary>
+        <div class="px-5 pb-5 text-sm text-gray-500 leading-relaxed border-t border-gray-50">
+          Usamos lona vinílica de alta resolución para exteriores (resistente a lluvia y sol de Florida), PVC rígido, aluminio compuesto, acrílico, foam board y más. Cada material tiene sus ventajas; te asesoramos según tu necesidad.
+        </div>
+      </details>
+      <details class="bg-white rounded-2xl shadow-sm border border-gray-100 fade-up">
+        <summary class="flex items-center justify-between p-5 font-semibold text-gray-900 text-sm">
+          ¿Puedo pedir muestra antes de producción?
+          <svg class="faq-arrow w-4 h-4 text-gray-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6,9 12,15 18,9"/></svg>
+        </summary>
+        <div class="px-5 pb-5 text-sm text-gray-500 leading-relaxed border-t border-gray-50">
+          Sí, en pedidos grandes siempre enviamos una prueba digital para aprobación antes de imprimir. Para pedidos especiales también podemos hacer una prueba física. Así garantizamos que el resultado sea exactamente lo que esperas.
+        </div>
+      </details>
+      <details class="bg-white rounded-2xl shadow-sm border border-gray-100 fade-up">
+        <summary class="flex items-center justify-between p-5 font-semibold text-gray-900 text-sm">
+          ¿Aceptan pagos en efectivo o solo tarjeta?
+          <svg class="faq-arrow w-4 h-4 text-gray-400 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6,9 12,15 18,9"/></svg>
+        </summary>
+        <div class="px-5 pb-5 text-sm text-gray-500 leading-relaxed border-t border-gray-50">
+          Aceptamos efectivo, tarjeta de crédito/débito, Zelle y otros métodos. Contáctanos para más detalles sobre formas de pago disponibles.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONTACTO ==================== -->
+<section id="contacto" class="py-20">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="text-center mb-12 fade-up">
+      <div class="section-tag">Hablemos</div>
+      <h2 class="text-3xl md:text-4xl font-display font-extrabold text-gray-900 mb-3" style="font-weight:800">¿Listo para cotizar?</h2>
+      <p class="text-gray-500">Elige cómo prefieres contactarnos, estamos aquí para ayudarte</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Direct contact -->
+      <div class="fade-up">
+        <div class="space-y-4">
+          <a href="tel:+17724901928" class="btn-call flex items-center gap-3 px-6 py-4 w-full text-base">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.82 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 013.73 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.69a16 16 0 006.29 6.29l1.06-1.06a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            Llamar: 772-490-1928
+          </a>
+          <a href="https://wa.me/17724901928?text=Hola%20Impresiones%20AAA,%20me%20interesa%20pedir%20una%20cotización" target="_blank" class="btn-whatsapp flex items-center gap-3 px-6 py-4 w-full text-base">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp: 772-490-1928
+          </a>
+          <a href="mailto:aaaimpressions@gmail.com?subject=Cotización de impresión" class="flex items-center gap-3 px-6 py-4 w-full text-base font-semibold rounded-full border-2 border-gray-200 text-gray-700 hover:border-brand-400 hover:text-brand-600 transition-all" style="font-family:'Syne',sans-serif">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            aaaimpressions@gmail.com
+          </a>
+          <a href="https://www.facebook.com/impresionesaaa/" target="_blank" class="flex items-center gap-3 px-6 py-4 w-full text-base font-semibold rounded-full border-2 border-gray-200 text-gray-700 hover:border-blue-500 hover:text-blue-600 transition-all" style="font-family:'Syne',sans-serif">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-blue-600"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            /impresionesaaa
+          </a>
+        </div>
+        <div class="mt-6 p-4 rounded-xl bg-gray-50 text-sm text-gray-500">
+          <div class="font-semibold text-gray-700 mb-1">Servimos a toda la zona del Treasure Coast</div>
+          Vero Beach · Sebastian · Fort Pierce · Port St. Lucie · Stuart y alrededores
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 fade-up fade-up-delay-2" id="contact-form-container">
+        <h3 class="font-display font-bold text-gray-900 text-base mb-4" style="font-family:'Syne',sans-serif">Envíanos un mensaje</h3>
+        <div id="contact-form">
+          <div class="space-y-3">
+            <input type="text" id="cf-nombre" placeholder="Tu nombre *" class="form-input">
+            <input type="tel" id="cf-tel" placeholder="Tu teléfono *" class="form-input">
+            <select id="cf-servicio" class="form-input" style="color:#6b7280">
+              <option value="">Servicio de interés</option>
+              <option>Tarjetas de presentación</option>
+              <option>Flyers / Volantes</option>
+              <option>Lonas / Banners</option>
+              <option>Vinil / Stickers</option>
+              <option>Rotulación de vehículos</option>
+              <option>Camisas / Uniformes</option>
+              <option>Menús para restaurantes</option>
+              <option>Señalética</option>
+              <option>Otro</option>
+            </select>
+            <textarea id="cf-mensaje" placeholder="Cuéntanos qué necesitas..." rows="3" class="form-input resize-none"></textarea>
+            <button onclick="submitContact()" class="btn-call w-full py-3 text-sm flex items-center justify-center gap-2">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22,2 15,22 11,13 2,9 22,2"/></svg>
+              Enviar mensaje
+            </button>
+          </div>
+        </div>
+        <div id="contact-success" style="display:none" class="text-center py-6">
+          <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3" style="background:#edf8ff">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0060e1" stroke-width="2.5"><polyline points="20,6 9,17 4,12"/></svg>
+          </div>
+          <div class="font-display font-bold text-gray-900 text-base" style="font-family:'Syne',sans-serif">¡Mensaje recibido!</div>
+          <p class="text-sm text-gray-500 mt-1">Te contactaremos pronto. Para respuesta inmediata llama al <a href="tel:+17724901928" class="text-brand-600 font-semibold">772-490-1928</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer style="background:#0b438f" class="pt-12 pb-6">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="grid md:grid-cols-4 gap-8 mb-8">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="w-9 h-9 rounded-lg flex items-center justify-center bg-white/10">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M7 19l2-2h6l2 2"/></svg>
+          </div>
+          <div class="font-display font-extrabold text-white text-lg" style="font-family:'Syne',sans-serif">Impresiones AAA</div>
+        </div>
+        <p class="text-blue-200 text-sm leading-relaxed mb-4">Impresión profesional en Vero Beach, Florida. Atención en español. Calidad garantizada para tu negocio.</p>
+        <div class="flex flex-col gap-2 text-sm text-blue-200">
+          <a href="tel:+17724901928" class="hover:text-white transition-colors flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.82 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 013.73 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.69a16 16 0 006.29 6.29l1.06-1.06a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            772-490-1928
+          </a>
+          <a href="mailto:aaaimpressions@gmail.com" class="hover:text-white transition-colors flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            aaaimpressions@gmail.com
+          </a>
+          <a href="https://www.facebook.com/impresionesaaa/" target="_blank" class="hover:text-white transition-colors flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+            /impresionesaaa
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="font-display font-bold text-white text-sm mb-3" style="font-family:'Syne',sans-serif">Servicios</div>
+        <ul class="space-y-1.5 text-sm text-blue-200">
+          <li><a href="#servicios" class="hover:text-white transition-colors">Tarjetas de presentación</a></li>
+          <li><a href="#servicios" class="hover:text-white transition-colors">Flyers / Volantes</a></li>
+          <li><a href="#servicios" class="hover:text-white transition-colors">Lonas / Banners</a></li>
+          <li><a href="#servicios" class="hover:text-white transition-colors">Vinil / Stickers</a></li>
+          <li><a href="#servicios" class="hover:text-white transition-colors">Rotulación de vehículos</a></li>
+          <li><a href="#servicios" class="hover:text-white transition-colors">Uniformes / Camisas</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="font-display font-bold text-white text-sm mb-3" style="font-family:'Syne',sans-serif">Navegación</div>
+        <ul class="space-y-1.5 text-sm text-blue-200">
+          <li><a href="#confianza" class="hover:text-white transition-colors">¿Por qué elegirnos?</a></li>
+          <li><a href="#galeria" class="hover:text-white transition-colors">Galería</a></li>
+          <li><a href="#catalogo" class="hover:text-white transition-colors">Catálogo gratis</a></li>
+          <li><a href="#proceso" class="hover:text-white transition-colors">Cómo cotizar</a></li>
+          <li><a href="#faq" class="hover:text-white transition-colors">Preguntas frecuentes</a></li>
+          <li><a href="#contacto" class="hover:text-white transition-colors">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-blue-300">
+      <span>© 2025 Impresiones AAA · Vero Beach, Florida · aaaimpressions.com</span>
+      <span>Hecho con ❤️ para la comunidad hispanohablante de Vero Beach</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ==================== FLOATING WhatsApp ==================== -->
+<a id="float-wa" href="https://wa.me/17724901928?text=Hola%20Impresiones%20AAA,%20quiero%20información" target="_blank" aria-label="WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ==================== MOBILE BOTTOM CTA ==================== -->
+<div id="mobile-cta">
+  <a href="tel:+17724901928" class="btn-call flex-1 py-3 text-sm flex items-center justify-center gap-1.5">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.82 11.5a19.79 19.79 0 01-3.07-8.67A2 2 0 013.73 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.69a16 16 0 006.29 6.29l1.06-1.06a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+    Llamar
+  </a>
+  <a href="https://wa.me/17724901928?text=Hola,%20quiero%20cotizar" target="_blank" class="btn-whatsapp flex-1 py-3 text-sm flex items-center justify-center gap-1.5">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    WhatsApp
+  </a>
+  <a href="#contacto" class="btn-accent flex-1 py-3 text-sm flex items-center justify-center">
+    Cotizar
+  </a>
+</div>
+
+<script>
+  // Sticky header shadow on scroll
+  const header = document.getElementById('sticky-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  // Fade in on scroll
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  fadeEls.forEach(el => observer.observe(el));
+
+  // Catálogo form
+  function submitCatalogo() {
+    const nombre = document.getElementById('cat-nombre').value.trim();
+    const email = document.getElementById('cat-email').value.trim();
+    if (!nombre || !email) { alert('Por favor ingresa tu nombre y correo.'); return; }
+    document.getElementById('catalogo-form').style.display = 'none';
+    document.getElementById('catalogo-success').style.display = 'block';
+  }
+
+  // Contact form
+  function submitContact() {
+    const nombre = document.getElementById('cf-nombre').value.trim();
+    const tel = document.getElementById('cf-tel').value.trim();
+    if (!nombre || !tel) { alert('Por favor ingresa tu nombre y teléfono.'); return; }
+    const servicio = document.getElementById('cf-servicio').value;
+    const mensaje = document.getElementById('cf-mensaje').value.trim();
+    const waMsg = encodeURIComponent(`Hola Impresiones AAA, me llamo ${nombre}.\nServicio: ${servicio || 'No especificado'}\n${mensaje ? 'Mensaje: ' + mensaje : ''}\nMi teléfono: ${tel}`);
+    window.open(`https://wa.me/17724901928?text=${waMsg}`, '_blank');
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('contact-success').style.display = 'block';
+  }
+</script>
+</body>
+</html>

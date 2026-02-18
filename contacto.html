@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contacto | Impresiones AAA</title>
+  <meta name="description" content="Contacta a Impresiones AAA. Cotiza por formulario o WhatsApp. Tel: 772-940-1928." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header" data-header>
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Impresiones AAA - Inicio">
+        <img class="brand-logo" src="assets/img/logo.png" alt="Impresiones AAA" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend','<span class=&quot;brand-fallback&quot;>IMPRESIONES <strong>AAA</strong></span>')" />
+      </a>
+
+      <nav class="nav" aria-label="Navegación principal">
+        <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu" data-nav-toggle>
+          <span class="nav-toggle-lines" aria-hidden="true"></span>
+        </button>
+
+        <ul class="nav-menu" id="navMenu" data-nav-menu>
+          <li><a class="nav-link" href="index.html">Inicio</a></li>
+          <li><a class="nav-link" href="productos.html">Productos</a></li>
+          <li><a class="nav-link" href="promociones.html">Promociones</a></li>
+          <li><a class="nav-link" href="blog.html">Blog</a></li>
+          <li><a class="nav-link is-active" href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-cta">
+        <a class="btn btn-ghost" href="tel:7729401928">📞 772-940-1928</a>
+        <button class="btn btn-primary" type="button" data-open-quote>🚀 Cotizar ahora</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="page-hero">
+      <div class="container page-hero-inner">
+        <div>
+          <p class="kicker">Te respondemos lo más rápido posible</p>
+          <h1>Contacto</h1>
+          <p class="lead">Cotiza por WhatsApp o deja tus datos y te escribimos.</p>
+        </div>
+        <div class="page-hero-actions">
+          <a class="btn btn-primary" href="https://wa.me/17729401928?text=Hola%20Impresiones%20AAA%2C%20quiero%20una%20cotizaci%C3%B3n." target="_blank" rel="noopener">💬 WhatsApp</a>
+          <a class="btn btn-ghost" href="https://facebook.com/impresionesaaa" target="_blank" rel="noopener">Facebook</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container contact-grid">
+        <section class="card">
+          <h2>Envíanos un mensaje</h2>
+          <p class="muted">Mientras más específico, más rápido te cotizamos.</p>
+
+          <form class="form" id="contactForm" novalidate>
+            <div class="form-grid">
+              <div class="field">
+                <label for="cName">Nombre *</label>
+                <input id="cName" name="name" type="text" required placeholder="Tu nombre" />
+              </div>
+
+              <div class="field">
+                <label for="cContact">Email o WhatsApp *</label>
+                <input id="cContact" name="contact" type="text" required placeholder="email@ejemplo.com o (772)..." />
+              </div>
+
+              <div class="field">
+                <label for="cTopic">¿Qué necesitas? *</label>
+                <select id="cTopic" name="topic" required>
+                  <option value="" selected disabled>Selecciona…</option>
+                  <option>Invitaciones</option>
+                  <option>Material para negocio (tarjetas/flyers)</option>
+                  <option>Lona / Banner</option>
+                  <option>Stickers / Etiquetas</option>
+                  <option>Playeras / Gorras</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="cWhen">¿Para cuándo?</label>
+                <input id="cWhen" name="when" type="date" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="cMsg">Mensaje *</label>
+              <textarea id="cMsg" name="message" required rows="4" placeholder="Ej: 50 invitaciones digitales para bautizo, estilo minimal, fecha 03/10."></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit">Generar mensaje</button>
+              <a class="btn btn-ghost" href="tel:7729401928">Llamar</a>
+            </div>
+
+            <div class="form-result" id="contactResult" hidden>
+              <p class="result-title">✅ Listo. Envíalo por WhatsApp:</p>
+              <textarea id="contactText" rows="5" readonly></textarea>
+              <div class="result-actions">
+                <button class="btn btn-secondary" type="button" data-copy-contact>Copiar</button>
+                <a class="btn btn-primary" id="waSendContact" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+              </div>
+            </div>
+          </form>
+        </section>
+
+        <aside class="stack">
+          <div class="card">
+            <h2>Información</h2>
+            <ul class="info-list">
+              <li><strong>Tel:</strong> <a href="tel:7729401928">772-940-1928</a></li>
+              <li><strong>WhatsApp:</strong> <a href="https://wa.me/17729401928" target="_blank" rel="noopener">Click-to-chat</a></li>
+              <li><strong>Facebook:</strong> <a href="https://facebook.com/impresionesaaa" target="_blank" rel="noopener">/impresionesaaa</a></li>
+              <li><strong>Horario:</strong> Lun–Sáb 9am–7pm</li>
+            </ul>
+            <button class="btn btn-primary w-100" type="button" data-open-quote>📩 Cotizar ahora</button>
+          </div>
+
+          <div class="card">
+            <h2>Mapa</h2>
+            <p class="muted tiny">Placeholder: reemplaza el src con tu embed real de Google Maps.</p>
+            <div class="map">
+              <iframe
+                title="Mapa (placeholder)"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d0!2d-80.0!3d27.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v0000000000"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-brand">
+          <span class="brand-fallback">IMPRESIONES <strong>AAA</strong></span>
+        </div>
+        <p class="muted">Cotiza por WhatsApp o formulario.</p>
+      </div>
+      <div>
+        <h3>Links</h3>
+        <ul class="footer-links">
+          <li><a href="productos.html">Productos</a></li>
+          <li><a href="promociones.html">Promociones</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Redes</h3>
+        <ul class="footer-links">
+          <li><a href="https://facebook.com/impresionesaaa" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <small class="muted">© <span id="year"></span> Impresiones AAA.</small>
+      <small class="muted"><a href="#" class="muted">Aviso legal</a> • <a href="#" class="muted">Privacidad</a></small>
+    </div>
+  </footer>
+
+  <!-- Quote Modal -->
+  <div class="modal" data-modal aria-hidden="true">
+    <div class="modal-overlay" data-close-quote tabindex="-1" aria-hidden="true"></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="quoteTitle">
+      <div class="modal-head">
+        <h2 id="quoteTitle">Cotizar rápido</h2>
+        <button class="icon-btn" type="button" data-close-quote aria-label="Cerrar">✕</button>
+      </div>
+
+      <form class="form" id="quoteForm" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="qName">Nombre *</label>
+            <input id="qName" name="name" type="text" required placeholder="Tu nombre" />
+            <small class="help">Como aparece en tu contacto.</small>
+          </div>
+          <div class="field">
+            <label for="qContact">Email o WhatsApp *</label>
+            <input id="qContact" name="contact" type="text" required placeholder="email@ejemplo.com o (772)..." />
+            <small class="help">Te respondemos por el medio más rápido.</small>
+          </div>
+          <div class="field">
+            <label for="qProduct">Producto *</label>
+            <select id="qProduct" name="product" required>
+              <option value="" selected disabled>Selecciona…</option>
+              <option>Invitaciones (Digital/Impresas)</option>
+              <option>Tarjetas de presentación</option>
+              <option>Flyers / Volantes</option>
+              <option>Lonas / Banners</option>
+              <option>Vinil / Rotulación</option>
+              <option>Etiquetas / Stickers</option>
+              <option>Sublimación (playeras/tazas)</option>
+              <option>Gorras</option>
+              <option>Calendarios</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="qQty">Cantidad *</label>
+            <input id="qQty" name="qty" type="number" min="1" required placeholder="Ej: 50" />
+          </div>
+          <div class="field">
+            <label for="qSize">Medidas (si aplica)</label>
+            <input id="qSize" name="size" type="text" placeholder="Ej: 2x4 ft / 4x6 in" />
+          </div>
+          <div class="field">
+            <label for="qDate">Fecha requerida</label>
+            <input id="qDate" name="date" type="date" />
+          </div>
+        </div>
+
+        <fieldset class="fieldset">
+          <legend>Acabados (opcional)</legend>
+          <div class="checks">
+            <label class="check"><input type="checkbox" name="finishes" value="Mate" /> Mate</label>
+            <label class="check"><input type="checkbox" name="finishes" value="Brillo" /> Brillo</label>
+            <label class="check"><input type="checkbox" name="finishes" value="Doble cara" /> Doble cara</label>
+            <label class="check"><input type="checkbox" name="finishes" value="Laminado" /> Laminado</label>
+            <label class="check"><input type="checkbox" name="finishes" value="Con QR" /> Con QR</label>
+            <label class="check"><input type="checkbox" name="finishes" value="Corte especial" /> Corte especial</label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="qFile">Archivo (opcional)</label>
+          <input id="qFile" name="file" type="file" />
+        </div>
+
+        <div class="field">
+          <label for="qNotes">Comentarios</label>
+          <textarea id="qNotes" name="notes" rows="3" placeholder="Cuéntanos detalles: colores, tema, etc."></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">Generar mensaje</button>
+          <button class="btn btn-ghost" type="button" data-close-quote>Cancelar</button>
+        </div>
+
+        <div class="form-result" id="quoteResult" hidden>
+          <p class="result-title">✅ Listo. Envía tu cotización:</p>
+          <textarea id="quoteText" rows="6" readonly></textarea>
+          <div class="result-actions">
+            <button class="btn btn-secondary" type="button" data-copy-quote>Copiar</button>
+            <a class="btn btn-primary" id="waSend" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

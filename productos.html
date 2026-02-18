@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Productos | Impresiones AAA</title>
+  <meta name="description" content="Explora productos: invitaciones, tarjetas, flyers, lonas, viniles, etiquetas, sublimación, promocionales y más. Filtra y cotiza en minutos." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header" data-header>
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Impresiones AAA - Inicio">
+        <img class="brand-logo" src="assets/img/logo.png" alt="Impresiones AAA" onerror="this.style.display='none'; this.insertAdjacentHTML('afterend','<span class=&quot;brand-fallback&quot;>IMPRESIONES <strong>AAA</strong></span>')" />
+      </a>
+
+      <nav class="nav" aria-label="Navegación principal">
+        <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu" data-nav-toggle>
+          <span class="nav-toggle-lines" aria-hidden="true"></span>
+        </button>
+
+        <ul class="nav-menu" id="navMenu" data-nav-menu>
+          <li><a class="nav-link" href="index.html">Inicio</a></li>
+          <li><a class="nav-link is-active" href="productos.html">Productos</a></li>
+          <li><a class="nav-link" href="promociones.html">Promociones</a></li>
+          <li><a class="nav-link" href="blog.html">Blog</a></li>
+          <li><a class="nav-link" href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-cta">
+        <a class="btn btn-ghost" href="tel:7729401928">📞 772-940-1928</a>
+        <button class="btn btn-primary" type="button" data-open-quote>🚀 Cotizar ahora</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="page-hero">
+      <div class="container page-hero-inner">
+        <div>
+          <p class="kicker">Filtra y encuentra rápido</p>
+          <h1>Productos</h1>
+          <p class="lead">Selecciona una categoría y cotiza sin fricción. Si no ves algo, elige “Otro”.</p>
+        </div>
+        <div class="page-hero-actions">
+          <button class="btn btn-primary" type="button" data-open-quote>✨ Cotizar en 1 minuto</button>
+          <a class="btn btn-ghost" href="promociones.html">Ver promociones</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="filters" role="region" aria-label="Filtros de productos">
+          <div class="filters-row">
+            <button class="chip chip-active" type="button" data-filter="all">Todo</button>
+            <button class="chip" type="button" data-filter="invitaciones">Invitaciones</button>
+            <button class="chip" type="button" data-filter="tarjetas">Tarjetas</button>
+            <button class="chip" type="button" data-filter="flyers">Flyers</button>
+            <button class="chip" type="button" data-filter="lonas">Lonas</button>
+            <button class="chip" type="button" data-filter="viniles">Viniles</button>
+            <button class="chip" type="button" data-filter="etiquetas">Etiquetas</button>
+            <button class="chip" type="button" data-filter="sublimacion">Sublimación</button>
+            <button class="chip" type="button" data-filter="promocionales">Promocionales</button>
+            <button class="chip" type="button" data-filter="calendarios">Calendarios</button>
+          </div>
+          <div class="filters-search">
+            <label class="sr-only" for="pSearch">Buscar producto</label>
+            <input id="pSearch" type="search" placeholder="Buscar… (ej: stickers, lona, invitación)" data-search />
+            <p class="tiny muted">Tip: presiona Enter para limpiar búsqueda.</p>
+          </div>
+        </div>
+
+        <div class="grid-3 products" data-products>
+          <!-- Invitaciones -->
+          <article class="card product" data-category="invitaciones" data-title="Invitaciones (Digital/Impresas)">
+            <div class="product-top">
+              <span class="badge badge-soft">Evento</span>
+              <span class="price">Desde $X</span>
+            </div>
+            <h3>Invitaciones (digitales e impresas)</h3>
+            <p class="muted">Boda, cumpleaños, bautizo, XV. Diseños elegantes o temáticos. Opciones 1 cara / 2 caras.</p>
+            <ul class="bullets">
+              <li>Digital para WhatsApp</li>
+              <li>Impreso en varios materiales</li>
+              <li>Vista previa antes de producir</li>
+            </ul>
+            <button class="btn btn-primary w-100" type="button" data-open-quote data-product="Invitaciones (Digital/Impresas)">Cotizar</button>
+          </article>
+
+          <article class="card product" data-category="tarjetas" data-title="Tarjetas de presentación">
+            <div class="product-top">
+              <span class="badge badge-soft">Negocio</span>
+              <span class="price">Desde $X</span>
+            </div>
+            <h3>Tarjetas de presentación</h3>
+            <p class="muted">Mate, brillo, doble cara. Ideal para causar buena impresión y cerrar clientes.</p>
+            <ul class="bullets">
+              <li>Opcional QR</li>
+              <li>Diseño limpio</li>
+              <li>Recomendación de acabados</li>
+            </ul>
+            <button class="btn btn-primary w-100" type="button" data-open-quote data-product="Tarjetas de presentación">Cotizar</button>
+          </article>
+
+          <article class="card product" data-category="flyers" data-title="Flyers / Volantes">
+            <div class="product-top">
+              <span class="badge badge-soft">Publicidad</span>
+              <span class="price">Desde $X</span>
+            </div>
+            <h3>Flyers / Volantes</h3>
+            <p class="muted">Promos, aperturas, servicios. Listos para repartir o dejar en mostrador.</p>
+            <ul class="bullets">
+              <li>Diseño enfocado en conversión</li>
+              <li>Recomendación de tamaño</li>
+              <li>Listo para impresión</li>
+            </ul>
+            <button class="btn btn-primary w-100" type="button" data-open-quote data-product="Flyers / Volantes">Cotizar</button>
+          </article>
+
+          <article class="card product" data-category="lonas" data-title="Lonas / Banners">
+            <div class="product-top">
+              <span class="badge badge-soft">Exterior</span>
+              <span class="price">Desde $X</span>
+            </div>
+            <h3>Lonas / Banners</h3>
+            <p class="muted">Para negocio o eventos. Medidas personalizadas. Diseños legibles a distancia.</p>
+            <ul class="bullets">
+              <li>Alta visibilidad</li>
+              <li>Guía de medidas</li>
+              <li>Optimización de texto</li>
+            </ul>
+            <button class="btn btn-primary w-100" type="button" data-open-quote data-product="Lonas / Banners">Cotizar</button>
+          </article>
+
+          <article class="card product" data-category="viniles" data-title="Vinil / Rotulación">
+            <div class="product-top">
+              <span class="badge badge-soft">Branding</span>
+              <span class="price">Desde $X</span>
+            </div>
+            <h3>Vinil / Rotulación</h3>
+            <p class="muted">Para ventanas, paredes, vehículos o letreros. Ideal para reforzar tu marca.</p>
+            <ul class="bullets">
+              <li>Uso interior/exterior</li>
+              <li>Cortes y tamaños varios</li>
+              <li>Diseño listo para aplicar</li>
+            </ul>
+            <button class="btn btn-primary w-100" type="button" data-open-quote data-product="Vinil / Rotulación">Cotizar</button>
+          </article>
+
+          <article class="card product" data-category="etiquetas" data-title="Etiquetas / Stickers">
+            <div class="product-top">
+              <span class="badge badge-soft">Empaque</span>
+              <span class="price">Desde $X</span>
+            </div>
+            <h3>Etiquetas / Stickers</h3>
+            <p class="muted">Para productos, bolsas, cajas, recuerdos, botellas y más. Forma, tamaño y acabado.</p>
+            <ul class="bullets">
+              <li>Redondos, cuadrados, troquelados</li>
+              <li>Resistentes según uso</li>
+              <li>Perfectos para branding</li>
+            </ul>
+            <button class="btn btn-primary w-100" type="button" data-open-quote data-product="Etiquetas / Stickers">Cotizar</button>
+          </article>
+
+          <article class="card product" data-category="sublimacion" data-title="Sublimación (playeras/tazas)">
+            <div class="product-top">
+              <span class="badge badge-soft">Merch</span>
+              <span class="price">Desde $X</span>
+            </div>
+            <h3>Sublimación</h3>
+            <p class="muted">Playeras, tazas y más (según disponibilidad). Ideal para promos y equipos.</p>
+            <ul class="bullets">
+              <li>Uniformes o regalos</li>
+              <li>Diseño listo para producción</li>
+              <li>Opciones por volumen</li>
+            </ul>
+            <button class="btn btn-primary w-100" type="button" data-open-quote data-product="Sublimación (playeras/tazas)">Cotizar</button>
+          </article>
+
+          <article class="card product" data-category="promocionales" data-title="Gorras">
+            <div class="product-top">
+              <span class="badge badge-soft">Equipo</span>
+              <span class="price">Desde $X</span>
+            </div>
+            <h3>Gorras</h3>
+            <p class="muted">Con logo para tu negocio o evento. Excelente para presencia de marca.</p>
+            <ul class="bullets">
+              <li>Opciones por cantidad</li>
+              <li>Diseño claro y legible</li>
+              <li>Ideal para crews</li>
+            </ul>
+            <button class="btn btn-primary w-100" type="button" data-open-quote data-product="Gorras">Cotizar</button>
+          </article>
+
+          <article class="card product" data-category="promocionales" data-title="Playeras">
+            <div class="product-top">
+              <span class="badge badge-soft">Uniformes</span>
+              <span class="price">Desde $X</span>
+            </div>
+            <h3>Playeras</h3>
+            <p class="muted">Para equipos, eventos y negocios. Una forma simple de verte profesional.</p>
+            <ul class="bullets">
+              <li>Opciones de estilo</li>
+              <li>Ideal para staff</li>
+              <li>Branding consistente</li>
+            </ul>
+            <button class="btn btn-primary w-100" type="button" data-open-quote data-product="Playeras">Cotizar</button>
+          </article>
+
+          <article class="card product" data-category="calendarios" data-title="Calendarios">
+            <div class="product-top">
+              <span class="badge badge-soft">Tiendas</span>
+              <span class="price">Desde $X</span>
+            </div>
+            <h3>Calendarios</h3>
+            <p class="muted">Perfectos para negocios hispanos: logo, teléfono, dirección y redes visibles todo el año.</p>
+            <ul class="bullets">
+              <li>Ideal por volumen</li>
+              <li>Diseño limpio</li>
+              <li>Alta recordación</li>
+            </ul>
+            <button class="btn btn-primary w-100" type="button" data-open-quote data-product="Calendarios">Cotizar</button>
+          </article>
+        </div>
+
+        <div class="section-cta">
+          <button class="btn btn-primary" type="button" data-open-quote>📩 Cotizar</button>
+          <a class="btn btn-ghost" href="contacto.html">¿Tienes dudas? Contacto</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-brand">
+          <span class="brand-fallback">IMPRESIONES <strong>AAA</strong></span>
+        </div>
+        <p class="muted">Material para eventos y negocios. Cotiza rápido por WhatsApp.</p>
+        <div class="footer-badges">
+          <a class="chip" href="tel:7729401928">📞 772-940-1928</a>
+          <a class="chip" href="https://wa.me/17729401928?text=Hola%20Impresiones%20AAA%2C%20quiero%20una%20cotizaci%C3%B3n." target="_blank" rel="noopener">💬 WhatsApp</a>
+        </div>
+      </div>
+      <div>
+        <h3>Links</h3>
+        <ul class="footer-links">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="promociones.html">Promociones</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Redes</h3>
+        <ul class="footer-links">
+          <li><a href="https://facebook.com/impresionesaaa" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="#" aria-disabled="true" class="is-disabled">Instagram (placeholder)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <small class="muted">© <span id="year"></span> Impresiones AAA.</small>
+      <small class="muted"><a href="#" class="muted">Aviso legal</a> • <a href="#" class="muted">Privacidad</a></small>
+    </div>
+  </footer>
+
+  <!-- Quote Modal (same as index) -->
+  <div class="modal" data-modal aria-hidden="true">
+    <div class="modal-overlay" data-close-quote tabindex="-1" aria-hidden="true"></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="quoteTitle">
+      <div class="modal-head">
+        <h2 id="quoteTitle">Cotizar rápido</h2>
+        <button class="icon-btn" type="button" data-close-quote aria-label="Cerrar">✕</button>
+      </div>
+
+      <form class="form" id="quoteForm" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="qName">Nombre *</label>
+            <input id="qName" name="name" type="text" autocomplete="name" required placeholder="Tu nombre" />
+            <small class="help">Como aparece en tu contacto.</small>
+          </div>
+          <div class="field">
+            <label for="qContact">Email o WhatsApp *</label>
+            <input id="qContact" name="contact" type="text" required placeholder="email@ejemplo.com o (772)..." />
+            <small class="help">Te respondemos por el medio más rápido.</small>
+          </div>
+          <div class="field">
+            <label for="qProduct">Producto *</label>
+            <select id="qProduct" name="product" required>
+              <option value="" selected disabled>Selecciona…</option>
+              <option>Invitaciones (Digital/Impresas)</option>
+              <option>Tarjetas de presentación</option>
+              <option>Flyers / Volantes</option>
+              <option>Lonas / Banners</option>
+              <option>Vinil / Rotulación</option>
+              <option>Etiquetas / Stickers</option>
+              <option>Sublimación (playeras/tazas)</option>
+              <option>Gorras</option>
+              <option>Calendarios</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="qQty">Cantidad *</label>
+            <input id="qQty" name="qty" type="number" min="1" required placeholder="Ej: 50" />
+          </div>
+          <div class="field">
+            <label for="qSize">Medidas (si aplica)</label>
+            <input id="qSize" name="size" type="text" placeholder="Ej: 2x4 ft / 4x6 in" />
+          </div>
+          <div class="field">
+            <label for="qDate">Fecha requerida</label>
+            <input id="qDate" name="date" type="date" />
+          </div>
+        </div>
+
+        <fieldset class="fieldset">
+          <legend>Acabados (opcional)</legend>
+          <div class="checks">
+            <label class="check"><input type="checkbox" name="finishes" value="Mate" /> Mate</label>
+            <label class="check"><input type="checkbox" name="finishes" value="Brillo" /> Brillo</label>
+            <label class="check"><input type="checkbox" name="finishes" value="Doble cara" /> Doble cara</label>
+            <label class="check"><input type="checkbox" name="finishes" value="Laminado" /> Laminado</label>
+            <label class="check"><input type="checkbox" name="finishes" value="Con QR" /> Con QR</label>
+            <label class="check"><input type="checkbox" name="finishes" value="Corte especial" /> Corte especial</label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="qFile">Archivo (opcional)</label>
+          <input id="qFile" name="file" type="file" />
+          <small class="help">PDF/PNG/JPG. Si no tienes, te ayudamos con el diseño.</small>
+        </div>
+
+        <div class="field">
+          <label for="qNotes">Comentarios</label>
+          <textarea id="qNotes" name="notes" rows="3" placeholder="Cuéntanos detalles: colores, tema, uso (interior/exterior), etc."></textarea>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">Generar mensaje</button>
+          <button class="btn btn-ghost" type="button" data-close-quote>Cancelar</button>
+        </div>
+
+        <div class="form-result" id="quoteResult" hidden>
+          <p class="result-title">✅ Listo. Envía tu cotización:</p>
+          <textarea id="quoteText" rows="6" readonly></textarea>
+          <div class="result-actions">
+            <button class="btn btn-secondary" type="button" data-copy-quote>Copiar</button>
+            <a class="btn btn-primary" id="waSend" href="#" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+          </div>
+          <p class="tiny muted">O llámanos: <a href="tel:7729401928">772-940-1928</a></p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
