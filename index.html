@@ -12,7 +12,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -27,16 +27,16 @@
 
   <style>
     :root {
-      --primary:    #2563EB;
-      --primary-dk: #1E3A8A;
-      --primary-lt: #DBEAFE;
-      --accent:     #F59E0B;
-      --accent-lt:  #FEF3C7;
-      --dark:       #0F172A;
-      --surf:       #F8FAFC;
-      --border:     #E5E7EB;
-      --text:       #111827;
-      --muted:      #6B7280;
+      --primary:    #0057E7;
+      --primary-dk: #0D2140;
+      --primary-lt: #EAF1FF;
+      --accent:     #E85000;
+      --accent-lt:  #FFF0E8;
+      --dark:       #09162E;
+      --surf:       #F5F8FC;
+      --border:     #E2E8F2;
+      --text:       #111926;
+      --muted:      #5B6B84;
     }
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -46,16 +46,23 @@
       background: #FFFFFF;
       -webkit-font-smoothing: antialiased;
     }
-    h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; }
+    h1, h2, h3 { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 700; letter-spacing: -0.025em; }
     section[id] { scroll-margin-top: 80px; }
 
-    .accent-line { display: block; width: 36px; height: 2px; background: var(--accent); margin-bottom: 1.25rem; }
+    .accent-line {
+      display: block;
+      width: 44px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--primary));
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+    }
     .accent-line.mx-auto { margin-left: auto; margin-right: auto; }
 
-    .hero-bg { background: linear-gradient(150deg, #0F172A 0%, #1E3A8A 60%, #2563EB 100%); }
+    .hero-bg { background: linear-gradient(145deg, #09162E 0%, #0D2140 50%, #0A3280 100%); }
 
     .service-card { transition: transform .22s ease, box-shadow .22s ease; }
-    .service-card:hover { transform: translateY(-5px); box-shadow: 0 24px 64px rgba(37,99,235,.12); }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,87,231,.14); }
 
     .icon-wrap {
       width: 52px; height: 52px; border-radius: 14px;
@@ -74,19 +81,30 @@
     .reveal { opacity: 0; transform: translateY(22px); transition: opacity .55s ease, transform .55s ease; }
     .reveal.visible { opacity: 1; transform: none; }
 
-    .contact-card { transition: background .18s, box-shadow .18s; }
+    .contact-card { transition: background .18s, box-shadow .18s; cursor: pointer; }
     .contact-card:hover { background: var(--surf); box-shadow: 0 8px 30px rgba(0,0,0,.06); }
 
     .ph-card {
       background: var(--surf);
-      border: 1.5px dashed var(--border);
-      border-radius: 20px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
     }
 
     .pkg-card { transition: transform .22s ease, box-shadow .22s ease; }
-    .pkg-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(37,99,235,.10); }
+    .pkg-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(0,87,231,.12); }
 
     :focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 6px; }
+
+    .step-num {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      font-weight: 900;
+      font-size: 2.75rem;
+      color: var(--primary);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      display: block;
+      margin-bottom: 1rem;
+    }
   </style>
 </head>
 
@@ -164,7 +182,7 @@
     <div class="max-w-3xl">
       <p class="text-xs font-semibold tracking-[0.22em] uppercase mb-7" style="color:var(--accent)" data-i18n="hero-eyebrow">Marketing Digital · Presencia Online · Materiales Promocionales</p>
 
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-medium text-white leading-[1.12] mb-7">
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.06] mb-7 tracking-tight">
         <span data-i18n="hero-h1-a">Tu negocio merece</span><br>
         <em class="not-italic" style="color:var(--accent)" data-i18n="hero-h1-b">verse profesional,</em><br>
         <span data-i18n="hero-h1-c">aparecer y crecer.</span>
@@ -179,19 +197,23 @@
         <a href="#servicios" class="inline-flex items-center justify-center gap-2 rounded-xl px-7 py-3.5 text-sm font-semibold text-white border border-white/20 hover:border-white/40 transition" data-i18n="hero-cta-secondary">Ver servicios</a>
       </div>
 
-      <!-- Stats -->
-      <div class="mt-16 pt-8 border-t border-white/10 grid grid-cols-3 gap-6 max-w-sm">
-        <div>
-          <p class="text-2xl font-medium text-white" style="font-family:'Playfair Display',serif">Local</p>
-          <p class="text-xs text-gray-400 mt-1 leading-snug" data-i18n="stat-1">Enfocados en negocios de tu comunidad</p>
+      <!-- Trust indicators -->
+      <div class="mt-14 pt-7 border-t border-white/10 flex flex-wrap items-center gap-x-8 gap-y-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-2 h-2 rounded-full flex-shrink-0" style="background:var(--accent)"></div>
+          <span class="text-sm text-gray-300 font-medium" data-i18n="stat-1">Negocios locales</span>
         </div>
-        <div>
-          <p class="text-2xl font-medium text-white" style="font-family:'Playfair Display',serif">Digital</p>
-          <p class="text-xs text-gray-400 mt-1 leading-snug" data-i18n="stat-2">Presencia online que genera clientes</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-2 h-2 rounded-full flex-shrink-0" style="background:var(--accent)"></div>
+          <span class="text-sm text-gray-300 font-medium" data-i18n="stat-2">Marketing digital</span>
         </div>
-        <div>
-          <p class="text-2xl font-medium text-white" style="font-family:'Playfair Display',serif">Físico</p>
-          <p class="text-xs text-gray-400 mt-1 leading-snug" data-i18n="stat-3">Materiales que refuerzan tu marca</p>
+        <div class="flex items-center gap-2.5">
+          <div class="w-2 h-2 rounded-full flex-shrink-0" style="background:var(--accent)"></div>
+          <span class="text-sm text-gray-300 font-medium" data-i18n="stat-3">Materiales impresos</span>
+        </div>
+        <div class="flex items-center gap-2.5">
+          <div class="w-2 h-2 rounded-full flex-shrink-0" style="background:var(--accent)"></div>
+          <span class="text-sm text-gray-300 font-medium">Consulta gratis</span>
         </div>
       </div>
     </div>
@@ -426,24 +448,24 @@
           <span class="inline-block text-xs font-semibold tracking-wider uppercase rounded-full px-4 py-1 text-white" style="background:var(--primary)" data-i18n="pkg2-badge">Más popular</span>
         </div>
         <div>
-          <span class="inline-block text-xs font-semibold tracking-wider uppercase rounded-full px-3 py-1 mb-5" style="background:rgba(37,99,235,.2);color:#93C5FD" data-i18n="pkg2-tag">Presencia activa</span>
+          <span class="inline-block text-xs font-semibold tracking-wider uppercase rounded-full px-3 py-1 mb-5" style="background:rgba(0,87,231,.2);color:#93C5FD" data-i18n="pkg2-tag">Presencia activa</span>
           <h3 class="text-xl font-semibold mb-3 text-white" data-i18n="pkg2-title">Atraer clientes con anuncios</h3>
           <p class="text-sm text-gray-400 leading-relaxed mb-6" data-i18n="pkg2-desc">Para negocios listos para invertir en publicidad y conseguir resultados medibles con Meta Ads o Google Ads.</p>
           <ul class="space-y-3 mb-8">
             <li class="flex items-start gap-3 text-sm text-gray-300">
-              <span class="mt-0.5 flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center" style="background:rgba(37,99,235,.3)"><svg class="w-2.5 h-2.5 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+              <span class="mt-0.5 flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center" style="background:rgba(0,87,231,.3)"><svg class="w-2.5 h-2.5 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
               <span data-i18n="pkg2-f1">Gestión de Meta Ads o Google Ads</span>
             </li>
             <li class="flex items-start gap-3 text-sm text-gray-300">
-              <span class="mt-0.5 flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center" style="background:rgba(37,99,235,.3)"><svg class="w-2.5 h-2.5 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+              <span class="mt-0.5 flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center" style="background:rgba(0,87,231,.3)"><svg class="w-2.5 h-2.5 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
               <span data-i18n="pkg2-f2">Landing page o sitio web profesional</span>
             </li>
             <li class="flex items-start gap-3 text-sm text-gray-300">
-              <span class="mt-0.5 flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center" style="background:rgba(37,99,235,.3)"><svg class="w-2.5 h-2.5 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+              <span class="mt-0.5 flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center" style="background:rgba(0,87,231,.3)"><svg class="w-2.5 h-2.5 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
               <span data-i18n="pkg2-f3">Piezas gráficas para redes sociales</span>
             </li>
             <li class="flex items-start gap-3 text-sm text-gray-300">
-              <span class="mt-0.5 flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center" style="background:rgba(37,99,235,.3)"><svg class="w-2.5 h-2.5 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
+              <span class="mt-0.5 flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center" style="background:rgba(0,87,231,.3)"><svg class="w-2.5 h-2.5 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg></span>
               <span data-i18n="pkg2-f4">Reportes de resultados mensuales</span>
             </li>
           </ul>
@@ -494,22 +516,22 @@
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
       <div class="reveal">
-        <p class="text-4xl font-light mb-4" style="color:var(--primary);font-family:'Playfair Display',serif">01</p>
+        <p class="step-num">01</p>
         <h3 class="text-base font-semibold mb-2" data-i18n="step1-title">Conversación inicial</h3>
         <p class="text-sm text-gray-400 leading-relaxed" data-i18n="step1-desc">Hablamos por WhatsApp o teléfono para entender tu negocio, tu situación actual y qué quieres lograr.</p>
       </div>
       <div class="reveal" style="transition-delay:.1s">
-        <p class="text-4xl font-light mb-4" style="color:var(--primary);font-family:'Playfair Display',serif">02</p>
+        <p class="step-num">02</p>
         <h3 class="text-base font-semibold mb-2" data-i18n="step2-title">Propuesta personalizada</h3>
         <p class="text-sm text-gray-400 leading-relaxed" data-i18n="step2-desc">Preparamos una propuesta clara con los servicios que realmente necesitas y el costo estimado, sin letra pequeña.</p>
       </div>
       <div class="reveal" style="transition-delay:.2s">
-        <p class="text-4xl font-light mb-4" style="color:var(--primary);font-family:'Playfair Display',serif">03</p>
+        <p class="step-num">03</p>
         <h3 class="text-base font-semibold mb-2" data-i18n="step3-title">Ejecución</h3>
         <p class="text-sm text-gray-400 leading-relaxed" data-i18n="step3-desc">Implementamos todo con comunicación constante. Te mantenemos informado en cada etapa sin tecnicismos.</p>
       </div>
       <div class="reveal" style="transition-delay:.3s">
-        <p class="text-4xl font-light mb-4" style="color:var(--primary);font-family:'Playfair Display',serif">04</p>
+        <p class="step-num">04</p>
         <h3 class="text-base font-semibold mb-2" data-i18n="step4-title">Seguimiento</h3>
         <p class="text-sm text-gray-400 leading-relaxed" data-i18n="step4-desc">Revisamos resultados y ajustamos lo necesario. Nuestro objetivo es que veas el impacto en tu negocio.</p>
       </div>
@@ -684,13 +706,13 @@
             </div>
           </a>
 
-          <a href="mailto:aaaimpresions@gmail.com" class="contact-card flex items-center gap-4 p-5 rounded-2xl border border-gray-100">
+          <a href="mailto:aaaimpressionsmarketing@gmail.com" class="contact-card flex items-center gap-4 p-5 rounded-2xl border border-gray-100">
             <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style="background:var(--primary-lt)">
               <svg class="w-5 h-5" style="color:var(--primary)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
             </div>
             <div>
               <p class="text-sm font-semibold">Email</p>
-              <p class="text-sm text-gray-400">aaaimpresions@gmail.com</p>
+              <p class="text-sm text-gray-400">aaaimpressionsmarketing@gmail.com</p>
             </div>
           </a>
 
@@ -708,7 +730,7 @@
 
       <!-- Contact form -->
       <div class="reveal rounded-3xl border border-gray-100 shadow-sm p-8" style="transition-delay:.14s">
-        <h3 class="text-xl font-semibold mb-2" style="font-family:'Playfair Display',serif" data-i18n="form-h3">Solicitar cotización</h3>
+        <h3 class="text-xl font-semibold mb-2" data-i18n="form-h3">Solicitar cotización</h3>
         <p class="text-sm text-gray-400 mb-6" data-i18n="form-subh">Te respondemos en menos de 24 horas.</p>
 
         <form id="contactForm" novalidate class="space-y-5">
@@ -796,7 +818,7 @@
       <p class="text-gray-600 text-xs">© <span id="yr"></span> AAA Impressions. <span data-i18n="footer-rights">Todos los derechos reservados.</span></p>
       <div class="flex items-center gap-5">
         <a href="tel:+17729401928" class="text-gray-600 hover:text-white text-xs transition">772-940-1928</a>
-        <a href="mailto:aaaimpresions@gmail.com" class="text-gray-600 hover:text-white text-xs transition">aaaimpresions@gmail.com</a>
+        <a href="mailto:aaaimpressionsmarketing@gmail.com" class="text-gray-600 hover:text-white text-xs transition">aaaimpressionsmarketing@gmail.com</a>
         <a href="https://www.facebook.com/impresionesaaa/" target="_blank" rel="noopener" class="text-gray-600 hover:text-white text-xs transition">Facebook</a>
       </div>
     </div>
