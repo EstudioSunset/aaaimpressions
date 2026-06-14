@@ -11,18 +11,20 @@
       </a>
 
       <!-- Desktop nav -->
-      <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-gray-600" aria-label="{{ 'Navegación principal' if lang == 'es' else 'Main navigation' }}">
+      <nav class="hidden lg:flex items-center gap-5 xl:gap-7 text-sm font-medium text-gray-600" aria-label="{{ 'Navegación principal' if lang == 'es' else 'Main navigation' }}">
         {% if lang == "es" %}
           <a class="nav-link hover:text-gray-900 transition-colors" href="/es/servicios/">Servicios</a>
           <a class="nav-link hover:text-gray-900 transition-colors" href="/es/ubicaciones/">Ubicaciones</a>
           <a class="nav-link hover:text-gray-900 transition-colors" href="/es/blog/">Blog</a>
           <a class="nav-link hover:text-gray-900 transition-colors" href="/es/paquetes/">Paquetes</a>
+          <a class="nav-link hover:text-gray-900 transition-colors" href="/es/sobre-nosotros/">Nosotros</a>
           <a class="nav-link hover:text-gray-900 transition-colors" href="/es/contacto/">Contacto</a>
         {% else %}
           <a class="nav-link hover:text-gray-900 transition-colors" href="/en/services/">Services</a>
           <a class="nav-link hover:text-gray-900 transition-colors" href="/en/locations/">Locations</a>
           <a class="nav-link hover:text-gray-900 transition-colors" href="/en/blog/">Blog</a>
           <a class="nav-link hover:text-gray-900 transition-colors" href="/en/packages/">Packages</a>
+          <a class="nav-link hover:text-gray-900 transition-colors" href="/en/about/">About</a>
           <a class="nav-link hover:text-gray-900 transition-colors" href="/en/contact/">Contact</a>
         {% endif %}
       </nav>
