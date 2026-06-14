@@ -1,0 +1,39 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "AAA Impressions",
+  "description": "{{ 'Agencia de marketing digital para negocios locales en el Treasure Coast de Florida. Google Business Profile, Meta Ads, Google Ads, diseño web y branding.' if lang == 'es' else 'Digital marketing agency for local businesses in Treasure Coast, Florida. Google Business Profile, Meta Ads, Google Ads, web design, and branding.' }}",
+  "url": "{{ site.baseUrl }}",
+  "telephone": "{{ site.phoneRaw }}",
+  "email": "{{ site.email }}",
+  "sameAs": [
+    "{{ site.facebook }}"
+  ],
+  "areaServed": [
+    { "@type": "City", "name": "Port St. Lucie", "addressRegion": "FL" },
+    { "@type": "City", "name": "Fort Pierce",    "addressRegion": "FL" },
+    { "@type": "City", "name": "Stuart",          "addressRegion": "FL" },
+    { "@type": "City", "name": "Vero Beach",      "addressRegion": "FL" }
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressRegion": "FL",
+    "addressCountry": "US"
+  },
+  "priceRange": "$$",
+  "knowsLanguage": ["es", "en"],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "{{ 'Servicios de marketing digital' if lang == 'es' else 'Digital marketing services' }}",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Google Business Profile" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Meta Ads" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Google Ads" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "{{ 'Diseño Web' if lang == 'es' else 'Web Design' }}" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Branding" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "{{ 'Contenido para Redes Sociales' if lang == 'es' else 'Social Media Content' }}" } }
+    ]
+  }
+}
+</script>

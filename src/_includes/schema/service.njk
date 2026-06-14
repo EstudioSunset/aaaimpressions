@@ -1,0 +1,28 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "{{ schemaServiceName | default(title) }}",
+  "description": "{{ metaDescription }}",
+  "url": "{{ site.baseUrl }}{{ page.url }}",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "AAA Impressions",
+    "telephone": "{{ site.phoneRaw }}",
+    "email": "{{ site.email }}",
+    "url": "{{ site.baseUrl }}",
+    "areaServed": [
+      { "@type": "City", "name": "Port St. Lucie", "addressRegion": "FL" },
+      { "@type": "City", "name": "Fort Pierce",    "addressRegion": "FL" },
+      { "@type": "City", "name": "Stuart",          "addressRegion": "FL" },
+      { "@type": "City", "name": "Vero Beach",      "addressRegion": "FL" }
+    ]
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Port St. Lucie", "addressRegion": "FL" },
+    { "@type": "City", "name": "Fort Pierce",    "addressRegion": "FL" },
+    { "@type": "City", "name": "Stuart",          "addressRegion": "FL" },
+    { "@type": "City", "name": "Vero Beach",      "addressRegion": "FL" }
+  ]
+}
+</script>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="{{ lang }}">
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.ga4 }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{{ site.ga4 }}');
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','{{ site.gtm }}');</script>
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>{{ title }}</title>
+<meta name="description" content="{{ metaDescription }}" />
+<link rel="canonical" href="{{ site.baseUrl }}{{ page.url }}" />
+
+<!-- hreflang -->
+<link rel="alternate" hreflang="es"        href="{{ site.baseUrl }}{{ hreflangEs }}" />
+<link rel="alternate" hreflang="en"        href="{{ site.baseUrl }}{{ hreflangEn }}" />
+<link rel="alternate" hreflang="x-default" href="{{ site.baseUrl }}{{ hreflangEs }}" />
+
+<!-- Open Graph -->
+<meta property="og:title"       content="{{ title }}" />
+<meta property="og:description" content="{{ metaDescription }}" />
+<meta property="og:type"        content="website" />
+<meta property="og:url"         content="{{ site.baseUrl }}{{ page.url }}" />
+<meta property="og:locale"      content="{{ 'es_US' if lang == 'es' else 'en_US' }}" />
+<meta property="og:image"       content="{{ site.baseUrl }}/assets/img/og-default.jpg" />
+<meta property="og:site_name"   content="AAA Impressions" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card"        content="summary_large_image" />
+<meta name="twitter:title"       content="{{ title }}" />
+<meta name="twitter:description" content="{{ metaDescription }}" />
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Compiled CSS -->
+<link rel="stylesheet" href="/assets/css/main.css" />
+
+<!-- Structured Data -->
+{% if schema == "home" %}{% include "schema/local-business.njk" %}{% endif %}
+{% if schema == "service" %}{% include "schema/service.njk" %}{% endif %}
+
+</head>
+<body>
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ site.gtm }}"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- Skip to content -->
+<a href="#main-content"
+   class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[999] focus:bg-white focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg focus:text-sm focus:font-medium">
+  {{ "Saltar al contenido" if lang == "es" else "Skip to content" }}
+</a>
+
+{% include "header.njk" %}
+
+<main id="main-content">
+{{ content | safe }}
+</main>
+
+{% include "footer.njk" %}
+
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

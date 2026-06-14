@@ -1,0 +1,91 @@
+<footer style="background:var(--dark)" class="py-14">
+  <div class="mx-auto max-w-6xl px-5">
+
+    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-10">
+
+      <!-- Brand column -->
+      <div class="max-w-xs">
+        <a href="{{ '/es/' if lang == 'es' else '/en/' }}" class="inline-block mb-4">
+          <img src="/assets/img/logo.png" alt="AAA Impressions" class="h-8 w-auto brightness-0 invert">
+        </a>
+        <p class="text-gray-500 text-sm leading-relaxed mb-5">
+          {{ "Marketing digital y materiales promocionales para negocios locales en el Treasure Coast de Florida." if lang == "es" else "Digital marketing and promotional materials for local businesses in Treasure Coast, Florida." }}
+        </p>
+        <!-- Contact info (NAP) -->
+        <div class="flex flex-col gap-1.5 text-sm">
+          <a href="tel:{{ site.phoneRaw }}" class="text-gray-400 hover:text-white transition">{{ site.phone }}</a>
+          <a href="mailto:{{ site.email }}" class="text-gray-400 hover:text-white transition">{{ site.email }}</a>
+        </div>
+      </div>
+
+      <!-- Nav columns -->
+      <div class="grid sm:grid-cols-2 gap-8 text-sm">
+
+        {% if lang == "es" %}
+        <div>
+          <p class="text-xs font-semibold tracking-widest uppercase text-gray-600 mb-4">Servicios</p>
+          <ul class="space-y-2.5">
+            <li><a class="text-gray-500 hover:text-white transition" href="/es/servicios/google-business-profile-treasure-coast/">Google Business Profile</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="/es/servicios/publicidad-facebook-instagram-treasure-coast/">Meta Ads</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="/es/servicios/google-ads-treasure-coast/">Google Ads</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="/es/servicios/diseno-web-treasure-coast/">Diseño Web</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="/es/servicios/branding-diseno-logo-treasure-coast/">Branding & Logo</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="/es/servicios/manejo-redes-sociales-treasure-coast/">Redes Sociales</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs font-semibold tracking-widest uppercase text-gray-600 mb-4">Empresa</p>
+          <ul class="space-y-2.5">
+            <li><a class="text-gray-500 hover:text-white transition" href="/es/sobre-nosotros/">Sobre nosotros</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="/es/paquetes/">Paquetes</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="/es/blog/">Blog</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="/es/contacto/">Contacto</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="{{ site.facebook }}" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="{{ site.whatsapp }}" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+          </ul>
+        </div>
+        {% else %}
+        <div>
+          <p class="text-xs font-semibold tracking-widest uppercase text-gray-600 mb-4">Services</p>
+          <ul class="space-y-2.5">
+            <li><a class="text-gray-500 hover:text-white transition" href="/en/services/google-business-profile-treasure-coast/">Google Business Profile</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="/en/services/facebook-instagram-ads-treasure-coast/">Meta Ads</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="/en/services/google-ads-treasure-coast/">Google Ads</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="/en/services/web-design-treasure-coast/">Web Design</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="/en/services/branding-logo-design-treasure-coast/">Branding & Logo</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="/en/services/social-media-management-treasure-coast/">Social Media</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-xs font-semibold tracking-widest uppercase text-gray-600 mb-4">Company</p>
+          <ul class="space-y-2.5">
+            <li><a class="text-gray-500 hover:text-white transition" href="/en/about/">About us</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="/en/packages/">Packages</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="/en/blog/">Blog</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="/en/contact/">Contact</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="{{ site.facebook }}" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="{{ site.whatsapp }}" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+          </ul>
+        </div>
+        {% endif %}
+
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-gray-600 text-xs">
+        © <span id="yr"></span> AAA Impressions —
+        {{ "Todos los derechos reservados." if lang == "es" else "All rights reserved." }}
+        {{ "Port St. Lucie, Fort Pierce, Stuart, Vero Beach, FL." }}
+      </p>
+      <a href="{{ site.whatsapp }}?text={{ 'Hola%2C%20me%20gustar%C3%ADa%20una%20consulta%20gratuita.' if lang == 'es' else 'Hello%2C%20I%20would%20like%20a%20free%20consultation.' }}"
+         target="_blank" rel="noopener noreferrer"
+         class="text-xs font-semibold rounded-xl px-4 py-2 text-white hover:opacity-90 transition-opacity"
+         style="background:#25D366">
+        {{ "WhatsApp: " if lang == "es" else "WhatsApp: " }}{{ site.phone }}
+      </a>
+    </div>
+
+  </div>
+</footer>

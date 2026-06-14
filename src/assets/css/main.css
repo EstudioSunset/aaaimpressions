@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================
+   DESIGN TOKENS
+   ========================================== */
+:root {
+  --primary:    #0057E7;
+  --primary-dk: #0D2140;
+  --primary-lt: #EAF1FF;
+  --accent:     #E85000;
+  --accent-lt:  #FFF0E8;
+  --dark:       #09162E;
+  --surf:       #F5F8FC;
+  --border:     #E2E8F2;
+  --text:       #111926;
+  --muted:      #5B6B84;
+}
+
+/* ==========================================
+   BASE
+   ========================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--text);
+  background: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+section[id] { scroll-margin-top: 80px; }
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ==========================================
+   LAYOUT HELPERS
+   ========================================== */
+.accent-line {
+  display: block;
+  width: 44px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--primary));
+  border-radius: 999px;
+  margin-bottom: 1.5rem;
+}
+.accent-line.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==========================================
+   HERO
+   ========================================== */
+.hero-bg {
+  background: linear-gradient(145deg, #09162E 0%, #0D2140 50%, #0A3280 100%);
+}
+
+/* ==========================================
+   CARDS & INTERACTIVE
+   ========================================== */
+.service-card {
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0,87,231,.14);
+}
+
+.pkg-card {
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+.pkg-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(0,87,231,.12);
+}
+
+.contact-card {
+  transition: background .18s, box-shadow .18s;
+  cursor: pointer;
+}
+.contact-card:hover {
+  background: var(--surf);
+  box-shadow: 0 8px 30px rgba(0,0,0,.06);
+}
+
+/* ==========================================
+   ICON WRAPPERS
+   ========================================== */
+.icon-wrap {
+  width: 52px; height: 52px; border-radius: 14px;
+  background: var(--primary-lt);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.icon-wrap-amber {
+  width: 52px; height: 52px; border-radius: 14px;
+  background: var(--accent-lt);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+
+/* ==========================================
+   LANG TOGGLE
+   ========================================== */
+.lang-btn {
+  transition: background .15s, color .15s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+.lang-btn.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* ==========================================
+   SCROLL REVEAL
+   ========================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .55s ease, transform .55s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ==========================================
+   MISC COMPONENTS
+   ========================================== */
+.ph-card {
+  background: var(--surf);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.step-num {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-weight: 900;
+  font-size: 2.75rem;
+  color: var(--primary);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.nav-link.active {
+  color: var(--primary);
+}
+
+/* ==========================================
+   SERVICE PAGE SPECIFICS
+   ========================================== */
+.breadcrumb a { color: var(--muted); text-decoration: none; }
+.breadcrumb a:hover { color: var(--primary); }
+.breadcrumb span { color: var(--muted); }
+
+.checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 0.875rem;
+  font-size: 0.9375rem;
+  color: #374151;
+}
+.checklist li::before {
+  content: "";
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--primary-lt);
+  flex-shrink: 0;
+  margin-top: 2px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%230057E7'%3E%3Cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 12px;
+}
