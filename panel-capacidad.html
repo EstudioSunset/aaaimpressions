@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AAA Impressions — Panel de Capacidad</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --yellow:#F9A825; --orange:#F4511E; --red:#E53935;
+  --blue:#1976D2; --blue-dk:#0D47A1; --pink:#E91E63;
+  --text:#15182A; --bg:#F5F7FB; --card:#fff; --line:#E5EAF2;
+  --easy:#2E7D32; --easy-bg:#E8F5E9;
+  --medium:#E65100; --medium-bg:#FFF3E0;
+  --hard:#C62828; --hard-bg:#FFEBEE;
+  --ok:#2E7D32; --ok-bg:#E8F5E9;
+  --warn:#E65100; --warn-bg:#FFF3E0;
+  --danger:#C62828; --danger-bg:#FFEBEE;
+  --sw:220px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;font-size:14px;color:var(--text);background:var(--bg);min-height:100vh}
+
+/* ── Layout ── */
+.layout{display:flex;min-height:100vh}
+.sidebar{width:var(--sw);background:var(--blue-dk);color:#fff;position:fixed;top:0;left:0;bottom:0;display:flex;flex-direction:column;z-index:200;overflow-y:auto;transition:transform .22s}
+.sidebar-logo{padding:20px 16px 16px;border-bottom:1px solid rgba(255,255,255,.1)}
+.sidebar-logo h1{font-family:'Poppins',sans-serif;font-weight:900;font-size:15px;color:var(--yellow);line-height:1.3}
+.sidebar-logo p{font-size:11px;color:rgba(255,255,255,.45);margin-top:2px}
+nav{padding:10px 0;flex:1}
+.ni{display:flex;align-items:center;gap:10px;padding:10px 16px;font-size:13px;font-weight:500;color:rgba(255,255,255,.65);cursor:pointer;border-left:3px solid transparent;transition:all .15s;user-select:none}
+.ni:hover{color:#fff;background:rgba(255,255,255,.07)}
+.ni.active{color:var(--yellow);border-left-color:var(--yellow);background:rgba(249,168,37,.1)}
+.ni svg{width:17px;height:17px;flex-shrink:0}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:190}
+.main{margin-left:var(--sw);flex:1;padding:24px;min-width:0}
+.mobile-bar{display:none;align-items:center;gap:12px;margin-bottom:18px}
+.hamburger{background:none;border:none;cursor:pointer;color:var(--blue-dk);padding:4px;display:flex}
+
+/* ── Views ── */
+.view{display:none}.view.active{display:block}
+
+/* ── Type ── */
+.view-title{font-family:'Poppins',sans-serif;font-weight:800;font-size:22px;margin-bottom:20px}
+.section-title{font-family:'Poppins',sans-serif;font-weight:700;font-size:13px;margin-bottom:12px;color:var(--text)}
+
+/* ── Cards ── */
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.card+.card{margin-top:14px}
+
+/* ── Grid ── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+
+/* ── Status banner ── */
+.banner{border-radius:14px;padding:18px 22px;display:flex;align-items:flex-start;gap:14px;margin-bottom:18px;border:1.5px solid}
+.banner.ok{background:var(--ok-bg);border-color:#A5D6A7}
+.banner.warn{background:var(--warn-bg);border-color:#FFCC80}
+.banner.danger{background:var(--danger-bg);border-color:#EF9A9A}
+.dot{width:13px;height:13px;border-radius:50%;flex-shrink:0;margin-top:3px}
+.banner.ok .dot{background:var(--ok);box-shadow:0 0 0 3px rgba(46,125,50,.2)}
+.banner.warn .dot{background:var(--warn);box-shadow:0 0 0 3px rgba(230,81,0,.2)}
+.banner.danger .dot{background:var(--danger);box-shadow:0 0 0 3px rgba(198,40,40,.2)}
+.banner-label{font-family:'Poppins',sans-serif;font-weight:800;font-size:15px}
+.banner.ok .banner-label{color:var(--ok)}
+.banner.warn .banner-label{color:var(--warn)}
+.banner.danger .banner-label{color:var(--danger)}
+.banner-msg{font-size:13px;color:#444;margin-top:3px;line-height:1.5}
+
+/* ── Metrics ── */
+.metric{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.metric-val{font-family:'Poppins',sans-serif;font-weight:800;font-size:26px;line-height:1}
+.metric-sub{font-size:11px;color:#888;margin-top:5px}
+
+/* ── Progress ── */
+.prog-wrap{margin:10px 0}
+.prog-lbl{display:flex;justify-content:space-between;font-size:12px;color:#666;margin-bottom:5px}
+.prog-track{height:9px;background:var(--line);border-radius:99px;overflow:hidden}
+.prog-fill{height:100%;border-radius:99px;transition:width .4s}
+.c-ok{background:var(--ok)}.c-warn{background:var(--warn)}.c-danger{background:var(--danger)}.c-blue{background:var(--blue)}
+
+/* ── Buttons ── */
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;border:none;cursor:pointer;transition:opacity .15s;text-decoration:none}
+.btn:hover{opacity:.85}.btn:active{opacity:.7}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-danger{background:var(--red);color:#fff}
+.btn-ghost{background:transparent;color:var(--blue);border:1.5px solid var(--blue)}
+.btn-sm{padding:5px 10px;font-size:12px}
+.btn-icon{background:none;border:none;cursor:pointer;padding:4px;border-radius:5px;color:#aaa;transition:color .15s;line-height:0}
+.btn-icon:hover{color:var(--blue)}.btn-icon.del:hover{color:var(--red)}
+
+/* ── Table ── */
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#999;padding:8px 12px;border-bottom:1px solid var(--line)}
+td{padding:10px 12px;border-bottom:1px solid var(--line);font-size:13px;vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:#fafbfc}
+
+/* ── Badges ── */
+.badge{display:inline-flex;align-items:center;padding:3px 8px;border-radius:99px;font-size:11px;font-weight:600}
+.b-easy{background:var(--easy-bg);color:var(--easy)}
+.b-medium{background:var(--medium-bg);color:var(--medium)}
+.b-hard{background:var(--hard-bg);color:var(--hard)}
+.b-pending{background:#EDE7F6;color:#512DA8}
+.b-inprogress{background:#E3F2FD;color:#1565C0}
+.b-hold{background:#FFF8E1;color:#F57F17}
+.b-done{background:#F1F8E9;color:#33691E}
+
+/* ── Filters ── */
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.ftab{padding:5px 13px;border-radius:99px;font-size:12px;font-weight:600;cursor:pointer;border:1.5px solid var(--line);background:#fff;color:#666;transition:all .15s}
+.ftab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+
+/* ── Top bar ── */
+.top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px}
+
+/* ── Modal ── */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:500;display:flex;align-items:center;justify-content:center;padding:16px}
+.modal-bg.hidden{display:none}
+.modal{background:#fff;border-radius:16px;width:100%;max-width:460px;max-height:90vh;overflow-y:auto;padding:24px}
+.modal-title{font-family:'Poppins',sans-serif;font-weight:800;font-size:17px;margin-bottom:18px}
+.modal-footer{display:flex;gap:10px;justify-content:flex-end;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+
+/* ── Forms ── */
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:12px;font-weight:600;color:#444;margin-bottom:5px}
+.fg input,.fg select,.fg textarea{width:100%;padding:9px 12px;border:1.5px solid var(--line);border-radius:8px;font-family:'Inter',sans-serif;font-size:13px;color:var(--text);background:#fff;transition:border-color .15s}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--blue)}
+.fg textarea{resize:vertical;min-height:68px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* ── Estimator result ── */
+.est-result{border-radius:12px;padding:16px 18px;margin-top:16px;border:1.5px solid}
+.est-result.ok{background:var(--ok-bg);border-color:#A5D6A7}
+.est-result.warn{background:var(--warn-bg);border-color:#FFCC80}
+.est-result.danger{background:var(--danger-bg);border-color:#EF9A9A}
+.est-title{font-weight:700;font-size:14px;margin-bottom:6px}
+.est-result.ok .est-title{color:var(--ok)}
+.est-result.warn .est-title{color:var(--warn)}
+.est-result.danger .est-title{color:var(--danger)}
+
+/* ── Calendar ── */
+.week-grid{display:grid;gap:7px}
+.week-row{display:grid;grid-template-columns:140px 1fr 90px;align-items:center;gap:10px}
+.week-lbl{font-size:12px;color:#555}
+.week-track{height:20px;background:var(--line);border-radius:5px;overflow:hidden;position:relative}
+.week-fill{height:100%;border-radius:5px;transition:width .3s;display:flex;align-items:center;padding-left:6px}
+.week-fill span{font-size:10px;color:rgba(255,255,255,.9);font-weight:600;white-space:nowrap}
+.week-pct{font-size:12px;color:#666;text-align:right}
+
+/* ── Empty ── */
+.empty{text-align:center;padding:36px 20px;color:#bbb;font-size:13px}
+.empty svg{width:36px;height:36px;margin:0 auto 8px;display:block;opacity:.3}
+
+/* ── Divider ── */
+hr{border:none;border-top:1px solid var(--line);margin:20px 0}
+
+/* ── Toast ── */
+#toast{position:fixed;bottom:24px;right:24px;background:var(--text);color:#fff;padding:10px 16px;border-radius:9px;font-size:13px;font-weight:500;z-index:9999;opacity:0;pointer-events:none;transition:opacity .3s;max-width:280px}
+#toast.show{opacity:1}
+
+/* ── Legend ── */
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:12px;color:#555}
+.legend-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0}
+
+/* ── Quick projects ── */
+.qp-row{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line);font-size:13px}
+.qp-row:last-child{border-bottom:none}
+
+/* ── Print ── */
+@media print{
+  .sidebar,.mobile-bar,.btn,.btn-icon,.filters,.modal-bg,#toast,.overlay{display:none!important}
+  .main{margin:0;padding:0}
+  .view{display:block!important}
+  body{background:#fff}
+  .print-hide{display:none!important}
+}
+
+/* ── Responsive ── */
+@media(max-width:768px){
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .overlay.open{display:block}
+  .main{margin-left:0;padding:14px}
+  .mobile-bar{display:flex}
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .frow{grid-template-columns:1fr}
+  .week-row{grid-template-columns:90px 1fr 60px}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+<!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <h1>AAA Impressions</h1>
+    <p>Panel de Capacidad</p>
+  </div>
+  <nav>
+    <div class="ni active" data-view="dashboard">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+      Panel de Estado
+    </div>
+    <div class="ni" data-view="projects">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+      Proyectos
+    </div>
+    <div class="ni" data-view="estimator">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+      Estimador
+    </div>
+    <div class="ni" data-view="calendar">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+      Cronograma
+    </div>
+    <div class="ni" data-view="catalog">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+      Catálogo
+    </div>
+    <div class="ni" data-view="settings">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+      Configuración
+    </div>
+  </nav>
+</aside>
+<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+<!-- Main -->
+<main class="main">
+  <div class="mobile-bar">
+    <button class="hamburger" onclick="openSidebar()">
+      <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+    <span style="font-family:'Poppins',sans-serif;font-weight:800;font-size:14px;color:var(--blue-dk)">AAA Impressions</span>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="view active" id="view-dashboard">
+    <div class="top-bar">
+      <h2 class="view-title" style="margin:0">Panel de Estado</h2>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-ghost btn-sm print-hide" onclick="window.print()">🖨 Imprimir resumen</button>
+        <button class="btn btn-primary btn-sm print-hide" onclick="openProjectModal()">+ Nuevo proyecto</button>
+      </div>
+    </div>
+    <div id="dash-banner"></div>
+    <div class="g4" id="dash-metrics" style="margin-bottom:16px"></div>
+    <div class="card" id="dash-progress" style="margin-bottom:16px"></div>
+    <div class="card" id="dash-projects"></div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="view" id="view-projects">
+    <div class="top-bar">
+      <h2 class="view-title" style="margin:0">Proyectos</h2>
+      <button class="btn btn-primary" onclick="openProjectModal()">+ Nuevo proyecto</button>
+    </div>
+    <div class="filters" id="proj-filters"></div>
+    <div class="card tbl-wrap" id="proj-table"></div>
+  </div>
+
+  <!-- ESTIMATOR -->
+  <div class="view" id="view-estimator">
+    <h2 class="view-title">¿Puedo aceptar este cliente?</h2>
+    <div class="card" style="max-width:500px">
+      <p style="font-size:13px;color:#666;margin-bottom:16px">Selecciona el servicio que pide el cliente potencial y calcularemos si tienes espacio y cuándo podrías iniciar.</p>
+      <div class="fg">
+        <label>Servicio solicitado</label>
+        <select id="est-svc"></select>
+      </div>
+      <button class="btn btn-primary" onclick="runEstimator()">Calcular disponibilidad</button>
+      <div id="est-result"></div>
+    </div>
+  </div>
+
+  <!-- CALENDAR -->
+  <div class="view" id="view-calendar">
+    <div class="top-bar">
+      <h2 class="view-title" style="margin:0">Cronograma — próximas 12 semanas</h2>
+      <button class="btn btn-ghost btn-sm print-hide" onclick="window.print()">🖨 Imprimir</button>
+    </div>
+    <div class="card" id="cal-content"></div>
+  </div>
+
+  <!-- CATALOG -->
+  <div class="view" id="view-catalog">
+    <div class="top-bar">
+      <h2 class="view-title" style="margin:0">Catálogo de Servicios</h2>
+      <button class="btn btn-primary" onclick="openSvcModal()">+ Nuevo servicio</button>
+    </div>
+    <div id="catalog-content"></div>
+  </div>
+
+  <!-- SETTINGS -->
+  <div class="view" id="view-settings">
+    <h2 class="view-title">Configuración</h2>
+    <div class="card" style="max-width:400px;margin-bottom:14px">
+      <h3 class="section-title">Parámetros de trabajo</h3>
+      <div class="fg">
+        <label>Horas disponibles para clientes por semana</label>
+        <input type="number" id="set-hours" min="1" max="80">
+      </div>
+      <div class="fg">
+        <label>Máximo de proyectos simultáneos sin saturarme</label>
+        <input type="number" id="set-max" min="1" max="20">
+      </div>
+      <button class="btn btn-primary" onclick="saveSettings()">Guardar cambios</button>
+    </div>
+    <div class="card" style="max-width:400px">
+      <h3 class="section-title">Copia de seguridad</h3>
+      <p style="font-size:13px;color:#666;margin-bottom:14px">Exporta todos los datos a JSON o importa un respaldo anterior.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-ghost" onclick="exportData()">⬇ Exportar datos</button>
+        <label class="btn btn-ghost" style="cursor:pointer">
+          ⬆ Importar datos
+          <input type="file" accept=".json" style="display:none" onchange="importData(this)">
+        </label>
+      </div>
+    </div>
+  </div>
+</main>
+</div>
+
+<!-- PROJECT MODAL -->
+<div class="modal-bg hidden" id="modal-proj">
+  <div class="modal">
+    <h3 class="modal-title" id="mp-title">Nuevo Proyecto</h3>
+    <input type="hidden" id="mp-id">
+    <div class="fg"><label>Cliente / Negocio *</label><input type="text" id="mp-client" placeholder="Ej: Panadería Flores"></div>
+    <div class="fg"><label>Servicio *</label><select id="mp-svc"></select></div>
+    <div class="frow">
+      <div class="fg"><label>Fecha de inicio</label><input type="date" id="mp-start"></div>
+      <div class="fg"><label>Fecha límite (opcional)</label><input type="date" id="mp-dl"></div>
+    </div>
+    <div class="fg">
+      <label>Estado</label>
+      <select id="mp-status">
+        <option value="pending">Por iniciar</option>
+        <option value="inprogress">En progreso</option>
+        <option value="hold">En espera</option>
+        <option value="done">Terminado</option>
+      </select>
+    </div>
+    <div class="fg"><label>Notas (opcional)</label><textarea id="mp-notes" placeholder="Acuerdos, detalles, etc."></textarea></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeProjectModal()">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveProject()">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICE MODAL -->
+<div class="modal-bg hidden" id="modal-svc">
+  <div class="modal">
+    <h3 class="modal-title" id="ms-title">Nuevo Servicio</h3>
+    <input type="hidden" id="ms-id">
+    <div class="fg"><label>Nombre del servicio *</label><input type="text" id="ms-name" placeholder="Ej: Diseño de Logo"></div>
+    <div class="frow">
+      <div class="fg">
+        <label>Tipo</label>
+        <select id="ms-type">
+          <option value="oneTime">Pago único</option>
+          <option value="recurring">Mensual recurrente</option>
+        </select>
+      </div>
+      <div class="fg"><label>Horas estimadas</label><input type="number" id="ms-hours" min="0.5" step="0.5" placeholder="0"></div>
+    </div>
+    <div class="fg">
+      <label>Dificultad</label>
+      <select id="ms-diff">
+        <option value="easy">Fácil</option>
+        <option value="medium">Medio</option>
+        <option value="hard">Difícil</option>
+      </select>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeSvcModal()">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveSvc()">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+// ── Default data ──────────────────────────────────────────────
+const DEF_SERVICES = [
+  {id:'s1',name:'Perfil de Google (creación)',type:'oneTime',hours:4,difficulty:'easy'},
+  {id:'s2',name:'Landing Page (1 página)',type:'oneTime',hours:12,difficulty:'medium'},
+  {id:'s3',name:'Sitio Web Completo (5 páginas)',type:'oneTime',hours:24,difficulty:'hard'},
+  {id:'s4',name:'Logo + Branding Básico',type:'oneTime',hours:6,difficulty:'medium'},
+  {id:'s5',name:'Branding Completo',type:'oneTime',hours:14,difficulty:'hard'},
+  {id:'s6',name:'Curso IA (sesión 1-a-1)',type:'oneTime',hours:3,difficulty:'easy'},
+  {id:'s7',name:'Edición de Video',type:'oneTime',hours:4,difficulty:'medium'},
+  {id:'s8',name:'Manejo de Google',type:'recurring',hours:3,difficulty:'easy'},
+  {id:'s9',name:'Redes Básico (1 red)',type:'recurring',hours:8,difficulty:'medium'},
+  {id:'s10',name:'Redes Estándar (2 redes)',type:'recurring',hours:14,difficulty:'hard'},
+  {id:'s11',name:'Gestión de Ads',type:'recurring',hours:6,difficulty:'medium'},
+];
+const DEF_SETTINGS = {hoursPerWeek:30, maxProjects:4};
+
+// ── State ─────────────────────────────────────────────────────
+let S = {
+  settings: {...DEF_SETTINGS},
+  services: JSON.parse(JSON.stringify(DEF_SERVICES)),
+  projects: [],
+};
+
+function load() {
+  try {
+    const raw = localStorage.getItem('aaa_cap_v1');
+    if (raw) {
+      const d = JSON.parse(raw);
+      S.settings = {...DEF_SETTINGS, ...d.settings};
+      S.services = d.services || JSON.parse(JSON.stringify(DEF_SERVICES));
+      S.projects = d.projects || [];
+    }
+  } catch(e) {}
+}
+
+function save() {
+  try { localStorage.setItem('aaa_cap_v1', JSON.stringify(S)); } catch(e) {}
+}
+
+function uid() { return '_'+Date.now()+Math.random().toString(36).slice(2,6); }
+
+// ── Stats ─────────────────────────────────────────────────────
+function stats() {
+  const active = S.projects.filter(p => p.status !== 'done');
+  const svc = id => S.services.find(s => s.id === id);
+
+  const oneTimeH = active
+    .filter(p => { const s=svc(p.svcId); return s && s.type==='oneTime'; })
+    .reduce((n,p) => { const s=svc(p.svcId); return n+(s?s.hours:0); }, 0);
+
+  const recurMonthH = active
+    .filter(p => { const s=svc(p.svcId); return s && s.type==='recurring'; })
+    .reduce((n,p) => { const s=svc(p.svcId); return n+(s?s.hours:0); }, 0);
+
+  const recurWeekH = recurMonthH / 4;
+  const freeH = Math.max(0, S.settings.hoursPerWeek - recurWeekH);
+  const weeksToEmpty = freeH > 0 ? oneTimeH / freeH : (oneTimeH > 0 ? Infinity : 0);
+  const startEst = new Date(Date.now() + weeksToEmpty * 7 * 864e5);
+
+  const projPct = Math.min(100, (active.length / S.settings.maxProjects) * 100);
+  const hourPct = Math.min(100, (recurWeekH / S.settings.hoursPerWeek) * 100);
+  const isFull  = active.length >= S.settings.maxProjects || recurWeekH >= S.settings.hoursPerWeek;
+  const isAlmost = !isFull && (projPct >= 75 || hourPct >= 75);
+  const level = isFull ? 'danger' : isAlmost ? 'warn' : 'ok';
+
+  return { active, activeCount:active.length, oneTimeH, recurMonthH, recurWeekH,
+    freeH, hoursPerWeek:S.settings.hoursPerWeek, maxProjects:S.settings.maxProjects,
+    weeksToEmpty: isFinite(weeksToEmpty) ? weeksToEmpty : null,
+    startEst, projPct, hourPct, isFull, isAlmost, level };
+}
+
+// ── Helpers ───────────────────────────────────────────────────
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const fmtDate = d => d.toLocaleDateString('es-MX',{day:'numeric',month:'short',year:'numeric'});
+const fmtShort = d => d.toLocaleDateString('es-MX',{day:'numeric',month:'short'});
+const today = () => new Date().toISOString().split('T')[0];
+const parseDate = s => s ? new Date(s+'T00:00:00') : null;
+
+function pct2color(p) { return p >= 100 ? 'c-danger' : p >= 75 ? 'c-warn' : 'c-ok'; }
+
+const DIFF_LABEL  = {easy:'Fácil', medium:'Medio', hard:'Difícil'};
+const DIFF_BADGE  = {easy:'b-easy', medium:'b-medium', hard:'b-hard'};
+const STATUS_OPTS = [
+  {v:'pending',   label:'Por iniciar',  badge:'b-pending'},
+  {v:'inprogress',label:'En progreso',  badge:'b-inprogress'},
+  {v:'hold',      label:'En espera',    badge:'b-hold'},
+  {v:'done',      label:'Terminado',    badge:'b-done'},
+];
+const statusOpt = v => STATUS_OPTS.find(o=>o.v===v) || STATUS_OPTS[0];
+
+function svcOptions(selId) {
+  const ot = S.services.filter(s=>s.type==='oneTime');
+  const rc = S.services.filter(s=>s.type==='recurring');
+  let h = '<option value="">— Selecciona un servicio —</option>';
+  if (ot.length) h += '<optgroup label="Pago único">'+ot.map(s=>`<option value="${s.id}">${esc(s.name)} (${s.hours} h)</option>`).join('')+'</optgroup>';
+  if (rc.length) h += '<optgroup label="Mensual recurrente">'+rc.map(s=>`<option value="${s.id}">${esc(s.name)} (${s.hours} h/mes)</option>`).join('')+'</optgroup>';
+  return h;
+}
+
+let toastT;
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.classList.add('show');
+  clearTimeout(toastT); toastT = setTimeout(()=>el.classList.remove('show'), 2800);
+}
+
+// ── Navigation ────────────────────────────────────────────────
+let curView = 'dashboard';
+let curFilter = 'all';
+
+function nav(view) {
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));
+  document.getElementById('view-'+view).classList.add('active');
+  document.querySelector(`.ni[data-view="${view}"]`)?.classList.add('active');
+  curView = view;
+  closeSidebar();
+  render(view);
+}
+
+function render(view) {
+  ({dashboard:renderDash, projects:renderProjects, estimator:renderEstimator,
+    calendar:renderCal, catalog:renderCatalog, settings:renderSettings})[view]?.();
+}
+
+function openSidebar()  { document.getElementById('sidebar').classList.add('open');  document.getElementById('overlay').classList.add('open'); }
+function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('overlay').classList.remove('open'); }
+
+// ── Dashboard ─────────────────────────────────────────────────
+function renderDash() {
+  const st = stats();
+  const LABELS = {ok:'Disponible', warn:'Casi lleno', danger:'Lleno'};
+  let msg;
+  if (st.level === 'ok') {
+    msg = 'Tienes espacio para nuevos clientes. ¡Acepta trabajo con confianza!';
+  } else if (st.level === 'warn') {
+    msg = 'Tu agenda está bastante ocupada. Evalúa bien antes de comprometerte con algo nuevo.';
+  } else {
+    if (st.activeCount >= st.maxProjects) {
+      msg = `Ya tienes ${st.activeCount} de ${st.maxProjects} proyectos activos. Pon al cliente en lista de espera y avísale cuando se libere un lugar.`;
+    } else {
+      msg = `Las horas recurrentes (${st.recurWeekH.toFixed(1)} h/sem) ya copan tu disponibilidad (${st.hoursPerWeek} h/sem). No hay margen para trabajo nuevo.`;
+    }
+  }
+
+  document.getElementById('dash-banner').innerHTML =
+    `<div class="banner ${st.level}"><div class="dot"></div><div>
+      <div class="banner-label">${LABELS[st.level]}</div>
+      <div class="banner-msg">${msg}</div>
+    </div></div>`;
+
+  const startStr = st.weeksToEmpty === 0
+    ? 'Esta semana'
+    : st.weeksToEmpty !== null
+      ? fmtDate(st.startEst)
+      : '—';
+
+  document.getElementById('dash-metrics').innerHTML =
+    `<div class="metric">
+       <div class="metric-val" style="color:${st.activeCount>=st.maxProjects?'var(--danger)':'var(--blue)'}">${st.activeCount}<span style="font-size:15px;color:#bbb"> / ${st.maxProjects}</span></div>
+       <div class="metric-sub">Proyectos activos / máximo</div>
+     </div>
+     <div class="metric">
+       <div class="metric-val" style="color:var(--orange)">${st.freeH.toFixed(1)}<span style="font-size:15px;color:#bbb"> h</span></div>
+       <div class="metric-sub">Horas libres por semana</div>
+     </div>
+     <div class="metric">
+       <div class="metric-val" style="color:var(--blue-dk)">${st.oneTimeH.toFixed(1)}<span style="font-size:15px;color:#bbb"> h</span></div>
+       <div class="metric-sub">Cola de trabajo único</div>
+     </div>
+     <div class="metric">
+       <div class="metric-val" style="color:var(--text);font-size:17px;padding-top:4px">${startStr}</div>
+       <div class="metric-sub">Próxima apertura estimada</div>
+     </div>`;
+
+  const pp = st.projPct, hp = Math.min(100,(st.recurWeekH/st.hoursPerWeek)*100);
+  document.getElementById('dash-progress').innerHTML =
+    `<h3 class="section-title">Capacidad utilizada</h3>
+     <div class="prog-wrap">
+       <div class="prog-lbl"><span>Proyectos: ${st.activeCount} de ${st.maxProjects}</span><span>${pp.toFixed(0)}%</span></div>
+       <div class="prog-track"><div class="prog-fill ${pct2color(pp)}" style="width:${pp}%"></div></div>
+     </div>
+     <div class="prog-wrap" style="margin-top:14px">
+       <div class="prog-lbl"><span>Horas recurrentes: ${st.recurWeekH.toFixed(1)} h/sem de ${st.hoursPerWeek} h disponibles</span><span>${hp.toFixed(0)}%</span></div>
+       <div class="prog-track"><div class="prog-fill ${pct2color(hp)}" style="width:${hp}%"></div></div>
+     </div>
+     ${st.weeksToEmpty > 0 ? `<p style="font-size:12px;color:#888;margin-top:12px">Cola de trabajo único: ${st.oneTimeH} h ÷ ${st.freeH.toFixed(1)} h/sem = ${st.weeksToEmpty.toFixed(1)} semanas hasta liberar espacio.</p>` : ''}`;
+
+  // Quick project list
+  const active = st.active.filter(p=>p.status!=='done');
+  let qpHtml = `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+    <h3 class="section-title" style="margin:0">Proyectos activos</h3>
+    <button class="btn btn-ghost btn-sm print-hide" onclick="nav('projects')">Ver todos →</button>
+  </div>`;
+  if (!active.length) {
+    qpHtml += `<p style="font-size:13px;color:#aaa">No hay proyectos activos todavía.</p>`;
+  } else {
+    qpHtml += active.map(p => {
+      const s = S.services.find(sv=>sv.id===p.svcId);
+      const so = statusOpt(p.status);
+      return `<div class="qp-row">
+        <span style="font-weight:600">${esc(p.clientName)}</span>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span style="font-size:12px;color:#777">${s?esc(s.name):'—'}</span>
+          <span class="badge ${so.badge}">${so.label}</span>
+          ${s?`<span class="badge ${DIFF_BADGE[s.difficulty]}">${DIFF_LABEL[s.difficulty]}</span>`:''}
+        </div>
+      </div>`;
+    }).join('');
+  }
+  document.getElementById('dash-projects').innerHTML = qpHtml;
+}
+
+// ── Projects ──────────────────────────────────────────────────
+function renderProjects() {
+  const tabs = [
+    {k:'all',l:'Todos'},
+    ...STATUS_OPTS.map(o=>({k:o.v,l:o.label}))
+  ];
+  document.getElementById('proj-filters').innerHTML =
+    tabs.map(t=>`<div class="ftab${curFilter===t.k?' active':''}" onclick="setFilter('${t.k}')">${t.l}</div>`).join('');
+
+  const rows = curFilter==='all' ? S.projects : S.projects.filter(p=>p.status===curFilter);
+  const el = document.getElementById('proj-table');
+
+  if (!rows.length) {
+    el.innerHTML = `<div class="empty">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2"/></svg>
+      ${curFilter==='all'?'No hay proyectos. Usa "+ Nuevo proyecto" para empezar.':'Sin proyectos con este estado.'}
+    </div>`;
+    return;
+  }
+
+  el.innerHTML = `<div class="tbl-wrap"><table>
+    <thead><tr><th>Cliente</th><th>Servicio</th><th>Horas</th><th>Tipo</th><th>Dificultad</th><th>Estado</th><th>Inicio</th><th>Límite</th><th>Notas</th><th></th></tr></thead>
+    <tbody>${rows.map(p => {
+      const s = S.services.find(sv=>sv.id===p.svcId);
+      const so = statusOpt(p.status);
+      const sd = parseDate(p.start);
+      const dd = parseDate(p.dl);
+      return `<tr>
+        <td style="font-weight:600;white-space:nowrap">${esc(p.clientName)}</td>
+        <td style="white-space:nowrap">${s?esc(s.name):'<em style="color:#ccc">Eliminado</em>'}</td>
+        <td style="white-space:nowrap">${s?s.hours+' h'+(s.type==='recurring'?'/mes':''):'—'}</td>
+        <td style="white-space:nowrap">${s?(s.type==='oneTime'?'Único':'Mensual'):'—'}</td>
+        <td>${s?`<span class="badge ${DIFF_BADGE[s.difficulty]}">${DIFF_LABEL[s.difficulty]}</span>`:'—'}</td>
+        <td><span class="badge ${so.badge}">${so.label}</span></td>
+        <td style="white-space:nowrap">${sd?fmtDate(sd):'—'}</td>
+        <td style="white-space:nowrap">${dd?fmtDate(dd):'—'}</td>
+        <td style="max-width:160px;color:#777">${p.notes?esc(p.notes.slice(0,60))+(p.notes.length>60?'…':''):'—'}</td>
+        <td style="white-space:nowrap">
+          <button class="btn-icon" onclick="editProject('${p.id}')" title="Editar">
+            <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+          </button>
+          <button class="btn-icon del" onclick="delProject('${p.id}')" title="Eliminar">
+            <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+          </button>
+        </td>
+      </tr>`;
+    }).join('')}</tbody></table></div>`;
+}
+
+function setFilter(f) { curFilter=f; renderProjects(); }
+
+// ── Project modal ─────────────────────────────────────────────
+function openProjectModal(proj) {
+  document.getElementById('mp-svc').innerHTML = svcOptions();
+  if (proj) {
+    document.getElementById('mp-title').textContent = 'Editar Proyecto';
+    document.getElementById('mp-id').value = proj.id;
+    document.getElementById('mp-client').value = proj.clientName;
+    document.getElementById('mp-svc').value = proj.svcId || '';
+    document.getElementById('mp-start').value = proj.start || '';
+    document.getElementById('mp-dl').value = proj.dl || '';
+    document.getElementById('mp-status').value = proj.status;
+    document.getElementById('mp-notes').value = proj.notes || '';
+  } else {
+    document.getElementById('mp-title').textContent = 'Nuevo Proyecto';
+    document.getElementById('mp-id').value = '';
+    document.getElementById('mp-client').value = '';
+    document.getElementById('mp-svc').value = '';
+    document.getElementById('mp-start').value = today();
+    document.getElementById('mp-dl').value = '';
+    document.getElementById('mp-status').value = 'pending';
+    document.getElementById('mp-notes').value = '';
+  }
+  document.getElementById('modal-proj').classList.remove('hidden');
+}
+
+function closeProjectModal() { document.getElementById('modal-proj').classList.add('hidden'); }
+
+function saveProject() {
+  const client = document.getElementById('mp-client').value.trim();
+  const svcId  = document.getElementById('mp-svc').value;
+  if (!client) { toast('Ingresa el nombre del cliente.'); return; }
+  if (!svcId)  { toast('Selecciona un servicio.'); return; }
+
+  const id = document.getElementById('mp-id').value || uid();
+  const proj = {
+    id, clientName:client, svcId,
+    start:  document.getElementById('mp-start').value,
+    dl:     document.getElementById('mp-dl').value,
+    status: document.getElementById('mp-status').value,
+    notes:  document.getElementById('mp-notes').value.trim(),
+    createdAt: document.getElementById('mp-id').value
+      ? (S.projects.find(p=>p.id===id)?.createdAt || new Date().toISOString())
+      : new Date().toISOString(),
+  };
+  const idx = S.projects.findIndex(p=>p.id===id);
+  if (idx>=0) S.projects[idx]=proj; else S.projects.push(proj);
+  save(); closeProjectModal(); toast('Proyecto guardado.');
+  render(curView); if (curView!=='dashboard') renderDash();
+}
+
+function editProject(id) { const p=S.projects.find(p=>p.id===id); if(p) openProjectModal(p); }
+
+function delProject(id) {
+  if (!confirm('¿Eliminar este proyecto?')) return;
+  S.projects = S.projects.filter(p=>p.id!==id);
+  save(); renderProjects(); renderDash(); toast('Proyecto eliminado.');
+}
+
+// ── Estimator ─────────────────────────────────────────────────
+function renderEstimator() {
+  document.getElementById('est-svc').innerHTML = svcOptions();
+  document.getElementById('est-result').innerHTML = '';
+}
+
+function runEstimator() {
+  const svcId = document.getElementById('est-svc').value;
+  if (!svcId) { toast('Selecciona un servicio primero.'); return; }
+  const svc = S.services.find(s=>s.id===svcId);
+  if (!svc) return;
+  const st = stats();
+  const el = document.getElementById('est-result');
+
+  if (st.isFull) {
+    const reason = st.activeCount >= st.maxProjects
+      ? `Ya tienes ${st.activeCount} de ${st.maxProjects} proyectos activos.`
+      : `Las horas recurrentes (${st.recurWeekH.toFixed(1)} h/sem) ya superan tu disponibilidad (${st.hoursPerWeek} h/sem).`;
+    el.innerHTML = `<div class="est-result danger">
+      <div class="est-title">⛔ Pon al cliente en lista de espera</div>
+      <p style="font-size:13px;color:#555">${reason} Avísale cuando se libere un lugar.</p>
+    </div>`; return;
+  }
+
+  if (svc.type === 'recurring') {
+    const newRec = st.recurWeekH + (svc.hours/4);
+    const rem = st.hoursPerWeek - newRec;
+    if (rem < 0) {
+      el.innerHTML = `<div class="est-result danger">
+        <div class="est-title">⛔ Sin margen de horas</div>
+        <p style="font-size:13px;color:#555">Agregar este servicio mensual (${svc.hours} h/mes = ${(svc.hours/4).toFixed(1)} h/sem) dejaría tus horas en negativo. Libera un cliente recurrente primero.</p>
+      </div>`; return;
+    }
+    const newCount = st.activeCount + 1;
+    const nowFull = newCount >= st.maxProjects;
+    const lvl = nowFull ? 'warn' : 'ok';
+    el.innerHTML = `<div class="est-result ${lvl}">
+      <div class="est-title">${nowFull?'⚠️ Puedes aceptarlo, pero quedarás lleno':'✅ Puedes aceptar este cliente'}</div>
+      <p style="font-size:13px;color:#555">Este servicio añade ${svc.hours} h/mes (${(svc.hours/4).toFixed(1)} h/sem). Quedarías con ${newRec.toFixed(1)} h/sem comprometidas de tus ${st.hoursPerWeek} disponibles (${rem.toFixed(1)} h/sem libres).</p>
+      <p style="font-size:13px;color:#555;margin-top:6px">Puede iniciar <strong>de inmediato</strong>.</p>
+      ${nowFull?`<p style="font-size:12px;font-weight:600;color:var(--warn);margin-top:8px">Después de aceptarlo estarás en tu límite (${newCount}/${st.maxProjects} proyectos). El siguiente cliente deberá esperar.</p>`:''}
+    </div>`;
+  } else {
+    if (st.freeH <= 0) {
+      el.innerHTML = `<div class="est-result danger">
+        <div class="est-title">⛔ Sin horas libres</div>
+        <p style="font-size:13px;color:#555">Las horas recurrentes ocupan toda tu semana. No hay tiempo para un proyecto de trabajo único.</p>
+      </div>`; return;
+    }
+    const totalOT = st.oneTimeH + svc.hours;
+    const wks = totalOT / st.freeH;
+    const startDate = new Date(Date.now() + wks * 7 * 864e5);
+    const newCount = st.activeCount + 1;
+    const nowFull = newCount >= st.maxProjects;
+    const lvl = nowFull ? 'warn' : 'ok';
+    el.innerHTML = `<div class="est-result ${lvl}">
+      <div class="est-title">${nowFull?'⚠️ Puedes aceptarlo, pero quedarás lleno':'✅ Puedes aceptar este cliente'}</div>
+      <p style="font-size:13px;color:#555">Inicio estimado: <strong>${fmtDate(startDate)}</strong> (${wks.toFixed(1)} semanas desde hoy).</p>
+      <p style="font-size:12px;color:#888;margin-top:6px">Cola actual: ${st.oneTimeH} h + ${svc.hours} h de este proyecto = ${totalOT} h totales ÷ ${st.freeH.toFixed(1)} h libres/sem.</p>
+      ${nowFull?`<p style="font-size:12px;font-weight:600;color:var(--warn);margin-top:8px">Después de aceptarlo estarás en tu límite (${newCount}/${st.maxProjects} proyectos). El siguiente cliente deberá esperar.</p>`:''}
+    </div>`;
+  }
+}
+
+// ── Calendar ──────────────────────────────────────────────────
+function renderCal() {
+  const st = stats();
+  let html = '<div class="week-grid">';
+  let remOT = st.oneTimeH;
+
+  for (let w=0; w<12; w++) {
+    const ws = new Date(Date.now() + w*7*864e5);
+    const otThisWeek = Math.min(remOT, st.freeH);
+    remOT = Math.max(0, remOT - st.freeH);
+    const total = st.recurWeekH + otThisWeek;
+    const p = st.hoursPerWeek > 0 ? Math.min(100,(total/st.hoursPerWeek)*100) : 0;
+    const color = p>=100?'var(--red)':p>=75?'var(--orange)':p>0?'var(--blue)':'var(--line)';
+    const lbl = w===0?'Esta semana':w===1?'Próxima semana':`Sem. ${w+1} (${fmtShort(ws)})`;
+    const info = total>0 ? `${total.toFixed(1)} h / ${st.hoursPerWeek} h` : 'Libre';
+
+    html += `<div class="week-row">
+      <span class="week-lbl">${lbl}</span>
+      <div class="week-track">
+        <div class="week-fill" style="width:${p}%;background:${color}">
+          ${p>15?`<span>${p.toFixed(0)}%</span>`:''}
+        </div>
+      </div>
+      <span class="week-pct" style="color:${p>=100?'var(--red)':p>=75?'var(--orange)':'#777'}">${info}</span>
+    </div>`;
+  }
+
+  html += `</div>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div>Ocupado (normal)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div>Casi lleno (≥75%)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div>Lleno (100%+)</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--line)"></div>Libre</div>
+    </div>
+    <p style="font-size:11px;color:#bbb;margin-top:10px">El trabajo único se distribuye de forma lineal. Es una estimación orientativa.</p>`;
+
+  document.getElementById('cal-content').innerHTML = html;
+}
+
+// ── Catalog ───────────────────────────────────────────────────
+function renderCatalog() {
+  const ot = S.services.filter(s=>s.type==='oneTime');
+  const rc = S.services.filter(s=>s.type==='recurring');
+
+  const tbl = (rows, unit) => {
+    if (!rows.length) return '<p style="font-size:13px;color:#aaa;padding:8px 0">Sin servicios.</p>';
+    return `<div class="tbl-wrap"><table>
+      <thead><tr><th>Servicio</th><th>Horas</th><th>Dificultad</th><th></th></tr></thead>
+      <tbody>${rows.map(s=>`<tr>
+        <td style="font-weight:500">${esc(s.name)}</td>
+        <td>${s.hours} h${unit}</td>
+        <td><span class="badge ${DIFF_BADGE[s.difficulty]}">${DIFF_LABEL[s.difficulty]}</span></td>
+        <td style="white-space:nowrap">
+          <button class="btn-icon" onclick="editSvc('${s.id}')">
+            <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+          </button>
+          <button class="btn-icon del" onclick="delSvc('${s.id}')">
+            <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+          </button>
+        </td>
+      </tr>`).join('')}</tbody></table></div>`;
+  };
+
+  document.getElementById('catalog-content').innerHTML =
+    `<div class="card" style="margin-bottom:14px"><h3 class="section-title">Servicios de pago único</h3>${tbl(ot,'')}</div>
+     <div class="card"><h3 class="section-title">Servicios mensuales recurrentes</h3>${tbl(rc,'/mes')}</div>`;
+}
+
+// ── Service modal ─────────────────────────────────────────────
+function openSvcModal(svc) {
+  document.getElementById('ms-title').textContent = svc ? 'Editar Servicio' : 'Nuevo Servicio';
+  document.getElementById('ms-id').value    = svc?.id || '';
+  document.getElementById('ms-name').value  = svc?.name || '';
+  document.getElementById('ms-type').value  = svc?.type || 'oneTime';
+  document.getElementById('ms-hours').value = svc?.hours || '';
+  document.getElementById('ms-diff').value  = svc?.difficulty || 'easy';
+  document.getElementById('modal-svc').classList.remove('hidden');
+}
+
+function closeSvcModal() { document.getElementById('modal-svc').classList.add('hidden'); }
+
+function saveSvc() {
+  const name  = document.getElementById('ms-name').value.trim();
+  const hours = parseFloat(document.getElementById('ms-hours').value);
+  if (!name)        { toast('Ingresa el nombre del servicio.'); return; }
+  if (!hours || hours<=0) { toast('Ingresa las horas estimadas.'); return; }
+
+  const id = document.getElementById('ms-id').value || uid();
+  const svc = { id, name, type:document.getElementById('ms-type').value,
+    hours, difficulty:document.getElementById('ms-diff').value };
+  const idx = S.services.findIndex(s=>s.id===id);
+  if (idx>=0) S.services[idx]=svc; else S.services.push(svc);
+  save(); closeSvcModal(); renderCatalog(); toast('Servicio guardado.');
+}
+
+function editSvc(id) { const s=S.services.find(s=>s.id===id); if(s) openSvcModal(s); }
+
+function delSvc(id) {
+  if (S.projects.some(p=>p.svcId===id && p.status!=='done'))
+    { toast('Este servicio está en uso por un proyecto activo.'); return; }
+  if (!confirm('¿Eliminar este servicio del catálogo?')) return;
+  S.services = S.services.filter(s=>s.id!==id);
+  save(); renderCatalog(); toast('Servicio eliminado.');
+}
+
+// ── Settings ──────────────────────────────────────────────────
+function renderSettings() {
+  document.getElementById('set-hours').value = S.settings.hoursPerWeek;
+  document.getElementById('set-max').value   = S.settings.maxProjects;
+}
+
+function saveSettings() {
+  const h = parseInt(document.getElementById('set-hours').value);
+  const m = parseInt(document.getElementById('set-max').value);
+  if (!h||h<1) { toast('Número de horas inválido.'); return; }
+  if (!m||m<1) { toast('Máximo de proyectos inválido.'); return; }
+  S.settings.hoursPerWeek = h;
+  S.settings.maxProjects  = m;
+  save(); toast('Configuración guardada.'); renderDash();
+}
+
+// ── Export / Import ───────────────────────────────────────────
+function exportData() {
+  const blob = new Blob([JSON.stringify(S,null,2)],{type:'application/json'});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href = url; a.download = `aaa-capacidad-${today()}.json`; a.click();
+  URL.revokeObjectURL(url); toast('Datos exportados.');
+}
+
+function importData(input) {
+  const file = input.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const d = JSON.parse(e.target.result);
+      if (!d.settings || !d.services || !d.projects)
+        { toast('Archivo no válido.'); return; }
+      if (!confirm('¿Reemplazar todos los datos actuales con el archivo importado?')) return;
+      S = d; save(); render(curView); toast('Datos importados correctamente.');
+    } catch { toast('Error al leer el archivo.'); }
+    input.value = '';
+  };
+  reader.readAsText(file);
+}
+
+// ── Events ────────────────────────────────────────────────────
+document.querySelectorAll('.ni[data-view]').forEach(el =>
+  el.addEventListener('click', () => nav(el.dataset.view))
+);
+
+document.getElementById('modal-proj').addEventListener('click', e => {
+  if (e.target===e.currentTarget) closeProjectModal();
+});
+document.getElementById('modal-svc').addEventListener('click', e => {
+  if (e.target===e.currentTarget) closeSvcModal();
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key==='Escape') { closeProjectModal(); closeSvcModal(); }
+});
+
+// ── Init ──────────────────────────────────────────────────────
+load();
+renderDash();
+</script>
+</body>
+</html>
