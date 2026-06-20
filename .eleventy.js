@@ -12,6 +12,9 @@ module.exports = function (eleventyConfig) {
   // Robots.txt — pass through as plain file, not template
   eleventyConfig.addPassthroughCopy("src/robots.txt");
 
+  // Security headers for Netlify
+  eleventyConfig.addPassthroughCopy("src/_headers");
+
   return {
     dir: {
       input: "src",

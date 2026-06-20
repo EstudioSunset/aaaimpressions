@@ -21,9 +21,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+
+{% set canonicalHref = canonicalUrl or site.baseUrl + page.url %}
 <title>{{ title }}</title>
 <meta name="description" content="{{ metaDescription }}" />
-<link rel="canonical" href="{{ site.baseUrl }}{{ page.url }}" />
+<link rel="canonical" href="{{ canonicalHref }}" />
 {% if noindex %}<meta name="robots" content="noindex, nofollow">{% endif %}
 
 <!-- hreflang -->
@@ -35,7 +37,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:title"       content="{{ title }}" />
 <meta property="og:description" content="{{ metaDescription }}" />
 <meta property="og:type"        content="website" />
-<meta property="og:url"         content="{{ site.baseUrl }}{{ page.url }}" />
+<meta property="og:url"         content="{{ canonicalHref }}" />
 <meta property="og:locale"      content="{{ 'es_US' if lang == 'es' else 'en_US' }}" />
 <meta property="og:image"       content="{{ site.baseUrl }}/assets/img/og-default.jpg" />
 <meta property="og:site_name"   content="AAA Impressions" />

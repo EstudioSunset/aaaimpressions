@@ -6,24 +6,17 @@ eleventyExcludeFromCollections: true
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-  <!-- Root redirect -->
-  <url>
-    <loc>{{ site.baseUrl }}/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
   <!-- HOME -->
   <url>
-    <loc>{{ site.baseUrl }}/es/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="{{ site.baseUrl }}/es/"/>
+    <loc>{{ site.baseUrl }}/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="{{ site.baseUrl }}/"/>
     <xhtml:link rel="alternate" hreflang="en" href="{{ site.baseUrl }}/en/"/>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>{{ site.baseUrl }}/en/</loc>
-    <xhtml:link rel="alternate" hreflang="es" href="{{ site.baseUrl }}/es/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="{{ site.baseUrl }}/"/>
     <xhtml:link rel="alternate" hreflang="en" href="{{ site.baseUrl }}/en/"/>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
