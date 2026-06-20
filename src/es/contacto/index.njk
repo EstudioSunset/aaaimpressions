@@ -1,5 +1,5 @@
-﻿---
-title: "Contacto | Marketing Digital Treasure Coast"
+---
+title: "Contacto Gratis — Marketing Digital Treasure Coast"
 metaDescription: "Contáctanos para marketing digital en Port St. Lucie, Fort Pierce, Stuart y Vero Beach. Consulta gratis por WhatsApp o llama al 772-940-1928. Sin compromiso."
 hreflangEs: "/es/contacto/"
 hreflangEn: "/en/contact/"
@@ -25,64 +25,12 @@ hreflangEn: "/en/contact/"
         <h2 class="text-2xl font-semibold mb-2">Envíanos un mensaje</h2>
         <p class="text-sm text-gray-400 mb-8">Te respondemos en menos de 24 horas en días hábiles.</p>
 
-        <form id="contact-form" class="space-y-5" novalidate>
-          <div class="grid sm:grid-cols-2 gap-5">
-            <div>
-              <label for="name" class="block text-xs font-semibold text-gray-700 mb-1.5">Nombre *</label>
-              <input id="name" name="name" type="text" required autocomplete="name" placeholder="Tu nombre"
-                class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm placeholder-gray-300 focus:outline-none focus:ring-2 transition" style="--tw-ring-color:var(--primary)" />
-            </div>
-            <div>
-              <label for="business" class="block text-xs font-semibold text-gray-700 mb-1.5">Negocio</label>
-              <input id="business" name="business" type="text" autocomplete="organization" placeholder="Nombre de tu empresa"
-                class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm placeholder-gray-300 focus:outline-none focus:ring-2 transition" style="--tw-ring-color:var(--primary)" />
-            </div>
-          </div>
-
-          <div class="grid sm:grid-cols-2 gap-5">
-            <div>
-              <label for="email" class="block text-xs font-semibold text-gray-700 mb-1.5">Email *</label>
-              <input id="email" name="email" type="email" required autocomplete="email" placeholder="tucorreo@ejemplo.com"
-                class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm placeholder-gray-300 focus:outline-none focus:ring-2 transition" style="--tw-ring-color:var(--primary)" />
-            </div>
-            <div>
-              <label for="phone" class="block text-xs font-semibold text-gray-700 mb-1.5">Teléfono</label>
-              <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="(772) 000-0000"
-                class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm placeholder-gray-300 focus:outline-none focus:ring-2 transition" style="--tw-ring-color:var(--primary)" />
-            </div>
-          </div>
-
-          <div>
-            <label for="service" class="block text-xs font-semibold text-gray-700 mb-1.5">¿Qué servicio te interesa?</label>
-            <select id="service" name="service"
-              class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-500 focus:outline-none focus:ring-2 transition bg-white" style="--tw-ring-color:var(--primary)">
-              <option value="">Selecciona una opción</option>
-              <option value="gbp">Google Business Profile</option>
-              <option value="meta-ads">Meta Ads (Facebook/Instagram)</option>
-              <option value="google-ads">Google Ads</option>
-              <option value="web">Diseño web</option>
-              <option value="branding">Branding y logotipo</option>
-              <option value="social">Redes sociales</option>
-              <option value="print">Materiales impresos</option>
-              <option value="package">Paquete completo</option>
-              <option value="other">Otro / No sé aún</option>
-            </select>
-          </div>
-
-          <div>
-            <label for="message" class="block text-xs font-semibold text-gray-700 mb-1.5">Mensaje *</label>
-            <textarea id="message" name="message" required rows="5" placeholder="Cuéntanos brevemente sobre tu negocio y lo que quieres lograr..."
-              class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm placeholder-gray-300 focus:outline-none focus:ring-2 transition resize-none" style="--tw-ring-color:var(--primary)"></textarea>
-          </div>
-
-          <div id="form-msg" class="hidden text-sm font-medium px-4 py-3 rounded-xl"></div>
-
-          <button type="submit"
-            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl px-8 py-3.5 text-sm font-semibold text-white hover:opacity-90 transition-opacity"
-            style="background:var(--primary)">
-            Enviar mensaje →
-          </button>
-        </form>
+        {% set hubspotFormId = site.hubspot.formIdEs %}
+        <div class="hubspot-form-shell min-h-[560px] rounded-2xl border border-gray-100 bg-white p-4 sm:p-6 shadow-sm">
+          <script src="https://js-{{ site.hubspot.region }}.hsforms.net/forms/embed/{{ site.hubspot.portalId }}.js" defer></script>
+          <div class="hs-form-frame" data-region="{{ site.hubspot.region }}" data-form-id="{{ hubspotFormId }}" data-portal-id="{{ site.hubspot.portalId }}"></div>
+        </div>
+        <p class="mt-4 text-xs text-gray-400 leading-relaxed">Al enviar este formulario aceptas que AAA Impressions te contacte sobre tu solicitud. No vendemos tu informacion.</p>
       </div>
 
       <!-- Contact info sidebar -->

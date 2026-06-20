@@ -8,6 +8,12 @@
   "baseUrl": "https://www.aaaimpressions.com",
   "ga4": "G-K9L6QJJH9V",
   "gtm": "GTM-WLV384L3",
+  "hubspot": {
+    "portalId": "246553755",
+    "region": "na2",
+    "formIdEs": "59523483-9dd3-4b28-8939-be2e045963c4",
+    "formIdEn": "59523483-9dd3-4b28-8939-be2e045963c4"
+  },
   "cities": ["Port St. Lucie", "Fort Pierce", "Stuart", "Vero Beach"],
   "region": "Treasure Coast, Florida"
 }

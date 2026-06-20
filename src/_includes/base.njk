@@ -59,6 +59,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 {% if schema == "home" %}{% include "schema/local-business.njk" %}{% endif %}
 {% if schema == "service" %}{% include "schema/service.njk" %}{% endif %}
 
+{% if site.hubspot and site.hubspot.portalId %}
+<!-- HubSpot tracking code -->
+<script type="text/javascript" id="hs-script-loader" async defer src="//js-{{ site.hubspot.region }}.hs-scripts.com/{{ site.hubspot.portalId }}.js"></script>
+{% endif %}
 <!-- MailerLite Universal -->
 <script>
 (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])

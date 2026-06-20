@@ -1,0 +1,36 @@
+---
+title: "Thanks for Contacting Us | AAA Impressions"
+metaDescription: "Thanks for contacting AAA Impressions. We received your request and will reply soon."
+hreflangEs: "/es/gracias-contacto/"
+hreflangEn: "/en/contact-thank-you/"
+noindex: true
+---
+
+<section class="pt-28 pb-24 bg-white">
+  <div class="mx-auto max-w-2xl px-5 text-center">
+    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-8" style="background:var(--primary-lt)">
+      <svg class="w-8 h-8" style="color:var(--primary)" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+      </svg>
+    </div>
+
+    <h1 class="text-3xl sm:text-4xl mb-4 leading-tight">Thanks, we received your message</h1>
+    <p class="text-lg text-gray-500 leading-relaxed mb-3">
+      We will send you an email confirmation and review your request so we can reply as soon as possible.
+    </p>
+    <p class="text-sm text-gray-400 mb-10">If you need to talk with someone right away, you can call us or send a WhatsApp message.</p>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="tel:{{ site.phoneRaw }}"
+         class="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white hover:opacity-90 transition-opacity"
+         style="background:var(--primary)">
+        Call now
+      </a>
+      <a href="{{ site.whatsapp }}?text=Hello%2C%20I%20just%20submitted%20the%20contact%20form%20on%20AAA%20Impressions."
+         target="_blank" rel="noopener noreferrer"
+         class="inline-flex items-center justify-center rounded-xl border border-gray-200 px-5 py-3 text-sm font-semibold text-gray-700 hover:border-gray-400 transition">
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</section>

@@ -1,5 +1,5 @@
 // ============================================================
-// HEADER — scroll glass effect
+// HEADER - scroll glass effect
 // ============================================================
 const header = document.querySelector('header[data-header]');
 if (header) {
@@ -15,7 +15,7 @@ if (header) {
 // ============================================================
 // MOBILE MENU
 // ============================================================
-const menuBtn  = document.getElementById('menuBtn');
+const menuBtn = document.getElementById('menuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 const iconOpen = document.getElementById('iconOpen');
 const iconClose = document.getElementById('iconClose');
@@ -24,14 +24,14 @@ if (menuBtn && mobileMenu) {
   menuBtn.addEventListener('click', () => {
     const open = mobileMenu.classList.toggle('hidden') === false;
     menuBtn.setAttribute('aria-expanded', String(open));
-    if (iconOpen)  iconOpen.classList.toggle('hidden', open);
+    if (iconOpen) iconOpen.classList.toggle('hidden', open);
     if (iconClose) iconClose.classList.toggle('hidden', !open);
   });
 
   mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
     mobileMenu.classList.add('hidden');
     menuBtn.setAttribute('aria-expanded', 'false');
-    if (iconOpen)  iconOpen.classList.remove('hidden');
+    if (iconOpen) iconOpen.classList.remove('hidden');
     if (iconClose) iconClose.classList.add('hidden');
   }));
 }
@@ -62,37 +62,63 @@ if (navLinks.length) {
 }
 
 // ============================================================
-// FAQ ACCORDION (if native <details> not preferred)
+// MARKETING EVENT TRACKING
 // ============================================================
-// Using native <details> elements — no JS needed.
+function trackMarketingEvent(eventName, payload = {}) {
+  const data = {
+    ...payload,
+    source_page: window.location.pathname,
+    page_language: document.documentElement.lang || 'es'
+  };
 
-// ============================================================
-// CONTACT FORM
-// ============================================================
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-  contactForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const name  = document.getElementById('f-name');
-    const email = document.getElementById('f-email');
-    const msg   = document.getElementById('f-msg');
-    if (name  && !name.checkValidity())  { name.reportValidity();  return; }
-    if (email && !email.checkValidity()) { email.reportValidity(); return; }
-    if (msg   && !msg.checkValidity())   { msg.reportValidity();   return; }
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: eventName, ...data });
 
-    const out    = document.getElementById('formMsg');
-    const okText = contactForm.dataset.formOk || 'Thank you! We\'ll get back to you shortly.';
-    if (out) {
-      out.textContent = okText;
-      out.style.cssText = 'background:var(--primary-lt);color:var(--primary-dk);border-radius:12px;padding:1rem;text-align:center;font-size:.875rem;display:block';
-    }
-    e.target.reset();
-
-    // TODO: connect to Formspree / EmailJS
-    // fetch('https://formspree.io/f/YOUR_ID', { method:'POST', body: new FormData(e.target) })
-    // gtag('event', 'form_submit', { event_category: 'contact' });
-  });
+  if (typeof gtag === 'function') {
+    gtag('event', eventName, data);
+  }
 }
+
+window.addEventListener('message', e => {
+  const data = e.data || {};
+  const submitted = data.type === 'hsFormCallback' && data.eventName === 'onFormSubmitted';
+  if (!submitted) return;
+
+  trackMarketingEvent('generate_lead', {
+    form_name: 'hubspot_contact',
+    lead_destination: 'hubspot',
+    hubspot_form_id: data.id || data.formGuid || ''
+  });
+});
+// ============================================================
+// GA4/GTM -> WhatsApp, phone, and email click events
+// ============================================================
+document.addEventListener('click', e => {
+  const link = e.target.closest('a[href]');
+  if (!link) return;
+  const href = link.getAttribute('href') || '';
+  const linkText = (link.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 120);
+
+  if (href.includes('wa.me') || href.includes('api.whatsapp.com')) {
+    trackMarketingEvent('whatsapp_click', {
+      contact_method: 'whatsapp',
+      link_url: href,
+      link_text: linkText
+    });
+  } else if (href.startsWith('tel:')) {
+    trackMarketingEvent('click_to_call', {
+      contact_method: 'phone',
+      link_url: href,
+      link_text: linkText
+    });
+  } else if (href.startsWith('mailto:')) {
+    trackMarketingEvent('email_click', {
+      contact_method: 'email',
+      link_url: href,
+      link_text: linkText
+    });
+  }
+});
 
 // ============================================================
 // MISC
