@@ -39,13 +39,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type"        content="website" />
 <meta property="og:url"         content="{{ canonicalHref }}" />
 <meta property="og:locale"      content="{{ 'es_US' if lang == 'es' else 'en_US' }}" />
-<meta property="og:image"       content="{{ site.baseUrl }}/assets/img/og-default.jpg" />
+<meta property="og:image"       content="{{ site.baseUrl }}{{ ogImage or site.ogImage }}" />
+<meta property="og:image:type"  content="image/webp" />
 <meta property="og:site_name"   content="AAA Impressions" />
 
 <!-- Twitter Card -->
 <meta name="twitter:card"        content="summary_large_image" />
 <meta name="twitter:title"       content="{{ title }}" />
 <meta name="twitter:description" content="{{ metaDescription }}" />
+<meta name="twitter:image"       content="{{ site.baseUrl }}{{ ogImage or site.ogImage }}" />
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
