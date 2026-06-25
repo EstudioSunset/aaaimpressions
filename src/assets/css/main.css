@@ -12,8 +12,8 @@
   --accent:     #E85000;
   --accent-lt:  #FFF0E8;
   --dark:       #09162E;
-  --surf:       #F5F8FC;
-  --border:     #E2E8F2;
+  --surf:       #deeeff;
+  --border:     #D4E5F7;
   --text:       #111926;
   --muted:      #5B6B84;
 }
@@ -22,13 +22,45 @@
    BASE
    ========================================== */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+
+html {
+  scroll-behavior: smooth;
+  background: #cfe3ff;
+}
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
   color: var(--text);
-  background: #FFFFFF;
+  background: transparent;
   -webkit-font-smoothing: antialiased;
+}
+
+/* White sections slightly transparent so the animated background bleeds through */
+main > section.bg-white,
+main > div.bg-white {
+  background-color: rgba(248, 253, 255, 0.80) !important;
+}
+
+/* ==========================================
+   ANIMATED SITE BACKGROUND
+   ========================================== */
+#site-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+#sb-base {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(152deg, #c8dfff 0%, #d8ecff 38%, #c6d8f8 68%, #cfe3ff 100%);
+}
+
+#sb-canvas {
+  position: absolute;
+  inset: 0;
 }
 
 h1, h2, h3 {

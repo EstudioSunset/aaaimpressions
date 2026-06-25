@@ -25,12 +25,42 @@ hreflangEn: "/en/contact/"
         <h2 class="text-2xl font-semibold mb-2">Envíanos un mensaje</h2>
         <p class="text-sm text-gray-400 mb-8">Te respondemos en menos de 24 horas en días hábiles.</p>
 
-        {% set hubspotFormId = site.hubspot.formIdEs %}
-        <div class="hubspot-form-shell min-h-[560px] rounded-2xl border border-gray-100 bg-white p-4 sm:p-6 shadow-sm">
-          <script src="https://js-{{ site.hubspot.region }}.hsforms.net/forms/embed/{{ site.hubspot.portalId }}.js" defer></script>
-          <div class="hs-form-frame" data-region="{{ site.hubspot.region }}" data-form-id="{{ hubspotFormId }}" data-portal-id="{{ site.hubspot.portalId }}"></div>
-        </div>
-        <p class="mt-4 text-xs text-gray-400 leading-relaxed">Al enviar este formulario aceptas que AAA Impressions te contacte sobre tu solicitud. No vendemos tu informacion.</p>
+        <form action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
+          <input type="hidden" name="access_key" value="b7214d3c-a9cb-45a9-a3e9-718367dbc5fd">
+          <input type="hidden" name="subject" value="Nuevo mensaje de contacto — AAA Impressions">
+          <input type="hidden" name="from_name" value="AAA Impressions Web">
+          <input type="hidden" name="redirect" value="{{ site.baseUrl }}/es/gracias-contacto/">
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+
+          <div>
+            <label for="ct-nombre" class="block text-sm font-semibold text-gray-700 mb-2">Nombre completo <span style="color:var(--accent)" aria-hidden="true">*</span></label>
+            <input type="text" id="ct-nombre" name="name" required autocomplete="name" placeholder="Tu nombre"
+              class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-shadow">
+          </div>
+
+          <div>
+            <label for="ct-email" class="block text-sm font-semibold text-gray-700 mb-2">Correo electrónico <span style="color:var(--accent)" aria-hidden="true">*</span></label>
+            <input type="email" id="ct-email" name="email" required autocomplete="email" placeholder="tu@correo.com"
+              class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-shadow">
+          </div>
+
+          <div>
+            <label for="ct-phone" class="block text-sm font-semibold text-gray-700 mb-2">Teléfono <span class="text-gray-400 font-normal">(opcional)</span></label>
+            <input type="tel" id="ct-phone" name="phone" autocomplete="tel" placeholder="(772) 000-0000"
+              class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-shadow">
+          </div>
+
+          <div>
+            <label for="ct-mensaje" class="block text-sm font-semibold text-gray-700 mb-2">¿En qué podemos ayudarte? <span style="color:var(--accent)" aria-hidden="true">*</span></label>
+            <textarea id="ct-mensaje" name="message" required rows="5" placeholder="Cuéntanos sobre tu negocio y qué necesitas mejorar."
+              class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600 transition-shadow resize-none"></textarea>
+          </div>
+
+          <button type="submit" class="w-full rounded-xl px-7 py-4 text-base font-bold text-white transition hover:opacity-90" style="background:var(--primary)">
+            Enviar mensaje →
+          </button>
+          <p class="text-xs text-center text-gray-400">Al enviar aceptas que te contactemos sobre tu solicitud. No compartimos tu información.</p>
+        </form>
       </div>
 
       <!-- Contact info sidebar -->
