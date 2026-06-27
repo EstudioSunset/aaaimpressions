@@ -1,7 +1,12 @@
 {
   "permissions": {
     "allow": [
-      "Bash(winget install *)"
+      "Bash(winget install *)",
+      "Bash(npm run *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git checkout *)",
+      "Bash(git commit -m 'seo\\(cluster-a\\): optimize web-design-treasure-coast for Fort Pierce & Vero Beach keywords *)"
     ]
   }
 }
