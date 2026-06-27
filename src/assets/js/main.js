@@ -79,17 +79,6 @@ function trackMarketingEvent(eventName, payload = {}) {
   }
 }
 
-window.addEventListener('message', e => {
-  const data = e.data || {};
-  const submitted = data.type === 'hsFormCallback' && data.eventName === 'onFormSubmitted';
-  if (!submitted) return;
-
-  trackMarketingEvent('generate_lead', {
-    form_name: 'hubspot_contact',
-    lead_destination: 'hubspot',
-    hubspot_form_id: data.id || data.formGuid || ''
-  });
-});
 // ============================================================
 // GA4/GTM -> WhatsApp, phone, and email click events
 // ============================================================
