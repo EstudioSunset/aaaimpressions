@@ -158,6 +158,25 @@ section[id] { scroll-margin-top: 80px; }
 .service-card:hover .service-thumb img {
   transform: scale(1.035);
 }
+.index-card-media {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--primary-lt);
+  box-shadow: inset 0 0 0 1px rgba(13,33,64,.08);
+}
+.index-card-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .28s ease;
+}
+.service-card:hover .index-card-media img,
+.location-card:hover .index-card-media img {
+  transform: scale(1.035);
+}
 @media (min-width: 640px) {
   .service-thumb {
     width: 220px;
