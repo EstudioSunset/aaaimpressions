@@ -2,27 +2,31 @@
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
+  "@id": "{{ site.baseUrl }}/#localbusiness",
   "name": "AAA Impressions",
-  "description": "{{ 'Agencia de marketing digital para negocios locales en el Treasure Coast de Florida. Google Business Profile, Meta Ads, Google Ads, diseño web y branding.' if lang == 'es' else 'Digital marketing agency for local businesses in Treasure Coast, Florida. Google Business Profile, Meta Ads, Google Ads, web design, and branding.' }}",
-  "url": "{{ site.baseUrl }}",
+  "description": "{{ 'Agencia de marketing digital para negocios locales en Treasure Coast, Florida. Google Business Profile, Meta Ads, Google Ads, diseno web y branding.' if lang == 'es' else 'Digital marketing agency for local businesses in Treasure Coast, Florida. Google Business Profile, Meta Ads, Google Ads, web design, and branding.' }}",
+  "url": "{{ site.baseUrl }}/",
   "telephone": "{{ site.phoneRaw }}",
   "email": "{{ site.email }}",
+  "image": "{{ site.baseUrl }}{{ site.ogImage }}",
   "sameAs": [
     "{{ site.facebook }}"
   ],
-  "areaServed": [
-    { "@type": "City", "name": "Port St. Lucie", "addressRegion": "FL" },
-    { "@type": "City", "name": "Fort Pierce",    "addressRegion": "FL" },
-    { "@type": "City", "name": "Stuart",          "addressRegion": "FL" },
-    { "@type": "City", "name": "Vero Beach",      "addressRegion": "FL" }
-  ],
   "address": {
     "@type": "PostalAddress",
+    "addressLocality": "Port St. Lucie",
     "addressRegion": "FL",
     "addressCountry": "US"
   },
+  "areaServed": [
+    { "@type": "Place", "name": "Port St. Lucie, FL" },
+    { "@type": "Place", "name": "Fort Pierce, FL" },
+    { "@type": "Place", "name": "Stuart, FL" },
+    { "@type": "Place", "name": "Vero Beach, FL" },
+    { "@type": "AdministrativeArea", "name": "Treasure Coast, Florida" }
+  ],
   "priceRange": "$$",
-  "knowsLanguage": ["es", "en"],
+  "knowsLanguage": ["Spanish", "English"],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "{{ 'Servicios de marketing digital' if lang == 'es' else 'Digital marketing services' }}",
@@ -30,7 +34,7 @@
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Google Business Profile" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Meta Ads" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Google Ads" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "{{ 'Diseño Web' if lang == 'es' else 'Web Design' }}" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "{{ 'Diseno Web' if lang == 'es' else 'Web Design' }}" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Branding" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "{{ 'Contenido para Redes Sociales' if lang == 'es' else 'Social Media Content' }}" } }
     ]

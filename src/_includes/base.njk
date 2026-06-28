@@ -28,10 +28,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="canonical" href="{{ canonicalHref }}" />
 {% if noindex %}<meta name="robots" content="noindex, nofollow">{% endif %}
 
+{% set defaultHreflang = hreflangDefault or hreflangEs %}
+{% if hreflangEs or hreflangEn %}
 <!-- hreflang -->
-<link rel="alternate" hreflang="es"        href="{{ site.baseUrl }}{{ hreflangEs }}" />
-<link rel="alternate" hreflang="en"        href="{{ site.baseUrl }}{{ hreflangEn }}" />
-<link rel="alternate" hreflang="x-default" href="{{ site.baseUrl }}{{ hreflangEs }}" />
+{% if hreflangEs %}<link rel="alternate" hreflang="es" href="{{ site.baseUrl }}{{ hreflangEs }}" />{% endif %}
+{% if hreflangEn %}<link rel="alternate" hreflang="en" href="{{ site.baseUrl }}{{ hreflangEn }}" />{% endif %}
+{% if defaultHreflang %}<link rel="alternate" hreflang="x-default" href="{{ site.baseUrl }}{{ defaultHreflang }}" />{% endif %}
+{% endif %}
 
 <!-- Open Graph -->
 <meta property="og:title"       content="{{ title }}" />

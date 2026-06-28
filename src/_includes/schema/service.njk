@@ -2,27 +2,32 @@
 {
   "@context": "https://schema.org",
   "@type": "Service",
+  "@id": "{{ site.baseUrl }}{{ page.url }}#service",
   "name": "{{ schemaServiceName | default(title) }}",
   "description": "{{ metaDescription }}",
   "url": "{{ site.baseUrl }}{{ page.url }}",
+  "serviceType": "{{ schemaServiceName | default(title) }}",
   "provider": {
     "@type": "LocalBusiness",
+    "@id": "{{ site.baseUrl }}/#localbusiness",
     "name": "AAA Impressions",
+    "url": "{{ site.baseUrl }}/",
     "telephone": "{{ site.phoneRaw }}",
     "email": "{{ site.email }}",
-    "url": "{{ site.baseUrl }}",
-    "areaServed": [
-      { "@type": "City", "name": "Port St. Lucie", "addressRegion": "FL" },
-      { "@type": "City", "name": "Fort Pierce",    "addressRegion": "FL" },
-      { "@type": "City", "name": "Stuart",          "addressRegion": "FL" },
-      { "@type": "City", "name": "Vero Beach",      "addressRegion": "FL" }
-    ]
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Port St. Lucie",
+      "addressRegion": "FL",
+      "addressCountry": "US"
+    }
   },
   "areaServed": [
-    { "@type": "City", "name": "Port St. Lucie", "addressRegion": "FL" },
-    { "@type": "City", "name": "Fort Pierce",    "addressRegion": "FL" },
-    { "@type": "City", "name": "Stuart",          "addressRegion": "FL" },
-    { "@type": "City", "name": "Vero Beach",      "addressRegion": "FL" }
+    { "@type": "Place", "name": "Port St. Lucie, FL" },
+    { "@type": "Place", "name": "Fort Pierce, FL" },
+    { "@type": "Place", "name": "Stuart, FL" },
+    { "@type": "Place", "name": "Vero Beach, FL" },
+    { "@type": "AdministrativeArea", "name": "Treasure Coast, Florida" }
   ]
 }
 </script>
