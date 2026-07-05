@@ -1,7 +1,27 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "Bash(npm run *)",
+      "Bash(ls .claude/skills)",
+      "Bash(grep -Hm1 \"^description:\" .claude/skills/*/SKILL.md)",
+      "Bash(npx --no-install chromium-cli --version)",
+      "Bash(command -v chromium-cli)",
+      "Bash(echo \"exit:$?\")",
+      "Bash(where.exe chromium-cli *)",
+      "Bash(npm ls *)",
+      "Bash(timeout 15 npx --yes playwright --version)",
+      "Bash(npx playwright *)",
+      "Read(//c/Users/licpe/AppData/Local/**)",
+      "Bash(timeout 180 npx playwright install chromium)",
+      "Bash(ls assets/css)",
+      "Bash(ls _site/assets/css)",
+      "Bash(curl -sf http://localhost:8080/)",
+      "Read(//tmp/**)",
+      "Bash(curl -s http://localhost:8080/)",
+      "Bash(curl -s http://localhost:8081/)",
+      "Bash(node \"C:/Users/licpe/AppData/Local/Temp/claude/d--aaaimpressions/bbfbece2-e511-4dba-b89e-521c8b16171a/scratchpad/screenshot.js\")",
+      "Bash(NODE_PATH=\"C:\\\\Users\\\\licpe\\\\AppData\\\\Local/npm-cache/_npx/e41f203b7505f1fb/node_modules\" node \"C:/Users/licpe/AppData/Local/Temp/claude/d--aaaimpressions/bbfbece2-e511-4dba-b89e-521c8b16171a/scratchpad/screenshot.js\")"
     ]
   }
 }

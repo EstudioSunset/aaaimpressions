@@ -349,6 +349,7 @@ noindex: true
     filter: drop-shadow(0 10px 18px rgba(23, 25, 35, 0.32));
     transform: translateY(-50%);
     transition: filter 160ms ease, transform 160ms ease;
+    overflow: visible;
   }
 
   .vb-arrow:hover {
@@ -362,6 +363,9 @@ noindex: true
     height: 100%;
     object-fit: contain;
     pointer-events: none;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.85))
+            drop-shadow(0 0 18px rgba(246, 192, 95, 0.55))
+            drop-shadow(0 7px 14px rgba(23, 25, 35, 0.28));
   }
 
   .vb-arrow--prev {
@@ -888,16 +892,22 @@ noindex: true
     }
 
     .vb-arrow {
-      width: 64px;
-      height: 40px;
+      width: 56px;
+      height: 36px;
+      filter: drop-shadow(0 8px 12px rgba(23, 25, 35, 0.28));
+    }
+
+    .vb-arrow img {
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8))
+              drop-shadow(0 0 14px rgba(246, 192, 95, 0.45));
     }
 
     .vb-arrow--prev {
-      left: 2px;
+      left: 4px;
     }
 
     .vb-arrow--next {
-      right: 2px;
+      right: 4px;
     }
   }
 

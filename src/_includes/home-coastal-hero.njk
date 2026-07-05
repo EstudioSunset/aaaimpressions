@@ -1,0 +1,95 @@
+{% set isEs = lang == "es" %}
+{% set servicesHref = "/es/servicios/" if isEs else "/en/services/" %}
+{% set whatsappHref = site.whatsapp + "?text=" + ("Hola%2C%20me%20gustar%C3%ADa%20una%20consulta%20gratuita%20sobre%20marketing%20digital." if isEs else "Hello%2C%20I%20would%20like%20a%20free%20consultation%20about%20digital%20marketing.") %}
+
+<!-- ================================================
+     HERO — two-column, normal document flow
+     ================================================ -->
+<section class="home-hero" id="hero" aria-label="AAA Impressions — {{ 'Marketing Digital Treasure Coast' if isEs else 'Digital Marketing Treasure Coast' }}">
+  <div class="mx-auto max-w-6xl px-5">
+    <div class="home-hero__inner">
+
+      <div class="home-hero__content">
+        <span class="home-hero__eyebrow">Treasure Coast, Florida</span>
+
+        <h1 class="home-hero__title">
+          {{ "Marketing digital que ayuda a los negocios del Treasure Coast a destacar y crecer." if isEs else "Digital marketing that helps Treasure Coast businesses get found and grow." }}
+        </h1>
+
+        <p class="home-hero__lede">
+          {{ "Ayudamos a negocios locales a mejorar su presencia en Google, atraer clientes con publicidad efectiva y construir una marca profesional sin la complejidad de una gran agencia." if isEs else "We help local businesses improve their Google presence, attract customers with effective advertising, and build a professional brand without big-agency complexity." }}
+        </p>
+
+        <div class="home-hero__actions">
+          <a href="{{ whatsappHref }}" target="_blank" rel="noopener noreferrer" class="btn-primary">
+            {{ "Consulta gratis por WhatsApp" if isEs else "Free WhatsApp consultation" }} →
+          </a>
+          <a href="{{ servicesHref }}" class="btn-secondary">
+            {{ "Ver servicios" if isEs else "See services" }}
+          </a>
+        </div>
+
+        <ul class="home-hero__labels">
+          <li>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-8 8a1 1 0 01-1.4 0l-4-4a1 1 0 111.4-1.4L8 12.6l7.3-7.3a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>
+            {{ "Atención bilingüe" if isEs else "Bilingual service" }}
+          </li>
+          <li>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-8 8a1 1 0 01-1.4 0l-4-4a1 1 0 111.4-1.4L8 12.6l7.3-7.3a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>
+            {{ "Respuesta rápida" if isEs else "Fast response" }}
+          </li>
+          <li>
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-8 8a1 1 0 01-1.4 0l-4-4a1 1 0 111.4-1.4L8 12.6l7.3-7.3a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>
+            {{ "100% Treasure Coast" if isEs else "100% Treasure Coast" }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="home-hero__visual">
+        <svg class="home-hero__mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
+
+        <div class="home-hero__chips">
+          <div class="home-hero__chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            {{ "Visibilidad en Google" if isEs else "Google Visibility" }}
+          </div>
+          <div class="home-hero__chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            {{ "Sitios Web & Branding" if isEs else "Websites & Branding" }}
+          </div>
+          <div class="home-hero__chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l18-7-7 18-2-8-8-2z"/></svg>
+            {{ "Publicidad Paga" if isEs else "Paid Advertising" }}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================
+     COMPACT TRUST STRIP
+     ================================================ -->
+<div class="trust-strip">
+  <div class="mx-auto max-w-6xl px-5">
+    <div class="trust-strip__inner">
+      <div class="trust-strip__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+        {{ "Negocio local" if isEs else "Locally owned" }}
+      </div>
+      <div class="trust-strip__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3v4M16 3v4M4 11h16M5 5h14a2 2 0 012 2v13a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z"/></svg>
+        {{ "Servicio bilingüe" if isEs else "Bilingual service" }}
+      </div>
+      <div class="trust-strip__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        {{ "Comunicación rápida" if isEs else "Fast communication" }}
+      </div>
+      <div class="trust-strip__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        {{ "Sirviendo al Treasure Coast" if isEs else "Serving Treasure Coast businesses" }}
+      </div>
+    </div>
+  </div>
+</div>

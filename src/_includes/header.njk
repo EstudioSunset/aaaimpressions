@@ -1,31 +1,47 @@
-<header id="top" data-header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-  <div class="mx-auto max-w-6xl px-5">
-    <div class="flex items-center justify-between h-[72px]">
+<!-- ── Compact local topbar ── -->
+<div class="site-topbar" role="banner" aria-label="{{ 'Información del sitio' if lang == 'es' else 'Site info' }}">
+  <div class="site-topbar-inner">
+    <div class="site-topbar-left">
+      <span class="site-topbar-item">
+        <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        Treasure Coast, FL
+      </span>
+      <span class="site-topbar-sep" aria-hidden="true"></span>
+      <span class="site-topbar-item is-secondary">{{ "Negocio local y bilingüe" if lang == "es" else "Locally owned & bilingual" }}</span>
+    </div>
+    <a href="tel:{{ site.phoneRaw }}" class="site-topbar-phone">
+      <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.36 11.36 0 003.57.57 1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.57 1 1 0 01-.25 1.02z"/></svg>
+      {{ site.phone }}
+    </a>
+  </div>
+</div>
+
+<header id="top" data-header class="site-header">
+  <div class="site-nav-inner mx-auto max-w-6xl px-5">
+    <div class="site-nav-row flex items-center justify-between">
 
       <!-- Brand -->
-      <a href="{{ '/' if lang == 'es' else '/en/' }}" class="flex items-center gap-3" aria-label="AAA Impressions - Inicio">
+      <a href="{{ '/' if lang == 'es' else '/en/' }}" class="site-brand flex items-center gap-3" aria-label="AAA Impressions - Inicio">
         <img src="/assets/img/logo.webp" alt="AAA Impressions" width="180" height="36" class="h-9 w-auto">
-        <div class="leading-none hidden sm:block">
-          <p class="text-xs text-gray-400">{{ "Marketing Digital" if lang == "es" else "Digital Marketing" }}</p>
-        </div>
+        <span class="site-brand-tag hidden sm:inline">{{ "Marketing Digital" if lang == "es" else "Digital Marketing" }}</span>
       </a>
 
       <!-- Desktop nav -->
-      <nav class="hidden lg:flex items-center gap-5 xl:gap-7 text-sm font-medium text-gray-600" aria-label="{{ 'Navegación principal' if lang == 'es' else 'Main navigation' }}">
+      <nav class="hidden lg:flex items-center gap-6 xl:gap-8" aria-label="{{ 'Navegación principal' if lang == 'es' else 'Main navigation' }}">
         {% if lang == "es" %}
-          <a class="nav-link hover:text-gray-900 transition-colors" href="/es/servicios/">Servicios</a>
-          <a class="nav-link hover:text-gray-900 transition-colors" href="/es/ubicaciones/">Ubicaciones</a>
-          <a class="nav-link hover:text-gray-900 transition-colors" href="/es/blog/">Blog</a>
-          <a class="nav-link hover:text-gray-900 transition-colors" href="/es/paquetes/">Paquetes</a>
-          <a class="nav-link hover:text-gray-900 transition-colors" href="/es/sobre-nosotros/">Nosotros</a>
-          <a class="nav-link hover:text-gray-900 transition-colors" href="/es/contacto/">Contacto</a>
+          <a class="nav-link" href="/es/servicios/">Servicios</a>
+          <a class="nav-link" href="/es/ubicaciones/">Ubicaciones</a>
+          <a class="nav-link" href="/es/blog/">Blog</a>
+          <a class="nav-link" href="/es/paquetes/">Paquetes</a>
+          <a class="nav-link" href="/es/sobre-nosotros/">Nosotros</a>
+          <a class="nav-link" href="/es/contacto/">Contacto</a>
         {% else %}
-          <a class="nav-link hover:text-gray-900 transition-colors" href="/en/services/">Services</a>
-          <a class="nav-link hover:text-gray-900 transition-colors" href="/en/locations/">Locations</a>
-          <a class="nav-link hover:text-gray-900 transition-colors" href="/en/blog/">Blog</a>
-          <a class="nav-link hover:text-gray-900 transition-colors" href="/en/packages/">Packages</a>
-          <a class="nav-link hover:text-gray-900 transition-colors" href="/en/about/">About</a>
-          <a class="nav-link hover:text-gray-900 transition-colors" href="/en/contact/">Contact</a>
+          <a class="nav-link" href="/en/services/">Services</a>
+          <a class="nav-link" href="/en/locations/">Locations</a>
+          <a class="nav-link" href="/en/blog/">Blog</a>
+          <a class="nav-link" href="/en/packages/">Packages</a>
+          <a class="nav-link" href="/en/about/">About</a>
+          <a class="nav-link" href="/en/contact/">Contact</a>
         {% endif %}
       </nav>
 
@@ -34,7 +50,7 @@
 
         {% if hreflangEs or hreflangEn %}
         <!-- Language switch - links to the available language version of the current page -->
-        <div class="flex items-center rounded-xl border border-gray-200 bg-white overflow-hidden text-xs font-semibold">
+        <div class="flex items-center rounded-lg border border-gray-200 bg-white overflow-hidden text-xs font-semibold">
           {% if hreflangEs %}
           <a href="{{ hreflangEs }}"
              class="lang-btn px-3 py-1.5 {{ 'active' if lang == 'es' else 'text-gray-500 hover:text-gray-700' }}"
@@ -51,14 +67,13 @@
         <!-- CTA -->
         <a href="{{ site.whatsapp }}?text={{ 'Hola%2C%20me%20gustar%C3%ADa%20una%20consulta%20gratuita%20sobre%20marketing%20digital.' if lang == 'es' else 'Hello%2C%20I%20would%20like%20a%20free%20consultation%20about%20digital%20marketing.' }}"
            target="_blank" rel="noopener noreferrer"
-           class="hidden sm:inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold text-white hover:opacity-90 transition-opacity"
-           style="background:var(--primary)">
-          {{ "Consulta gratis" if lang == "es" else "Free consult" }}
+           class="nav-cta hidden sm:inline-flex">
+          {{ "Consulta Gratis" if lang == "es" else "Free Quote" }}
         </a>
 
         <!-- Mobile menu button -->
         <button id="menuBtn"
-                class="lg:hidden p-2 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 transition"
+                class="lg:hidden p-2 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 transition"
                 aria-label="{{ 'Abrir menú' if lang == 'es' else 'Open menu' }}"
                 aria-expanded="false"
                 aria-controls="mobileMenu">
@@ -84,8 +99,7 @@
           <a class="px-4 py-2.5 rounded-xl hover:bg-gray-50 font-medium transition" href="/es/paquetes/">Paquetes</a>
           <a class="px-4 py-2.5 rounded-xl hover:bg-gray-50 font-medium transition" href="/es/sobre-nosotros/">Nosotros</a>
           <a class="px-4 py-2.5 rounded-xl hover:bg-gray-50 font-medium transition" href="/es/contacto/">Contacto</a>
-          <a class="mt-2 px-4 py-3 rounded-xl text-white text-center font-semibold hover:opacity-90 transition-opacity"
-             style="background:var(--primary)"
+          <a class="nav-cta mt-2 justify-center"
              href="{{ site.whatsapp }}?text=Hola%2C%20me%20gustar%C3%ADa%20una%20consulta%20gratuita."
              target="_blank" rel="noopener noreferrer">Consulta gratis por WhatsApp</a>
         {% else %}
@@ -95,8 +109,7 @@
           <a class="px-4 py-2.5 rounded-xl hover:bg-gray-50 font-medium transition" href="/en/packages/">Packages</a>
           <a class="px-4 py-2.5 rounded-xl hover:bg-gray-50 font-medium transition" href="/en/about/">About</a>
           <a class="px-4 py-2.5 rounded-xl hover:bg-gray-50 font-medium transition" href="/en/contact/">Contact</a>
-          <a class="mt-2 px-4 py-3 rounded-xl text-white text-center font-semibold hover:opacity-90 transition-opacity"
-             style="background:var(--primary)"
+          <a class="nav-cta mt-2 justify-center"
              href="{{ site.whatsapp }}?text=Hello%2C%20I%20would%20like%20a%20free%20consultation."
              target="_blank" rel="noopener noreferrer">Free WhatsApp consult</a>
         {% endif %}
