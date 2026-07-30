@@ -5,7 +5,7 @@
 
       <!-- Brand column -->
       <div class="max-w-xs">
-        <a href="{{ '/' if lang == 'es' else '/en/' }}" class="inline-block mb-4">
+        <a href="{{ '/es/' if lang == 'es' else '/en/' }}" class="inline-block mb-4">
           <img src="/assets/img/logo.webp" alt="AAA Impressions" width="160" height="32" class="h-8 w-auto brightness-0 invert">
         </a>
         <p class="text-gray-500 text-sm leading-relaxed mb-5">
@@ -31,6 +31,10 @@
             <li><a class="text-gray-500 hover:text-white transition" href="/es/servicios/diseno-web-treasure-coast/">Diseño Web</a></li>
             <li><a class="text-gray-500 hover:text-white transition" href="/es/servicios/branding-diseno-logo-treasure-coast/">Branding & Logo</a></li>
             <li><a class="text-gray-500 hover:text-white transition" href="/es/servicios/manejo-redes-sociales-treasure-coast/">Redes Sociales</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="/es/servicios/agencia-marketing-digital-treasure-coast/">Agencia de Marketing Digital</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="/es/servicios/limpieza-edicion-pdf/">Limpieza de PDFs</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="/es/logo-gratis/">Logo Gratis</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="/es/marketing-para-comercios/">Marketing para Comercios</a></li>
           </ul>
         </div>
         <div>
@@ -55,6 +59,9 @@
             <li><a class="text-gray-500 hover:text-white transition" href="/en/services/web-design-treasure-coast/">Web Design</a></li>
             <li><a class="text-gray-500 hover:text-white transition" href="/en/services/branding-logo-design-treasure-coast/">Branding & Logo</a></li>
             <li><a class="text-gray-500 hover:text-white transition" href="/en/services/social-media-management-treasure-coast/">Social Media</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="/en/services/digital-marketing-treasure-coast/">Digital Marketing Agency</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="/en/services/pdf-cleaning-scrubbing/">PDF Cleaning</a></li>
+            <li><a class="text-gray-500 hover:text-white transition" href="/en/free-logo/">Free Logo</a></li>
           </ul>
         </div>
         <div>
@@ -84,7 +91,7 @@
       <a href="{{ site.whatsapp }}?text={{ 'Hola%2C%20me%20gustar%C3%ADa%20una%20consulta%20gratuita.' if lang == 'es' else 'Hello%2C%20I%20would%20like%20a%20free%20consultation.' }}"
          target="_blank" rel="noopener noreferrer"
          class="text-xs font-semibold rounded-xl px-4 py-2 text-white hover:opacity-90 transition-opacity"
-         style="background:#25D366">
+         style="background:var(--accent)">
         {{ "WhatsApp: " if lang == "es" else "WhatsApp: " }}{{ site.phone }}
       </a>
     </div>

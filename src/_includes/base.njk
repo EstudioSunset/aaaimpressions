@@ -27,8 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="description" content="{{ metaDescription }}" />
 <link rel="canonical" href="{{ canonicalHref }}" />
 {% if noindex %}<meta name="robots" content="noindex, nofollow">{% endif %}
+{% if metaRefresh %}<meta http-equiv="refresh" content="0; url={{ metaRefresh }}" />{% endif %}
 
-{% set defaultHreflang = hreflangDefault or hreflangEs %}
+{% set defaultHreflang = hreflangDefault or hreflangEn or hreflangEs %}
 {% if hreflangEs or hreflangEn %}
 <!-- hreflang -->
 {% if hreflangEs %}<link rel="alternate" hreflang="es" href="{{ site.baseUrl }}{{ hreflangEs }}" />{% endif %}

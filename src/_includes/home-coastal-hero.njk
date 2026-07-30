@@ -46,22 +46,16 @@
       </div>
 
       <div class="home-hero__visual">
-        <svg class="home-hero__mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
-
-        <div class="home-hero__chips">
-          <div class="home-hero__chip">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            {{ "Visibilidad en Google" if isEs else "Google Visibility" }}
-          </div>
-          <div class="home-hero__chip">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-            {{ "Sitios Web & Branding" if isEs else "Websites & Branding" }}
-          </div>
-          <div class="home-hero__chip">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l18-7-7 18-2-8-8-2z"/></svg>
-            {{ "Publicidad Paga" if isEs else "Paid Advertising" }}
-          </div>
-        </div>
+        <picture>
+          <source media="(max-width: 900px)" srcset="/assets/img/hero-marketing-workspace-900.webp">
+          <img
+            src="/assets/img/hero-marketing-workspace-1600.webp"
+            alt="{{ 'Espacio de trabajo creativo para marketing digital y diseño de marca' if isEs else 'Creative workspace for digital marketing and brand design' }}"
+            width="1600"
+            height="1067"
+            fetchpriority="high"
+            decoding="async">
+        </picture>
       </div>
 
     </div>
