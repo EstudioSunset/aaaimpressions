@@ -520,47 +520,37 @@ footer[style*="background:var(--dark)"] a:hover {
    ========================================== */
 .home-hero {
   position: relative;
+  isolation: isolate;
   padding-top: 128px;
-  padding-bottom: 72px;
-  background: #fff;
+  padding-bottom: 96px;
+  background: var(--ink) url('/assets/img/walkerssk-beach-1761410.jpg') center / cover no-repeat;
   overflow: hidden;
 }
-/* Soft brand wash behind the right column so the fold is not a flat white
-   rectangle, without tinting the text side. */
+/* Navy scrim: re-tints the teal/turquoise photo toward the brand's cool
+   palette and guarantees contrast for the white text on the left. Lighter
+   on the right so the photo still reads through. */
 .home-hero::before {
   content: "";
   position: absolute;
-  top: -20%;
-  right: -10%;
-  width: 58%;
-  height: 130%;
-  background:
-    radial-gradient(closest-side, rgba(31, 91, 245, 0.10), transparent 70%),
-    radial-gradient(closest-side, rgba(216, 31, 46, 0.07), transparent 70%);
-  background-position: 30% 30%, 80% 75%;
-  background-repeat: no-repeat;
-  background-size: 80% 80%, 60% 60%;
-  pointer-events: none;
+  inset: 0;
   z-index: 0;
+  background: linear-gradient(100deg,
+    rgba(11, 27, 52, 0.92) 0%,
+    rgba(11, 27, 52, 0.74) 42%,
+    rgba(14, 42, 107, 0.42) 70%,
+    rgba(14, 42, 107, 0.22) 100%);
 }
 .home-hero > * { position: relative; z-index: 1; }
 
 @media (max-width: 640px) {
-  .home-hero { padding-top: 112px; padding-bottom: 48px; }
-  .home-hero::before { display: none; }
+  .home-hero { padding-top: 112px; padding-bottom: 56px; }
 }
 
 .home-hero__inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
-  gap: clamp(2.25rem, 5vw, 4.5rem);
-  align-items: center;
+  display: block;
 }
-@media (max-width: 900px) {
-  .home-hero__inner {
-    grid-template-columns: 1fr;
-  }
-}
+
+.home-hero__content { max-width: 640px; }
 
 .home-hero__eyebrow {
   display: inline-flex;
@@ -590,7 +580,7 @@ footer[style*="background:var(--dark)"] a:hover {
   font-size: var(--step-4);
   line-height: 1.06;
   letter-spacing: -0.032em;
-  color: var(--ink);
+  color: #fff;
   /* Caps the measure so the line breaks stay even instead of ragged. */
   max-width: 19ch;
   margin-bottom: 22px;
@@ -598,17 +588,18 @@ footer[style*="background:var(--dark)"] a:hover {
 @media (max-width: 900px) {
   .home-hero__title { max-width: 22ch; }
 }
-/* The one phrase that carries the brand colour. This is the emphasis that was
-   impossible when the whole headline was already electric blue. */
+/* The one phrase that carries the brand colour — --primary-on-dark instead
+   of --primary because plain electric blue loses contrast against the photo
+   + navy scrim. */
 .home-hero__title em {
   font-style: normal;
-  color: var(--primary);
+  color: var(--primary-on-dark);
 }
 
 .home-hero__lede {
   font-size: 1.0625rem;
   line-height: 1.65;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.86);
   max-width: 48ch;
   margin-bottom: 30px;
 }
@@ -635,11 +626,11 @@ footer[style*="background:var(--dark)"] a:hover {
 .home-hero__stars svg { width: 16px; height: 16px; }
 .home-hero__proof p {
   font-size: 13.5px;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.86);
   margin: 0;
 }
 .home-hero__proof strong {
-  color: var(--ink);
+  color: #fff;
   font-weight: 700;
 }
 
@@ -685,50 +676,6 @@ footer[style*="background:var(--dark)"] a:hover {
   background: var(--primary-lt);
 }
 
-/* Right column — single, static hero image.
-   Anchored with an offset brand frame so it reads as a deliberate composition
-   instead of a floating rectangle with a soft shadow. */
-.home-hero__visual {
-  position: relative;
-  min-height: 400px;
-  border-radius: var(--radius-md);
-  background: #fff;
-}
-.home-hero__visual::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  transform: translate(16px, 16px);
-  border-radius: var(--radius-md);
-  border: 2px solid var(--primary);
-  z-index: 0;
-  pointer-events: none;
-}
-.home-hero__visual picture {
-  position: relative;
-  z-index: 1;
-  display: block;
-  width: 100%;
-  height: 100%;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: var(--shadow-lift);
-}
-.home-hero__visual img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-height: 400px;
-  object-fit: cover;
-  object-position: center;
-}
-@media (max-width: 900px) {
-  .home-hero__visual::after { display: none; }
-}
-@media (max-width: 480px) {
-  .home-hero__visual,
-  .home-hero__visual img { min-height: 280px; }
-}
 /* ==========================================
    TRUST STRIP
    ========================================== */

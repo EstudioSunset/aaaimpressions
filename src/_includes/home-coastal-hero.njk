@@ -3,7 +3,10 @@
 {% set whatsappHref = site.whatsapp + "?text=" + ("Hola%2C%20me%20gustar%C3%ADa%20una%20consulta%20gratuita%20sobre%20marketing%20digital." if isEs else "Hello%2C%20I%20would%20like%20a%20free%20consultation%20about%20digital%20marketing.") %}
 
 <!-- ================================================
-     HERO — two-column, normal document flow
+     HERO — full-bleed Treasure Coast photo background,
+     content overlaid on a navy scrim (decorative photo,
+     no alt text needed since the heading/copy carry the
+     meaning for screen readers)
      ================================================ -->
 <section class="home-hero" id="hero" aria-label="AAA Impressions — {{ 'Marketing Digital Treasure Coast' if isEs else 'Digital Marketing Treasure Coast' }}">
   <div class="mx-auto max-w-6xl px-5">
@@ -50,19 +53,6 @@
             {% endif %}
           </p>
         </div>
-      </div>
-
-      <div class="home-hero__visual">
-        <picture>
-          <source media="(max-width: 900px)" srcset="/assets/img/hero-marketing-workspace-900.webp">
-          <img
-            src="/assets/img/hero-marketing-workspace-1600.webp"
-            alt="{{ 'Espacio de trabajo creativo para marketing digital y diseño de marca' if isEs else 'Creative workspace for digital marketing and brand design' }}"
-            width="1600"
-            height="1067"
-            fetchpriority="high"
-            decoding="async">
-        </picture>
       </div>
 
     </div>
