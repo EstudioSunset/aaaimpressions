@@ -13,7 +13,11 @@
         <span class="home-hero__eyebrow">Treasure Coast, Florida</span>
 
         <h1 class="home-hero__title">
-          {{ "Marketing digital que ayuda a los negocios del Treasure Coast a destacar y crecer." if isEs else "Digital marketing that helps Treasure Coast businesses get found and grow." }}
+          {% if isEs %}
+            Marketing digital que ayuda a los negocios del Treasure Coast a <em>destacar y crecer</em>.
+          {% else %}
+            Digital marketing that helps Treasure Coast businesses <em>get found and grow</em>.
+          {% endif %}
         </h1>
 
         <p class="home-hero__lede">
@@ -29,20 +33,23 @@
           </a>
         </div>
 
-        <ul class="home-hero__labels">
-          <li>
-            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-8 8a1 1 0 01-1.4 0l-4-4a1 1 0 111.4-1.4L8 12.6l7.3-7.3a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>
-            {{ "Atención bilingüe" if isEs else "Bilingual service" }}
-          </li>
-          <li>
-            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-8 8a1 1 0 01-1.4 0l-4-4a1 1 0 111.4-1.4L8 12.6l7.3-7.3a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>
-            {{ "Respuesta rápida" if isEs else "Fast response" }}
-          </li>
-          <li>
-            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-8 8a1 1 0 01-1.4 0l-4-4a1 1 0 111.4-1.4L8 12.6l7.3-7.3a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>
-            {{ "100% Treasure Coast" if isEs else "100% Treasure Coast" }}
-          </li>
-        </ul>
+        <!-- Social proof. Replaces the three checkmark labels that used to sit
+             here, which repeated the trust strip directly below them verbatim. -->
+        <div class="home-hero__proof">
+          <span class="home-hero__stars" role="img"
+                aria-label="{{ '5 de 5 estrellas' if isEs else 'Rated 5 out of 5 stars' }}">
+            {% for i in range(0, 5) %}
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.6l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8L1.6 7.7l5.8-.8z"/></svg>
+            {% endfor %}
+          </span>
+          <p>
+            {% if isEs %}
+              <strong>Negocios locales</strong> en Port St. Lucie, Fort Pierce, Stuart y Vero Beach
+            {% else %}
+              <strong>Trusted by local businesses</strong> in Port St. Lucie, Fort Pierce, Stuart &amp; Vero Beach
+            {% endif %}
+          </p>
+        </div>
       </div>
 
       <div class="home-hero__visual">

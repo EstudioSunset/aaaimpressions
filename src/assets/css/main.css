@@ -6,27 +6,59 @@
    DESIGN TOKENS
    ========================================== */
 :root {
-  --primary:    #1F5BF5;  /* electric blue — central brand color */
+  /* ---- Neutrals (structure) -------------------------------------------
+     The palette previously had NO dark neutral: --text and --dark were both
+     #1F5BF5, so every heading, card title, nav link and default paragraph
+     rendered in saturated electric blue. With no anchor value, blue could not
+     signal emphasis — everything was already blue. --ink is that anchor. */
+  --ink:        #0B1B34;  /* near-black navy — 17.2:1 on white */
+  --text:       var(--ink);
+  --muted:      #5D6782;  /* 5.63:1 on white */
+  --paper:      #ffffff;
+  --surf:       #F5F7FF;
+  --border:     rgba(7, 30, 51, 0.14);
+
+  /* ---- Electric blue (brand + emphasis) -------------------------------
+     Demoted from "the text color" to what it is good at: links, icons,
+     highlighted words, active states, brand surfaces. */
+  --primary:    #1F5BF5;  /* 5.42:1 on white */
   --primary-dk: #153DB8;
   --primary-lt: #E9EFFF;
-  --accent:     #ED2D3C;  /* intense red */
-  --accent-lt:  #FDE8EA;
-  --red:        #ED2D3C;
-  --red-lt:     #FDE8EA;
-  --magenta:    #ED2D3C;
-  --on-brand:   #ffffff;
-  --whatsapp:   #ED2D3C;  /* free quote / free consultation CTA */
-  --dark:       #1F5BF5;
-  --surf:       #F5F7FF;
-  --sand:       #f2e5c7;
-  --paper:      #ffffff;
-  --border:     rgba(7, 30, 51, 0.14);
-  --text:       #1F5BF5;
-  --muted:      #5D6782;
+  --primary-on-dark: #6E9BFF; /* blue that stays legible on --dark (6.4:1) */
+
+  /* Deep brand navy for inverted sections. Still unmistakably blue-family,
+     but white text sits at 13.4:1 instead of 5.4:1. */
+  --dark:       #0E2A6B;
+
+  /* ---- Red (action) ----------------------------------------------------
+     Reserved for CTAs. --accent carries white text so it is the darker of the
+     two (5.05:1 vs 4.17:1); --accent-bright is decorative only (rules, stars,
+     eyebrows) where nothing sits on top of it. */
+  --accent:        #D81F2E;
+  --accent-bright: #ED2D3C;
+  --accent-dk:     #C01926; /* red text on --accent-lt tint (5.25:1) */
+  --accent-lt:     #FDE8EA;
+  --on-brand:      #ffffff;
+
+  /* Back-compat aliases. These three all pointed at the same red, which
+     created the illusion of a 3-colour system that was really 1 colour. */
+  --red:      var(--accent-bright);
+  --red-lt:   var(--accent-lt);
+  --magenta:  var(--accent-bright);
+  --whatsapp: var(--accent);
+  --sand:     #f2e5c7;
+
+  /* ---- Type scale ------------------------------------------------------ */
+  --step-0: 1rem;
+  --step-1: 1.125rem;
+  --step-2: clamp(1.35rem, 1.1rem + 1vw,  1.6rem);
+  --step-3: clamp(1.7rem,  1.3rem + 1.8vw, 2.25rem);
+  --step-4: clamp(2.1rem,  1.4rem + 2.8vw, 3.25rem);
 
   --radius-sm:   8px;
   --radius-md:   14px;
   --shadow-soft: 0 16px 40px rgba(7, 30, 51, 0.10);
+  --shadow-lift: 0 24px 60px rgba(11, 27, 52, 0.14);
 
   --topbar-h: 34px;
 }
@@ -405,6 +437,13 @@ footer[style*="background:var(--dark)"] a:hover {
 }
 
 .nav-link {
+  /* display+padding give the link a ~44px hit area; it rendered as a 22px
+     target before, below the minimum for touch. */
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 2px;
+  position: relative;
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   font-weight: 500;
   font-size: 14.5px;
@@ -415,6 +454,18 @@ footer[style*="background:var(--dark)"] a:hover {
 .nav-link:hover,
 .nav-link.active {
   color: var(--primary);
+}
+/* Underline marker rather than colour alone, so the active page is not
+   signalled by colour only. */
+.nav-link.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 12px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
 }
 
 .nav-cta {
@@ -468,18 +519,41 @@ footer[style*="background:var(--dark)"] a:hover {
    HOME — HERO
    ========================================== */
 .home-hero {
-  padding-top: 132px;
-  padding-bottom: 56px;
+  position: relative;
+  padding-top: 128px;
+  padding-bottom: 72px;
   background: #fff;
+  overflow: hidden;
 }
+/* Soft brand wash behind the right column so the fold is not a flat white
+   rectangle, without tinting the text side. */
+.home-hero::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  right: -10%;
+  width: 58%;
+  height: 130%;
+  background:
+    radial-gradient(closest-side, rgba(31, 91, 245, 0.10), transparent 70%),
+    radial-gradient(closest-side, rgba(216, 31, 46, 0.07), transparent 70%);
+  background-position: 30% 30%, 80% 75%;
+  background-repeat: no-repeat;
+  background-size: 80% 80%, 60% 60%;
+  pointer-events: none;
+  z-index: 0;
+}
+.home-hero > * { position: relative; z-index: 1; }
+
 @media (max-width: 640px) {
-  .home-hero { padding-top: 118px; padding-bottom: 40px; }
+  .home-hero { padding-top: 112px; padding-bottom: 48px; }
+  .home-hero::before { display: none; }
 }
 
 .home-hero__inner {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(340px, 0.9fr);
-  gap: clamp(2rem, 5vw, 5rem);
+  grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+  gap: clamp(2.25rem, 5vw, 4.5rem);
   align-items: center;
 }
 @media (max-width: 900px) {
@@ -489,113 +563,171 @@ footer[style*="background:var(--dark)"] a:hover {
 }
 
 .home-hero__eyebrow {
-  font-family: 'Bebas Neue', sans-serif;
-  font-weight: 400;
-  font-size: 15px;
-  letter-spacing: 0.14em;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: var(--primary);
-  display: inline-block;
-  margin-bottom: 14px;
+  color: var(--primary-dk);
+  background: var(--primary-lt);
+  border-radius: 999px;
+  padding: 7px 14px 7px 11px;
+  margin-bottom: 20px;
+}
+.home-hero__eyebrow::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
 }
 
 .home-hero__title {
-  font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 1.1;
-  color: var(--dark);
-  margin-bottom: 20px;
+  font-size: var(--step-4);
+  line-height: 1.06;
+  letter-spacing: -0.032em;
+  color: var(--ink);
+  /* Caps the measure so the line breaks stay even instead of ragged. */
+  max-width: 19ch;
+  margin-bottom: 22px;
+}
+@media (max-width: 900px) {
+  .home-hero__title { max-width: 22ch; }
+}
+/* The one phrase that carries the brand colour. This is the emphasis that was
+   impossible when the whole headline was already electric blue. */
+.home-hero__title em {
+  font-style: normal;
+  color: var(--primary);
 }
 
 .home-hero__lede {
   font-size: 1.0625rem;
   line-height: 1.65;
   color: var(--muted);
-  max-width: 46ch;
-  margin-bottom: 28px;
+  max-width: 48ch;
+  margin-bottom: 30px;
 }
 
 .home-hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  margin-bottom: 32px;
+  margin-bottom: 26px;
+}
+
+/* ---- Hero social proof ---- */
+.home-hero__proof {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.home-hero__stars {
+  display: inline-flex;
+  gap: 2px;
+  color: var(--accent-bright);
+}
+.home-hero__stars svg { width: 16px; height: 16px; }
+.home-hero__proof p {
+  font-size: 13.5px;
+  color: var(--muted);
+  margin: 0;
+}
+.home-hero__proof strong {
+  color: var(--ink);
+  font-weight: 700;
 }
 
 .btn-primary {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--whatsapp);
+  background: var(--accent);
   color: #fff;
   border-radius: var(--radius-md);
-  padding: 13px 24px;
-  font-weight: 600;
+  padding: 14px 26px;
+  font-weight: 700;
   font-size: 15px;
   text-decoration: none;
-  transition: filter .18s;
+  box-shadow: 0 10px 24px rgba(216, 31, 46, 0.26);
+  transition: background .18s, box-shadow .18s, transform .18s;
 }
-.btn-primary:hover { filter: brightness(1.08); color: #fff; }
+.btn-primary:hover {
+  background: #C01926;
+  color: #fff;
+  box-shadow: 0 14px 30px rgba(216, 31, 46, 0.34);
+  transform: translateY(-1px);
+}
+.btn-primary:active { transform: translateY(0); }
 
 .btn-secondary {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: transparent;
-  color: var(--dark);
-  border: 1.5px solid var(--border);
+  background: #fff;
+  color: var(--ink);
+  border: 1.5px solid rgba(11, 27, 52, 0.18);
   border-radius: var(--radius-md);
-  padding: 13px 24px;
-  font-weight: 600;
+  padding: 14px 26px;
+  font-weight: 700;
   font-size: 15px;
   text-decoration: none;
-  transition: border-color .18s, color .18s;
+  transition: border-color .18s, color .18s, background .18s;
 }
-.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
-
-.home-hero__labels {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 22px;
-}
-.home-hero__labels li {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--dark);
-}
-.home-hero__labels svg {
-  width: 16px;
-  height: 16px;
+.btn-secondary:hover {
+  border-color: var(--primary);
   color: var(--primary);
-  flex-shrink: 0;
+  background: var(--primary-lt);
 }
 
-/* Right column — single, static hero image */
+/* Right column — single, static hero image.
+   Anchored with an offset brand frame so it reads as a deliberate composition
+   instead of a floating rectangle with a soft shadow. */
 .home-hero__visual {
-  min-height: 380px;
+  position: relative;
+  min-height: 400px;
   border-radius: var(--radius-md);
-  overflow: hidden;
-  box-shadow: var(--shadow-soft);
   background: #fff;
 }
+.home-hero__visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translate(16px, 16px);
+  border-radius: var(--radius-md);
+  border: 2px solid var(--primary);
+  z-index: 0;
+  pointer-events: none;
+}
 .home-hero__visual picture {
+  position: relative;
+  z-index: 1;
   display: block;
   width: 100%;
   height: 100%;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-lift);
 }
 .home-hero__visual img {
   display: block;
   width: 100%;
   height: 100%;
-  min-height: 380px;
+  min-height: 400px;
   object-fit: cover;
   object-position: center;
 }
+@media (max-width: 900px) {
+  .home-hero__visual::after { display: none; }
+}
 @media (max-width: 480px) {
   .home-hero__visual,
-  .home-hero__visual img { min-height: 300px; }
+  .home-hero__visual img { min-height: 280px; }
 }
 /* ==========================================
    TRUST STRIP
@@ -603,7 +735,7 @@ footer[style*="background:var(--dark)"] a:hover {
 .trust-strip {
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  background: var(--paper);
+  background: var(--surf);
 }
 .trust-strip__inner {
   display: grid;
@@ -623,7 +755,7 @@ footer[style*="background:var(--dark)"] a:hover {
   gap: 10px;
   font-size: 13.5px;
   font-weight: 600;
-  color: var(--dark);
+  color: var(--ink);
 }
 .trust-strip__item svg {
   width: 20px;
@@ -657,15 +789,17 @@ footer[style*="background:var(--dark)"] a:hover {
 .service-group:nth-child(2) { border-color:rgba(237,45,60,.22); border-top-color:var(--magenta); background:var(--accent-lt); }
 .service-group:nth-child(3) { border-color:rgba(237,45,60,.22); border-top-color:var(--red); background:var(--red-lt); }
 .service-group__label { font-family:'Bebas Neue',sans-serif; font-weight:400; font-size:14px; letter-spacing:.12em; text-transform:uppercase; color:var(--primary); display:block; margin-bottom:14px; }
-.service-group:nth-child(2) .service-group__label { color:var(--magenta); }
-.service-group:nth-child(3) .service-group__label { color:var(--red); }
+/* Darker red: these labels sit on the --accent-lt tint, where the bright red
+   only reaches 3.55:1. */
+.service-group:nth-child(2) .service-group__label,
+.service-group:nth-child(3) .service-group__label { color:var(--accent-dk); }
 .service-group__list { display:grid; gap:4px; }
-.service-group__link { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 0; border-top:1px solid var(--border); text-decoration:none; color:var(--dark); font-weight:700; font-size:.9375rem; transition:color .18s,transform .18s; }
+.service-group__link { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 0; border-top:1px solid var(--border); text-decoration:none; color:var(--ink); font-weight:700; font-size:.9375rem; transition:color .18s,transform .18s; }
 .service-group__link:first-child { border-top:none; }
 .service-group__link:hover { color:var(--primary); transform:translateX(3px); }
 .service-group__link span.arrow { color:var(--primary); flex-shrink:0; }
-.service-group:nth-child(2) .service-group__link:hover,.service-group:nth-child(2) .service-group__link span.arrow { color:var(--magenta); }
-.service-group:nth-child(3) .service-group__link:hover,.service-group:nth-child(3) .service-group__link span.arrow { color:var(--red); }
+.service-group:nth-child(2) .service-group__link:hover,.service-group:nth-child(2) .service-group__link span.arrow,
+.service-group:nth-child(3) .service-group__link:hover,.service-group:nth-child(3) .service-group__link span.arrow { color:var(--accent-dk); }
 @media (max-width:900px) { .service-groups { grid-template-columns:1fr; } }
 /* ==========================================
    SELECTED WORK — case study cards
@@ -687,7 +821,7 @@ footer[style*="background:var(--dark)"] a:hover {
   border-radius: var(--radius-sm);
   background: var(--paper);
   text-decoration: none;
-  color: var(--dark);
+  color: var(--ink);
   transition: border-color .18s;
 }
 .case-card:hover { border-color: var(--primary); }
@@ -753,7 +887,7 @@ footer[style*="background:var(--dark)"] a:hover {
   border-radius: var(--radius-sm);
   background: var(--paper);
   text-decoration: none;
-  color: var(--dark);
+  color: var(--ink);
   transition: border-color .18s;
 }
 .location-card:hover { border-color: var(--primary); }
@@ -829,3 +963,28 @@ footer[style*="background:var(--dark)"] a:hover {
 @media (max-width: 640px) {
   .coastal-sign { padding: 40px 20px; }
 }
+
+/* ==========================================
+   MOBILE READING SIZE
+   Long-form body copy is set at 0.875rem/0.9rem in a lot of places. That is
+   fine for labels and buttons but below the comfortable reading minimum on a
+   phone. Paragraphs only — .text-xs eyebrows and button labels keep their size.
+   Kept last in the file so it wins over the component rules above it.
+   ========================================== */
+@media (max-width: 640px) {
+  main p.text-sm,
+  .case-card__body,
+  .challenge-item p,
+  .location-card p,
+  .process-step p,
+  .home-hero__proof p {
+    font-size: 15.5px;
+    line-height: 1.6;
+  }
+}
+
+/* WhatsApp CTA contrast is handled in the markup (the labels carry
+   text-[#0B1B34] instead of text-white): white on #25D366 is 1.98:1, ink on
+   the same green is 8.67:1, so the recognisable brand green is preserved.
+   Done as classes rather than a [style*=...] rule because attribute selectors
+   against the style attribute did not apply reliably here. */
