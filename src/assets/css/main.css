@@ -75,6 +75,8 @@ html {
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
   color: var(--text);
   background: var(--paper);
   -webkit-font-smoothing: antialiased;
@@ -734,19 +736,19 @@ footer[style*="background:var(--dark)"] a:hover {
 .service-groups { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
 .service-group { overflow:hidden; border:1px solid rgba(31,91,245,.24); border-top:4px solid var(--primary); border-radius:var(--radius-md); background:var(--primary-lt); padding:26px; box-shadow:0 12px 34px rgba(31,91,245,.08); }
 .service-group:nth-child(2) { border-color:rgba(237,45,60,.22); border-top-color:var(--magenta); background:var(--accent-lt); }
-.service-group:nth-child(3) { border-color:rgba(237,45,60,.22); border-top-color:var(--red); background:var(--red-lt); }
-.service-group__label { font-family:'Bebas Neue',sans-serif; font-weight:400; font-size:14px; letter-spacing:.12em; text-transform:uppercase; color:var(--primary); display:block; margin-bottom:14px; }
-/* Darker red: these labels sit on the --accent-lt tint, where the bright red
-   only reaches 3.55:1. */
-.service-group:nth-child(2) .service-group__label,
-.service-group:nth-child(3) .service-group__label { color:var(--accent-dk); }
+.service-group:nth-child(3) { border-color:rgba(11,27,52,.22); border-top-color:var(--ink); background:var(--sand); }
+.service-group__label { font-family:'Plus Jakarta Sans', system-ui, sans-serif; font-weight:700; font-size:14px; letter-spacing:.12em; text-transform:uppercase; color:var(--primary); display:block; margin-bottom:14px; }
+/* Darker red: this label sits on the --accent-lt tint, where the bright red
+   only reaches 3.55:1. Card 3 uses --ink directly (13.8:1 on --sand). */
+.service-group:nth-child(2) .service-group__label { color:var(--accent-dk); }
+.service-group:nth-child(3) .service-group__label { color:var(--ink); }
 .service-group__list { display:grid; gap:4px; }
 .service-group__link { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px 0; border-top:1px solid var(--border); text-decoration:none; color:var(--ink); font-weight:700; font-size:.9375rem; transition:color .18s,transform .18s; }
 .service-group__link:first-child { border-top:none; }
 .service-group__link:hover { color:var(--primary); transform:translateX(3px); }
 .service-group__link span.arrow { color:var(--primary); flex-shrink:0; }
-.service-group:nth-child(2) .service-group__link:hover,.service-group:nth-child(2) .service-group__link span.arrow,
-.service-group:nth-child(3) .service-group__link:hover,.service-group:nth-child(3) .service-group__link span.arrow { color:var(--accent-dk); }
+.service-group:nth-child(2) .service-group__link:hover,.service-group:nth-child(2) .service-group__link span.arrow { color:var(--accent-dk); }
+.service-group:nth-child(3) .service-group__link:hover,.service-group:nth-child(3) .service-group__link span.arrow { color:var(--ink); }
 @media (max-width:900px) { .service-groups { grid-template-columns:1fr; } }
 /* ==========================================
    SELECTED WORK — case study cards
@@ -912,22 +914,20 @@ footer[style*="background:var(--dark)"] a:hover {
 }
 
 /* ==========================================
-   MOBILE READING SIZE
-   Long-form body copy is set at 0.875rem/0.9rem in a lot of places. That is
-   fine for labels and buttons but below the comfortable reading minimum on a
-   phone. Paragraphs only — .text-xs eyebrows and button labels keep their size.
+   READING SIZE — secondary/body-adjacent text
+   Long-form secondary copy was set at 0.875rem/0.9rem in a lot of places —
+   fine for labels and buttons but below the comfortable reading minimum.
+   Paragraphs only — .text-xs eyebrows and button labels keep their size.
    Kept last in the file so it wins over the component rules above it.
    ========================================== */
-@media (max-width: 640px) {
-  main p.text-sm,
-  .case-card__body,
-  .challenge-item p,
-  .location-card p,
-  .process-step p,
-  .home-hero__proof p {
-    font-size: 15.5px;
-    line-height: 1.6;
-  }
+main p.text-sm,
+.case-card__body,
+.challenge-item p,
+.location-card p,
+.process-step p,
+.home-hero__proof p {
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 /* WhatsApp CTA contrast is handled in the markup (the labels carry
