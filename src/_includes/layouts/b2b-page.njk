@@ -203,6 +203,14 @@ layout: "base.njk"
 {% endif %}
 {% endfor %}
 
+{% if compliance %}
+<section class="py-12" style="background:#fff">
+  <div class="mx-auto max-w-4xl px-5">
+    <p class="b2b-note text-sm leading-relaxed">{% if isEs %}<strong>Contenido técnico aprobado por el cliente.</strong> AAA Impressions ofrece diseño de documentos, redacción controlada, traducción, diagramación y producción. No determinamos peligros del lugar de trabajo, aplicabilidad de normas, clasificación de químicos, valores de ingeniería ni cumplimiento legal: eso lo define el empleador, su responsable de seguridad (EHS), el fabricante o un profesional calificado.{% else %}<strong>Regulatory and technical content is supplied or approved by the client.</strong> AAA Impressions provides document design, controlled copy preparation, translation, layout and production. We do not determine workplace hazards, regulatory applicability, chemical classification, engineering values or legal compliance — those come from the employer, its EHS/safety lead, the manufacturer or a qualified professional.{% endif %}</p>
+  </div>
+</section>
+{% endif %}
+
 {{ content | safe }}
 
 <!-- CTA BAND -->

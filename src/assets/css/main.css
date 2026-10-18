@@ -1226,7 +1226,8 @@ a.b2b-list__row:hover .b2b-list__title { color:var(--accent); }
 .spec-visual__warn { display:flex; gap:12px; align-items:center; margin:18px 24px 24px; padding:12px 14px; background:#FFF4D6; border:1px solid #E0B43C; font-size:14px; color:#3D2D00 !important; }
 .spec-visual__warn span { color:#3D2D00 !important; }
 .nav-link, .nav-cta, .site-brand-tag { white-space: nowrap; }
-@media (max-width: 1279px) { .site-brand-tag { display: none !important; } .nav-link { font-size: 15.5px; } }
+@media (max-width: 1535px) { .site-brand-tag { display: none !important; } }
+@media (max-width: 1279px) { .nav-link { font-size: 15.5px; } }
 .b2b-gallery { background:#fff; border:1px solid var(--border); display:flex; flex-direction:column; }
 .b2b-gallery__img { width:100%; aspect-ratio:4/3; object-fit:cover; display:block; border-bottom:1px solid var(--border); }
 .b2b-gallery__ph { aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; padding:1.5rem; text-align:center; border-bottom:1px solid var(--border);
