@@ -11,33 +11,33 @@
      #1F5BF5, so every heading, card title, nav link and default paragraph
      rendered in saturated electric blue. With no anchor value, blue could not
      signal emphasis — everything was already blue. --ink is that anchor. */
-  --ink:        #0B1B34;  /* near-black navy — 17.2:1 on white */
+  --ink:        #101936;  /* near-black navy — 17.2:1 on white */
   --text:       var(--ink);
-  --muted:      #5D6782;  /* 5.63:1 on white */
+  --muted:      #4B5378;  /* 5.63:1 on white */
   --paper:      #ffffff;
-  --surf:       #F5F7FF;
-  --border:     rgba(7, 30, 51, 0.14);
+  --surf:       #F4F6FE;
+  --border:     #DCE1F2;
 
   /* ---- Electric blue (brand + emphasis) -------------------------------
      Demoted from "the text color" to what it is good at: links, icons,
      highlighted words, active states, brand surfaces. */
-  --primary:    #1F5BF5;  /* 5.42:1 on white */
-  --primary-dk: #153DB8;
-  --primary-lt: #E9EFFF;
-  --primary-on-dark: #6E9BFF; /* blue that stays legible on --dark (6.4:1) */
+  --primary:    #2348E6;  /* 5.42:1 on white */
+  --primary-dk: #182C8C;
+  --primary-lt: #ECEFFE;
+  --primary-on-dark: #D3DBFF; /* blue that stays legible on --dark (6.4:1) */
 
   /* Deep brand navy for inverted sections. Still unmistakably blue-family,
      but white text sits at 13.4:1 instead of 5.4:1. */
-  --dark:       #0E2A6B;
+  --dark:       #1B2C9E;
 
   /* ---- Red (action) ----------------------------------------------------
      Reserved for CTAs. --accent carries white text so it is the darker of the
      two (5.05:1 vs 4.17:1); --accent-bright is decorative only (rules, stars,
      eyebrows) where nothing sits on top of it. */
-  --accent:        #D81F2E;
-  --accent-bright: #ED2D3C;
-  --accent-dk:     #C01926; /* red text on --accent-lt tint (5.25:1) */
-  --accent-lt:     #FDE8EA;
+  --accent:        #6D3BEF;
+  --accent-bright: #7A5CFF;
+  --accent-dk:     #5326C9; /* red text on --accent-lt tint (5.25:1) */
+  --accent-lt:     #EFE9FF;
   --on-brand:      #ffffff;
 
   /* Back-compat aliases. These three all pointed at the same red, which
@@ -55,8 +55,8 @@
   --step-3: clamp(1.7rem,  1.3rem + 1.8vw, 2.25rem);
   --step-4: clamp(2.1rem,  1.4rem + 2.8vw, 3.25rem);
 
-  --radius-sm:   8px;
-  --radius-md:   14px;
+  --radius-sm:   0px;
+  --radius-md:   0px;
   --shadow-soft: 0 16px 40px rgba(7, 30, 51, 0.10);
   --shadow-lift: 0 24px 60px rgba(11, 27, 52, 0.14);
 
@@ -74,7 +74,7 @@ html {
 }
 
 body {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Archivo', system-ui, sans-serif;
   font-size: 18px;
   line-height: 1.65;
   color: var(--text);
@@ -83,7 +83,7 @@ body {
 }
 
 h1, h2, h3 {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-family: 'Archivo', system-ui, sans-serif;
   font-weight: 700;
   letter-spacing: -0.025em;
 }
@@ -152,7 +152,7 @@ footer[style*="background:var(--dark)"] a:hover {
 }
 
 .eyebrow {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'IBM Plex Mono', monospace;
   font-weight: 400;
   font-size: 15px;
   letter-spacing: 0.14em;
@@ -341,7 +341,7 @@ footer[style*="background:var(--dark)"] a:hover {
 }
 
 .step-num {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-family: 'Archivo', system-ui, sans-serif;
   font-weight: 900;
   font-size: 2.75rem;
   color: var(--primary);
@@ -446,7 +446,7 @@ footer[style*="background:var(--dark)"] a:hover {
   min-height: 44px;
   padding: 0 2px;
   position: relative;
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-family: 'Archivo', system-ui, sans-serif;
   font-weight: 500;
   font-size: 14.5px;
   color: var(--text);
@@ -478,7 +478,7 @@ footer[style*="background:var(--dark)"] a:hover {
   color: #fff;
   border-radius: var(--radius-md);
   padding: 10px 18px;
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-family: 'Archivo', system-ui, sans-serif;
   font-weight: 600;
   font-size: 14px;
   text-decoration: none;
@@ -558,7 +558,7 @@ footer[style*="background:var(--dark)"] a:hover {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-family: 'Archivo', system-ui, sans-serif;
   font-weight: 700;
   font-size: 12px;
   letter-spacing: 0.13em;
@@ -723,7 +723,7 @@ footer[style*="background:var(--dark)"] a:hover {
 .challenge-item:nth-child(3) { border-color:rgba(237,45,60,.2); }
 .challenge-item__media { width:148px; aspect-ratio:4/3; overflow:hidden; border-radius:10px; background:var(--primary-lt); }
 .challenge-item__media img { display:block; width:100%; height:100%; object-fit:cover; }
-.challenge-item__num { align-self:start; padding-top:6px; font-family:'Plus Jakarta Sans',system-ui,sans-serif; font-weight:800; font-size:1rem; color:var(--primary); }
+.challenge-item__num { align-self:start; padding-top:6px; font-family:'Archivo',system-ui,sans-serif; font-weight:800; font-size:1rem; color:var(--primary); }
 .challenge-item:nth-child(2) .challenge-item__num { color:var(--magenta); }
 .challenge-item:nth-child(3) .challenge-item__num { color:var(--red); }
 .challenge-item h3 { font-size:1.0625rem; margin-bottom:6px; }
@@ -737,7 +737,7 @@ footer[style*="background:var(--dark)"] a:hover {
 .service-group { overflow:hidden; border:1px solid rgba(31,91,245,.24); border-top:4px solid var(--primary); border-radius:var(--radius-md); background:var(--primary-lt); padding:26px; box-shadow:0 12px 34px rgba(31,91,245,.08); }
 .service-group:nth-child(2) { border-color:rgba(237,45,60,.22); border-top-color:var(--magenta); background:var(--accent-lt); }
 .service-group:nth-child(3) { border-color:rgba(11,27,52,.22); border-top-color:var(--ink); background:var(--sand); }
-.service-group__label { font-family:'Plus Jakarta Sans', system-ui, sans-serif; font-weight:700; font-size:14px; letter-spacing:.12em; text-transform:uppercase; color:var(--primary); display:block; margin-bottom:14px; }
+.service-group__label { font-family:'Archivo', system-ui, sans-serif; font-weight:700; font-size:14px; letter-spacing:.12em; text-transform:uppercase; color:var(--primary); display:block; margin-bottom:14px; }
 /* Darker red: this label sits on the --accent-lt tint, where the bright red
    only reaches 3.55:1. Card 3 uses --ink directly (13.8:1 on --sand). */
 .service-group:nth-child(2) .service-group__label { color:var(--accent-dk); }
@@ -775,7 +775,7 @@ footer[style*="background:var(--dark)"] a:hover {
 }
 .case-card:hover { border-color: var(--primary); }
 .case-card__tag {
-  font-family: 'Bebas Neue', sans-serif;
+  font-family: 'IBM Plex Mono', monospace;
   font-weight: 400;
   font-size: 13px;
   letter-spacing: 0.1em;
@@ -783,13 +783,13 @@ footer[style*="background:var(--dark)"] a:hover {
   color: var(--accent);
 }
 .case-card__stat {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-family: 'Archivo', system-ui, sans-serif;
   font-weight: 800;
   font-size: 1.6rem;
   color: var(--primary);
 }
 .case-card__stat span {
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'Archivo', system-ui, sans-serif;
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--muted);
@@ -892,7 +892,7 @@ footer[style*="background:var(--dark)"] a:hover {
   background: var(--paper);
   border: 2px solid var(--primary);
   color: var(--primary);
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-family: 'Archivo', system-ui, sans-serif;
   font-weight: 800;
   font-size: 0.95rem;
   margin-bottom: 16px;
@@ -935,3 +935,224 @@ main p.text-sm,
    the same green is 8.67:1, so the recognisable brand green is preserved.
    Done as classes rather than a [style*=...] rule because attribute selectors
    against the style attribute did not apply reliably here. */
+
+/* =====================================================================
+   B2B THEME (ui/restyle-b2b) — Oct 2026
+   Layer on top of everything above. Templates:
+   1 Base global   2 Home   3 Hub   4 Service/landing   5 Article   6 Form/utility
+   Shared pieces:  .hero-b2b (+ include "hero-shapes.njk"), .band-b2b
+   ===================================================================== */
+:root {
+  --heading:   #182C8C;
+  --grad-hero:
+    radial-gradient(ellipse 55% 75% at 100% 0%, rgba(126,63,214,.95) 0%, rgba(126,63,214,.55) 35%, rgba(126,63,214,0) 70%),
+    radial-gradient(ellipse 65% 80% at 72% 70%, #17299A 0%, rgba(23,41,154,0) 70%),
+    radial-gradient(ellipse 70% 90% at 0% 0%, #1563D4 0%, rgba(21,99,212,0) 75%),
+    #1B3CB8;
+  --grad-band: linear-gradient(100deg, #1A3FBA 0%, #1D4AC6 45%, #1B2C9E 100%);
+  --grad-cta:  linear-gradient(90deg, #6D3BEF 0%, #9A4FE8 100%);
+  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+
+/* ---- 1. Base: type ---------------------------------------------------- */
+body { font-family: 'Archivo', system-ui, sans-serif; color: var(--ink); }
+h1, h2, h3, h4,
+.home-hero__eyebrow { font-family: 'Archivo', system-ui, sans-serif; }
+h1, h2 { font-weight: 800; letter-spacing: -0.028em; color: var(--heading); }
+h3, h4 { font-weight: 700; color: var(--heading); }
+
+/* Eyebrows: every "small caps label" pattern on the site becomes mono */
+.eyebrow,
+p.uppercase.tracking-\[0\.18em\],
+p.uppercase.tracking-widest,
+span.uppercase.tracking-\[0\.18em\] {
+  font-family: var(--mono) !important;
+  font-weight: 500 !important;
+  letter-spacing: .12em !important;
+  color: var(--accent);
+}
+.eyebrow { font-size: 13px; }
+.accent-line { background: var(--grad-cta); border-radius: 0; }
+
+/* ---- 1. Base: square corners (pills and avatars keep rounded-full) ---- */
+.rounded, .rounded-lg, .rounded-xl, .rounded-2xl, .rounded-3xl,
+.rounded-t-2xl, .rounded-t-3xl, .rounded-b-2xl, .rounded-b-3xl { border-radius: 0 !important; }
+:focus-visible { border-radius: 0; outline-color: var(--accent); }
+
+/* ---- 1. Base: buttons ------------------------------------------------- */
+.btn-primary,
+.nav-cta,
+[style*="background:var(--whatsapp)"],
+[style*="background:var(--accent)"] {
+  background: var(--grad-cta) !important;
+  color: #fff !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+.btn-primary:hover, .nav-cta:hover,
+[style*="background:var(--whatsapp)"]:hover,
+[style*="background:var(--accent)"]:hover { filter: brightness(1.08); opacity: 1 !important; }
+.btn-secondary {
+  border-radius: 0;
+  border: 1.5px solid var(--heading);
+  color: var(--heading);
+}
+.btn-secondary:hover { background: var(--primary-lt); color: var(--heading); border-color: var(--heading); }
+
+/* Cards: thin borders, no soft shadows */
+.service-card, .pkg-card, .contact-card, .case-card, .location-card,
+.service-group, .challenge-item, .ph-card {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  border-color: var(--border) !important;
+}
+.service-group { border-top: 3px solid var(--accent) !important; background: var(--surf) !important; }
+.shadow-sm, .shadow, .shadow-md, .shadow-lg, .shadow-xl { box-shadow: none !important; }
+
+/* Forms */
+input:not([type=checkbox]):not([type=radio]), select, textarea {
+  border-radius: 0 !important;
+  border-color: #A9B4DC !important;
+}
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid var(--accent) !important;
+  outline-offset: 0;
+  border-color: var(--accent) !important;
+  box-shadow: none !important;
+}
+label { color: var(--heading); }
+
+/* ---- 1. Base: header -------------------------------------------------- */
+.site-topbar { background: var(--grad-band) !important; color: #D3DBFF; font-family: var(--mono); }
+.site-topbar a, .site-topbar-phone { color: #fff !important; }
+.site-header { border-bottom: 1px solid var(--border); }
+.site-brand-tag { font-family: var(--mono); color: var(--muted); letter-spacing: .08em; }
+.nav-link { color: var(--heading); font-weight: 500; }
+.nav-link:hover, .nav-link.active { color: var(--accent); }
+.lang-btn.active { background: var(--heading) !important; color: #fff !important; }
+
+/* ---- Shared: gradient surfaces with parallelogram shapes ------------- */
+.hero-b2b,
+.band-b2b,
+.services-index-hero,
+[style*="background:var(--dark)"] {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: #fff;
+}
+.hero-b2b, .services-index-hero { background: var(--grad-hero) !important; }
+.band-b2b, [style*="background:var(--dark)"] { background: var(--grad-band) !important; }
+
+/* Decorative parallelograms for bands, footer and any dark section */
+.band-b2b::before, [style*="background:var(--dark)"]::before,
+.band-b2b::after,  [style*="background:var(--dark)"]::after {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  transform: skewY(-10deg);
+}
+.band-b2b::before, [style*="background:var(--dark)"]::before {
+  top: -60px; left: 42%; width: min(460px, 50%); height: 420px;
+  background: linear-gradient(180deg, rgba(60,120,255,.45), rgba(60,120,255,.12));
+}
+.band-b2b::after, [style*="background:var(--dark)"]::after {
+  bottom: -30px; right: -40px; width: 300px; height: 90px;
+  border: 1px solid rgba(255,255,255,.22);
+}
+
+/* Full-width dark <section>s become an inset card like the newsletter block */
+@media (min-width: 768px) {
+  section[style*="background:var(--dark)"] {
+    margin: 24px max(20px, calc((100% - 1200px) / 2)) 72px;
+    border-radius: 16px !important;
+  }
+}
+
+/* Text on gradient surfaces */
+.hero-b2b h1, .hero-b2b h2, .hero-b2b h3,
+.band-b2b h1, .band-b2b h2, .band-b2b h3,
+[style*="background:var(--dark)"] h1,
+[style*="background:var(--dark)"] h2,
+[style*="background:var(--dark)"] h3,
+[style*="background:var(--dark)"] h4,
+.services-index-hero h1 { color: #fff !important; }
+.hero-b2b p, .hero-b2b li, .hero-b2b .text-gray-400, .hero-b2b .text-gray-500, .hero-b2b .text-gray-600,
+[style*="background:var(--dark)"] .text-gray-500,
+[style*="background:var(--dark)"] .text-gray-600,
+[style*="background:var(--dark)"] .text-gray-400 { color: #DCE3FF !important; }
+.hero-b2b [style*="color:var(--primary)"],
+.hero-b2b em,
+.services-index-hero [style*="color:#93C5FD"] { color: #C9D3FF !important; font-style: normal; }
+.hero-b2b p.uppercase,
+[style*="background:var(--dark)"] p.uppercase { color: #D3DBFF !important; }
+.hero-b2b .accent-line { background: #fff; }
+.hero-b2b .breadcrumb, .hero-b2b .breadcrumb a, .hero-b2b .breadcrumb span { color: #D3DBFF !important; }
+.hero-b2b a.border, .hero-b2b .btn-secondary,
+[style*="background:var(--dark)"] .btn-secondary {
+  background: transparent; color: #fff !important; border-color: #fff !important;
+}
+.hero-b2b .bg-white:not(input):not(textarea) { color: var(--ink); }
+.hero-b2b .bg-white h1, .hero-b2b .bg-white h2, .hero-b2b .bg-white h3 { color: var(--heading) !important; }
+.hero-b2b .bg-white p { color: var(--muted) !important; }
+
+/* Hero shapes (include "hero-shapes.njk") */
+.hero-shapes { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.hero-shapes i { position: absolute; display: block; transform: skewY(-10deg); }
+.hero-shapes .s1 { top: 18%; right: -40px; width: 42%; max-width: 520px; height: 120px;
+  background: linear-gradient(90deg, #1E7BFF, rgba(30,123,255,.35)); }
+.hero-shapes .s2 { top: 34%; right: 14%; width: 30%; max-width: 360px; height: 200px;
+  border: 1px solid rgba(255,255,255,.18); }
+.hero-shapes .s3 { top: 26%; left: -60px; width: 36%; max-width: 440px; height: 150px;
+  border: 1px solid rgba(255,255,255,.32); }
+.hero-shapes .s4 { top: 44%; left: -60px; width: 30%; max-width: 360px; height: 70px;
+  background: rgba(40,110,255,.35); }
+.hero-shapes .s5 { bottom: 8%; left: 12%; width: 26%; max-width: 320px; height: 90px;
+  background: linear-gradient(90deg, #1E7BFF, rgba(30,123,255,.4)); }
+.hero-b2b > *:not(.hero-shapes),
+.services-index-hero > *:not(.hero-shapes):not(.services-index-hero-overlay) { position: relative; z-index: 1; }
+.hero-b2b { clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%); padding-bottom: calc(4rem + 5vw) !important; }
+@media (max-width: 640px) {
+  .hero-shapes .s2, .hero-shapes .s3 { display: none; }
+}
+
+/* Hubs: the photo hero becomes the gradient hero */
+.services-index-hero { background-image: none; min-height: 520px; }
+.services-index-hero-overlay { display: none; }
+
+/* ---- 2. Home ---------------------------------------------------------- */
+.home-hero { background: var(--grad-hero) !important; }
+.home-hero::before { display: none; }
+.home-hero__eyebrow {
+  font-family: var(--mono) !important; font-weight: 500; background: rgba(255,255,255,.12);
+  color: #fff; border-radius: 0; border: 1px solid rgba(255,255,255,.3);
+}
+.home-hero__eyebrow::before { background: #fff; border-radius: 0; }
+.home-hero__title em { color: #C9D3FF; }
+.home-hero__stars { color: #FFD166; }
+.home-hero .btn-secondary { background: transparent; color: #fff; border-color: #fff; }
+.trust-strip { background: #fff; }
+.step-num { font-family: var(--mono) !important; color: var(--accent) !important; -webkit-text-fill-color: var(--accent) !important; background: none !important; }
+.icon-wrap, .icon-wrap-amber { border-radius: 0 !important; }
+
+/* ---- 5. Article ------------------------------------------------------- */
+article .prose h2, article h2 { color: var(--heading); }
+article a[style*="color:var(--primary)"] { color: var(--accent) !important; text-decoration: underline; text-underline-offset: 3px; }
+blockquote { border-left: 3px solid var(--accent); background: var(--surf); padding: 1rem 1.25rem; }
+
+/* ---- Footer ----------------------------------------------------------- */
+footer[style*="background:var(--dark)"] { margin: 0 !important; border-radius: 0 !important; }
+footer[style*="background:var(--dark)"] .text-gray-500,
+footer[style*="background:var(--dark)"] .text-gray-400,
+footer[style*="background:var(--dark)"] .text-gray-600 { color: #D3DBFF !important; }
+footer[style*="background:var(--dark)"] p.uppercase { color: #fff !important; }
+footer[style*="background:var(--dark)"] > * { position: relative; z-index: 1; }
+
+/* Fixes found in visual review */
+nav.breadcrumb.pt-24 { padding-top: 118px !important; }
+.services-index-hero > .relative { width: 100%; }
+.services-index-hero { clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5vw), 0 100%); padding-bottom: calc(5rem + 5vw) !important; }
+
+.hero-b2b.pt-28, .hero-b2b.pt-32 { padding-top: 9.5rem !important; }
+a[style*="background:var(--primary)"], button[style*="background:var(--primary)"],
+button[type=submit] { background: var(--grad-cta) !important; color: #fff !important; border-radius: 0 !important; }
+.home-hero { padding-top: 160px !important; }
+@media (max-width: 640px) { .home-hero { padding-top: 136px !important; } }
