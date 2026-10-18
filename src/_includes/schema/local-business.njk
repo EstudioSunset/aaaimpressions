@@ -4,7 +4,7 @@
   "@type": "LocalBusiness",
   "@id": "{{ site.baseUrl }}/#localbusiness",
   "name": "AAA Impressions",
-  "description": "{{ 'Agencia de marketing digital para negocios locales en Treasure Coast, Florida. Google Business Profile, Meta Ads, Google Ads, diseno web y branding.' if lang == 'es' else 'Digital marketing agency for local businesses in Treasure Coast, Florida. Google Business Profile, Meta Ads, Google Ads, web design, and branding.' }}",
+  "description": "{{ 'Marketing digital para negocios locales en Treasure Coast, Florida, a cargo de Adinel Perez Mendez: quince años en diseño e impresión y cinco en digital. Google Business Profile, Meta Ads, Google Ads, diseño web y branding.' if lang == 'es' else 'Digital marketing for local businesses in Treasure Coast, Florida, run by Adinel Perez Mendez — fifteen years in design and print, five in digital. Google Business Profile, Meta Ads, Google Ads, web design, and branding.' }}",
   "url": "{{ site.baseUrl }}/",
   "telephone": "{{ site.phoneRaw }}",
   "email": "{{ site.email }}",
@@ -12,6 +12,24 @@
   "sameAs": [
     "{{ site.facebook }}"
   ],
+  "founder": {
+    "@type": "Person",
+    "@id": "{{ site.baseUrl }}/#adinel",
+    "name": "Adinel Perez Mendez",
+    "jobTitle": "{{ 'Especialista en marketing digital' if lang == 'es' else 'Digital marketing specialist' }}",
+    "knowsLanguage": ["Spanish", "English"],
+    "url": "{{ site.baseUrl }}{{ '/es/sobre-nosotros/' if lang == 'es' else '/en/about/' }}",
+    "sameAs": [
+      "https://www.credly.com/badges/55de553f-c896-4313-800b-6675bfe93605"
+    ],
+    "hasCredential": {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Meta Social Media Marketing Professional Certificate",
+      "credentialCategory": "certificate",
+      "url": "https://www.credly.com/badges/55de553f-c896-4313-800b-6675bfe93605",
+      "recognizedBy": { "@type": "Organization", "name": "Meta" }
+    }
+  },
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Vero Beach",

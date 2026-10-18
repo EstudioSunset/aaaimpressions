@@ -24,7 +24,11 @@
         </h1>
 
         <p class="home-hero__lede">
-          {{ "Ayudamos a negocios locales a mejorar su presencia en Google, atraer clientes con publicidad efectiva y construir una marca profesional sin la complejidad de una gran agencia." if isEs else "We help local businesses improve their Google presence, attract customers with effective advertising, and build a professional brand without big-agency complexity." }}
+          {% if isEs %}
+            Soy Adinel. Desde hace quince años pongo negocios frente a la gente: primero en letreros y materiales impresos, ahora en Google y Meta. Ayudo a negocios locales de aquí a hacer las dos cosas, sin la complejidad de una gran agencia.
+          {% else %}
+            I'm Adinel. For fifteen years I've put businesses in front of people — first on signs and printed materials, now on Google and Meta. I help local businesses here do both, without big-agency complexity.
+          {% endif %}
         </p>
 
         <div class="home-hero__actions">
