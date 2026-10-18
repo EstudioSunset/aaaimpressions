@@ -1156,3 +1156,27 @@ a[style*="background:var(--primary)"], button[style*="background:var(--primary)"
 button[type=submit] { background: var(--grad-cta) !important; color: #fff !important; border-radius: 0 !important; }
 .home-hero { padding-top: 160px !important; }
 @media (max-width: 640px) { .home-hero { padding-top: 136px !important; } }
+
+/* Type size bump — Archivo runs smaller than Inter at the same px */
+body { font-size: 19px; }
+.text-xs   { font-size: 14.5px; line-height: 1.55; }
+.text-sm   { font-size: 16.5px; line-height: 1.6; }
+.text-base { font-size: 17.5px; line-height: 1.65; }
+.text-lg   { font-size: 19.5px; line-height: 1.65; }
+.text-xl   { font-size: 21.5px; line-height: 1.6; }
+.nav-link  { font-size: 16.5px; }
+/* Mono only for small labels; it reads too thin below 13px */
+p.uppercase.tracking-\[0\.18em\], p.uppercase.tracking-widest, span.uppercase.tracking-\[0\.18em\], .eyebrow { font-size: 13.5px !important; }
+
+/* Brand tag next to the logo: plain Archivo, not mono */
+.site-brand-tag {
+  font-family: 'Archivo', system-ui, sans-serif !important;
+  font-size: 14px; font-weight: 600; letter-spacing: 0; text-transform: none;
+  color: var(--heading); background: none;
+  padding-left: 12px; border-left: 1px solid var(--border);
+}
+
+/* Body copy that was set in xs inside cards reads as body, not caption */
+p.text-xs.leading-relaxed, li.text-xs { font-size: 15.5px; line-height: 1.6; }
+h3.text-sm, h3.text-base, h4.text-sm { font-size: 18.5px; line-height: 1.35; }
+.site-topbar-item, .site-topbar-phone { font-size: 13px !important; }
