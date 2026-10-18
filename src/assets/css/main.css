@@ -1227,3 +1227,11 @@ a.b2b-list__row:hover .b2b-list__title { color:var(--accent); }
 .spec-visual__warn span { color:#3D2D00 !important; }
 .nav-link, .nav-cta, .site-brand-tag { white-space: nowrap; }
 @media (max-width: 1279px) { .site-brand-tag { display: none !important; } .nav-link { font-size: 15.5px; } }
+.b2b-gallery { background:#fff; border:1px solid var(--border); display:flex; flex-direction:column; }
+.b2b-gallery__img { width:100%; aspect-ratio:4/3; object-fit:cover; display:block; border-bottom:1px solid var(--border); }
+.b2b-gallery__ph { aspect-ratio:4/3; display:flex; align-items:center; justify-content:center; padding:1.5rem; text-align:center; border-bottom:1px solid var(--border);
+  background: linear-gradient(135deg, var(--surf) 0%, #E6EAFF 100%); }
+.b2b-gallery__ph span { font-family:var(--mono); font-size:13.5px; color:var(--muted); border:1px dashed #A9B4DC; padding:.75rem 1rem; background:#fff; }
+.b2b-gallery figcaption { padding:1rem 1.25rem 1.25rem; display:flex; flex-direction:column; gap:.25rem; }
+.b2b-gallery figcaption strong { color:var(--heading); font-size:18px; }
+.b2b-gallery figcaption span { color:var(--muted); font-size:15.5px; }

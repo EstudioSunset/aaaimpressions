@@ -149,6 +149,29 @@ layout: "base.njk"
   </div>
 </section>
 
+{% elif s.type == "gallery" %}
+<section class="py-20 lg:py-24" style="{{ bg }}" id="{{ s.id or 'examples' }}">
+  <div class="mx-auto max-w-6xl px-5">
+    <div class="max-w-3xl mb-10">
+      <span class="accent-line"></span>
+      {% if s.eyebrow %}<p class="text-xs font-semibold tracking-[0.18em] uppercase mb-3">{{ s.eyebrow }}</p>{% endif %}
+      <h2 class="text-3xl sm:text-4xl mb-4">{{ s.title | safe }}</h2>
+      {% if s.intro %}<p class="text-lg text-gray-500 leading-relaxed">{{ s.intro | safe }}</p>{% endif %}
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {% set shown = 0 %}
+      {% for it in portfolio.items %}{% if it.show and (not s.limit or loop.index <= s.limit) %}
+      <figure class="b2b-gallery m-0">
+        {% if it.img %}<img src="{{ it.img }}" alt="{{ it.es if isEs else it.en }}" loading="lazy" class="b2b-gallery__img">
+        {% else %}<div class="b2b-gallery__ph" aria-hidden="true"><span>{{ it.es if isEs else it.en }}</span></div>{% endif %}
+        <figcaption><strong>{{ it.es if isEs else it.en }}</strong><span>{{ it.note_es if isEs else it.note_en }}</span></figcaption>
+      </figure>
+      {% endif %}{% endfor %}
+    </div>
+    {% if s.more %}<p class="mt-8"><a class="font-semibold underline" style="color:var(--accent)" href="{{ s.more.url }}">{{ s.more.label }} →</a></p>{% endif %}
+  </div>
+</section>
+
 {% elif s.type == "faq" %}
 <section class="py-20 lg:py-24" style="{{ bg }}">
   <div class="mx-auto max-w-3xl px-5">
