@@ -1236,3 +1236,9 @@ a.b2b-list__row:hover .b2b-list__title { color:var(--accent); }
 .b2b-gallery figcaption { padding:1rem 1.25rem 1.25rem; display:flex; flex-direction:column; gap:.25rem; }
 .b2b-gallery figcaption strong { color:var(--heading); font-size:18px; }
 .b2b-gallery figcaption span { color:var(--muted); font-size:15.5px; }
+/* Topbar: Archivo instead of mono; nav never overlaps the logo */
+.site-topbar, .site-topbar * { font-family: 'Archivo', system-ui, sans-serif !important; letter-spacing: .01em; }
+.site-topbar-item, .site-topbar-phone { font-size: 13.5px !important; font-weight: 500; }
+.site-brand { flex-shrink: 0; margin-right: 1.5rem; }
+.site-nav-row nav { flex-shrink: 1; min-width: 0; }
+@media (max-width: 1279px) { .site-nav-row nav.lg\:flex { gap: 1.1rem; } }
