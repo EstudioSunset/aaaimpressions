@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="{{ redirect.lang }}">
+<head>
+<meta charset="utf-8">
+<title>{{ "Esta página se movió" if redirect.lang == "es" else "This page has moved" }} | AAA Impressions</title>
+<link rel="canonical" href="{{ site.baseUrl }}{{ redirect.to }}">
+<meta http-equiv="refresh" content="0; url={{ redirect.to }}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>location.replace({{ redirect.to | dump | safe }} + location.hash);</script>
+</head>
+<body>
+<p><a href="{{ redirect.to }}">{{ "Continuar a la nueva página" if redirect.lang == "es" else "Continue to the new page" }}</a></p>
+</body>
+</html>

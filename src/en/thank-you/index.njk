@@ -1,58 +1,26 @@
+---json
+{
+  "lang": "en",
+  "hreflangEn": "/en/thank-you/",
+  "hreflangEs": "/es/gracias/",
+  "noindex": true,
+  "hideCta": true,
+  "title": "Thank you — Request received | AAA Impressions",
+  "metaDescription": "We received your request. We'll reply within one business day.",
+  "hero": {
+    "eyebrow": "Received",
+    "title": "Thank you. <em>We'll reply within one business day.</em>",
+    "lede": "If you have a sample file, send it now by WhatsApp or email and we'll review it with your request.",
+    "cta1": {
+      "label": "WhatsApp",
+      "url": "https://wa.me/17729401928"
+    },
+    "cta2": {
+      "label": "See solutions",
+      "url": "/en/solutions/"
+    }
+  },
+  "sections": [],
+  "layout": "layouts/b2b-page.njk"
+}
 ---
-title: "Thank You for Contacting Us | AAA Impressions"
-metaDescription: "We received your message. While we get back to you, explore our services, packages, case studies, and marketing resources."
-hreflangEs: "/es/gracias/"
-hreflangEn: "/en/thank-you/"
-noindex: true
----
-
-<section class="pt-28 pb-24 hero-b2b">
-{% include "hero-shapes.njk" %}
-  <div class="mx-auto max-w-4xl px-5 text-center">
-
-    <div class="inline-flex items-center justify-center w-16 h-16 rounded-full mb-8" style="background:var(--primary-lt)">
-      <svg class="w-8 h-8" style="color:var(--primary)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-      </svg>
-    </div>
-
-    <h1 class="text-3xl sm:text-4xl mb-4 leading-tight">Thank you for contacting us</h1>
-    <p class="text-lg text-gray-500 leading-relaxed mb-10 max-w-2xl mx-auto">We've received your message and will get back to you as soon as possible. In the meantime, you can explore these main AAA Impressions sections.</p>
-
-    <div class="border-t border-gray-100 pt-10">
-      <p class="text-sm font-semibold tracking-[0.18em] uppercase text-gray-400 mb-6">Next steps</p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left mb-10">
-        <a href="/en/services/" class="block rounded-xl border border-gray-200 p-5 hover:shadow-sm transition-shadow">
-          <h2 class="text-base font-semibold mb-1">Services</h2>
-          <p class="text-sm text-gray-500 leading-relaxed">See what we can do to improve your digital presence.</p>
-        </a>
-        <a href="/en/packages/" class="block rounded-xl border border-gray-200 p-5 hover:shadow-sm transition-shadow">
-          <h2 class="text-base font-semibold mb-1">Packages</h2>
-          <p class="text-sm text-gray-500 leading-relaxed">Review plans built for small and mid-sized businesses.</p>
-        </a>
-        <a href="/en/case-studies/" class="block rounded-xl border border-gray-200 p-5 hover:shadow-sm transition-shadow">
-          <h2 class="text-base font-semibold mb-1">Case studies</h2>
-          <p class="text-sm text-gray-500 leading-relaxed">View real project examples and results.</p>
-        </a>
-        <a href="/en/blog/" class="block rounded-xl border border-gray-200 p-5 hover:shadow-sm transition-shadow">
-          <h2 class="text-base font-semibold mb-1">Blog</h2>
-          <p class="text-sm text-gray-500 leading-relaxed">Read practical resources about local digital marketing.</p>
-        </a>
-      </div>
-
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/en/"
-           class="inline-flex items-center justify-center rounded-xl border border-gray-200 px-5 py-3 text-sm font-semibold text-gray-700 hover:border-gray-400 transition">
-          Back to home
-        </a>
-        <a href="{{ site.whatsapp }}?text=Hello%2C%20I%20just%20submitted%20a%20form%20and%20would%20like%20to%20follow%20up."
-           target="_blank" rel="noopener noreferrer"
-           class="inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold text-[#0B1B34] hover:opacity-90 transition-opacity"
-           style="background:#25D366">
-          Chat on WhatsApp
-        </a>
-      </div>
-    </div>
-
-  </div>
-</section>

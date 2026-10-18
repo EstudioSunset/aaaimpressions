@@ -1,0 +1,15 @@
+{% set isEs = lang == "es" %}
+<figure class="spec-visual m-0" role="img" aria-label="{{ 'Ejemplo de ficha técnica bilingüe' if isEs else 'Sample bilingual product data sheet' }}">
+  <div class="spec-visual__bar"><span>PRODUCT DATA SHEET / FICHA TÉCNICA</span><span>REV. 02</span></div>
+  <div class="spec-visual__head">
+    <div><strong>{{ "[Nombre de tu producto]" if isEs else "[Your product name]" }}</strong><span>SKU [0000-000] · {{ "[Tu marca]" if isEs else "[Your brand]" }}</span></div>
+    <span class="spec-visual__logo">LOGO</span>
+  </div>
+  <div class="spec-visual__table">
+    <span class="is-h">ENGLISH</span><span class="is-h is-es">ESPAÑOL</span>
+    <span>Operating temperature</span><span>Temperatura de operación</span>
+    <span>Installation</span><span>Instalación</span>
+    <span>Storage and handling</span><span>Almacenamiento y manejo</span>
+  </div>
+  <div class="spec-visual__warn"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5C4300" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 21h20L12 3z"/><path d="M12 10v5"/><path d="M12 18h.01"/></svg><span><strong>WARNING / ADVERTENCIA:</strong> {{ "[Texto de seguridad en ambos idiomas]" if isEs else "[Safety text in both languages]" }}</span></div>
+</figure>

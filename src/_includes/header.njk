@@ -1,5 +1,13 @@
-<!-- ── Compact local topbar ── -->
-<div class="site-topbar" role="banner" aria-label="{{ 'Información del sitio' if lang == 'es' else 'Site info' }}">
+{% set isEs = lang == "es" %}
+{% if isEs %}
+  {% set navItems = [["/es/servicios/","Marketing B2B"],["/es/soluciones/","Soluciones"],["/es/industrias/","Industrias"],["/es/blog/","Recursos"],["/es/sobre-nosotros/","Nosotros"],["/es/contacto/","Contacto"]] %}
+{% else %}
+  {% set navItems = [["/en/services/","B2B Marketing"],["/en/solutions/","Solutions"],["/en/industries/","Industries"],["/en/blog/","Resources"],["/en/about/","About"],["/en/contact/","Contact"]] %}
+{% endif %}
+{% set proposalUrl = "/es/contacto/" if isEs else "/en/contact/" %}
+
+<!-- ── Topbar ── -->
+<div class="site-topbar" role="banner" aria-label="{{ 'Información del sitio' if isEs else 'Site info' }}">
   <div class="site-topbar-inner">
     <div class="site-topbar-left">
       <span class="site-topbar-item">
@@ -7,7 +15,7 @@
         Treasure Coast, FL
       </span>
       <span class="site-topbar-sep" aria-hidden="true"></span>
-      <span class="site-topbar-item is-secondary">{{ "Negocio local y bilingüe" if lang == "es" else "Locally owned & bilingual" }}</span>
+      <span class="site-topbar-item is-secondary">{{ "Servicio remoto en EE.UU. · Inglés y español" if isEs else "Remote across the US · English & Spanish" }}</span>
     </div>
     <a href="tel:{{ site.phoneRaw }}" class="site-topbar-phone">
       <svg viewBox="0 0 24 24" width="11" height="11" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.36 11.36 0 003.57.57 1 1 0 011 1V20a1 1 0 01-1 1C10.61 21 3 13.39 3 4a1 1 0 011-1h3.5a1 1 0 011 1 11.36 11.36 0 00.57 3.57 1 1 0 01-.25 1.02z"/></svg>
@@ -20,99 +28,40 @@
   <div class="site-nav-inner mx-auto max-w-6xl px-5">
     <div class="site-nav-row flex items-center justify-between">
 
-      <!-- Brand -->
-      <a href="{{ '/es/' if lang == 'es' else '/en/' }}" class="site-brand flex items-center gap-3" aria-label="AAA Impressions - Inicio">
+      <a href="{{ '/es/' if isEs else '/en/' }}" class="site-brand flex items-center gap-3" aria-label="AAA Impressions - {{ 'Inicio' if isEs else 'Home' }}">
         <img src="/assets/img/logo.webp" alt="AAA Impressions" width="180" height="36" class="h-9 w-auto">
-        <span class="site-brand-tag hidden sm:inline">{{ "Marketing Digital" if lang == "es" else "Digital Marketing" }}</span>
+        <span class="site-brand-tag hidden sm:inline">{{ "Marketing B2B bilingüe" if isEs else "Bilingual B2B Marketing" }}</span>
       </a>
 
-      <!-- Desktop nav -->
-      <nav class="hidden lg:flex items-center gap-6 xl:gap-8" aria-label="{{ 'Navegación principal' if lang == 'es' else 'Main navigation' }}">
-        {% if lang == "es" %}
-          <a class="nav-link" href="/es/servicios/">Servicios</a>
-          <a class="nav-link" href="/es/ubicaciones/">Ubicaciones</a>
-          <a class="nav-link" href="/es/blog/">Blog</a>
-          <a class="nav-link" href="/es/paquetes/">Paquetes</a>
-          <a class="nav-link" href="/es/sobre-nosotros/">Nosotros</a>
-          <a class="nav-link" href="/es/contacto/">Contacto</a>
-        {% else %}
-          <a class="nav-link" href="/en/services/">Services</a>
-          <a class="nav-link" href="/en/locations/">Locations</a>
-          <a class="nav-link" href="/en/blog/">Blog</a>
-          <a class="nav-link" href="/en/packages/">Packages</a>
-          <a class="nav-link" href="/en/about/">About</a>
-          <a class="nav-link" href="/en/contact/">Contact</a>
-        {% endif %}
+      <nav class="hidden lg:flex items-center gap-6 xl:gap-8" aria-label="{{ 'Navegación principal' if isEs else 'Main navigation' }}">
+        {% for item in navItems %}<a class="nav-link{{ ' active' if page.url.startsWith(item[0]) }}" href="{{ item[0] }}">{{ item[1] }}</a>
+        {% endfor %}
       </nav>
 
-      <!-- Right controls -->
       <div class="flex items-center gap-3">
-
         {% if hreflangEs or hreflangEn %}
-        <!-- Language switch - links to the available language version of the current page -->
-        <div class="flex items-center rounded-lg border border-gray-200 bg-white overflow-hidden text-xs font-semibold">
-          {% if hreflangEs %}
-          <a href="{{ hreflangEs }}"
-             class="lang-btn px-3 py-1.5 {{ 'active' if lang == 'es' else 'text-gray-500 hover:text-gray-700' }}"
-             hreflang="es" aria-label="Version en espanol">ES</a>
-          {% endif %}
-          {% if hreflangEn %}
-          <a href="{{ hreflangEn }}"
-             class="lang-btn px-3 py-1.5 {{ 'active' if lang == 'en' else 'text-gray-500 hover:text-gray-700' }}"
-             hreflang="en" aria-label="English version">EN</a>
-          {% endif %}
+        <div class="flex items-center border border-gray-200 bg-white overflow-hidden text-xs font-semibold">
+          {% if hreflangEs %}<a href="{{ hreflangEs }}" class="lang-btn px-3 py-1.5 {{ 'active' if isEs else 'text-gray-500 hover:text-gray-700' }}" hreflang="es" aria-label="Versión en español">ES</a>{% endif %}
+          {% if hreflangEn %}<a href="{{ hreflangEn }}" class="lang-btn px-3 py-1.5 {{ 'active' if not isEs else 'text-gray-500 hover:text-gray-700' }}" hreflang="en" aria-label="English version">EN</a>{% endif %}
         </div>
         {% endif %}
 
-        <!-- CTA -->
-        <a href="{{ site.whatsapp }}?text={{ 'Hola%2C%20me%20gustar%C3%ADa%20una%20consulta%20gratuita%20sobre%20marketing%20digital.' if lang == 'es' else 'Hello%2C%20I%20would%20like%20a%20free%20consultation%20about%20digital%20marketing.' }}"
-           target="_blank" rel="noopener noreferrer"
-           class="nav-cta hidden sm:inline-flex">
-          {{ "Consulta Gratis" if lang == "es" else "Free Quote" }}
-        </a>
+        <a href="{{ proposalUrl }}" class="nav-cta hidden sm:inline-flex">{{ "Solicitar propuesta" if isEs else "Request a proposal" }}</a>
 
-        <!-- Mobile menu button -->
-        <button id="menuBtn"
-                class="lg:hidden p-2 rounded-lg border border-gray-200 bg-white hover:bg-gray-50 transition"
-                aria-label="{{ 'Abrir menú' if lang == 'es' else 'Open menu' }}"
-                aria-expanded="false"
-                aria-controls="mobileMenu">
-          <svg id="iconOpen" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-          <svg id="iconClose" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
+        <button id="menuBtn" class="lg:hidden p-2 border border-gray-200 bg-white hover:bg-gray-50 transition"
+                aria-label="{{ 'Abrir menú' if isEs else 'Open menu' }}" aria-expanded="false" aria-controls="mobileMenu">
+          <svg id="iconOpen" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="iconClose" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
-
       </div>
     </div>
 
-    <!-- Mobile nav -->
     <div id="mobileMenu" class="hidden lg:hidden pb-4">
-      <nav class="rounded-2xl border border-gray-100 bg-white shadow-lg p-3 grid gap-1 text-sm"
-           aria-label="{{ 'Menú móvil' if lang == 'es' else 'Mobile menu' }}">
-        {% if lang == "es" %}
-          <a class="px-4 py-2.5 rounded-xl hover:bg-gray-50 font-medium transition" href="/es/servicios/">Servicios</a>
-          <a class="px-4 py-2.5 rounded-xl hover:bg-gray-50 font-medium transition" href="/es/ubicaciones/">Ubicaciones</a>
-          <a class="px-4 py-2.5 rounded-xl hover:bg-gray-50 font-medium transition" href="/es/blog/">Blog</a>
-          <a class="px-4 py-2.5 rounded-xl hover:bg-gray-50 font-medium transition" href="/es/paquetes/">Paquetes</a>
-          <a class="px-4 py-2.5 rounded-xl hover:bg-gray-50 font-medium transition" href="/es/sobre-nosotros/">Nosotros</a>
-          <a class="px-4 py-2.5 rounded-xl hover:bg-gray-50 font-medium transition" href="/es/contacto/">Contacto</a>
-          <a class="nav-cta mt-2 justify-center"
-             href="{{ site.whatsapp }}?text=Hola%2C%20me%20gustar%C3%ADa%20una%20consulta%20gratuita."
-             target="_blank" rel="noopener noreferrer">Consulta gratis por WhatsApp</a>
-        {% else %}
-          <a class="px-4 py-2.5 rounded-xl hover:bg-gray-50 font-medium transition" href="/en/services/">Services</a>
-          <a class="px-4 py-2.5 rounded-xl hover:bg-gray-50 font-medium transition" href="/en/locations/">Locations</a>
-          <a class="px-4 py-2.5 rounded-xl hover:bg-gray-50 font-medium transition" href="/en/blog/">Blog</a>
-          <a class="px-4 py-2.5 rounded-xl hover:bg-gray-50 font-medium transition" href="/en/packages/">Packages</a>
-          <a class="px-4 py-2.5 rounded-xl hover:bg-gray-50 font-medium transition" href="/en/about/">About</a>
-          <a class="px-4 py-2.5 rounded-xl hover:bg-gray-50 font-medium transition" href="/en/contact/">Contact</a>
-          <a class="nav-cta mt-2 justify-center"
-             href="{{ site.whatsapp }}?text=Hello%2C%20I%20would%20like%20a%20free%20consultation."
-             target="_blank" rel="noopener noreferrer">Free WhatsApp consult</a>
-        {% endif %}
+      <nav class="border border-gray-100 bg-white p-3 grid gap-1" aria-label="{{ 'Menú móvil' if isEs else 'Mobile menu' }}">
+        {% for item in navItems %}<a class="px-4 py-2.5 hover:bg-gray-50 font-medium transition" href="{{ item[0] }}">{{ item[1] }}</a>
+        {% endfor %}
+        <a class="nav-cta mt-2 justify-center" href="{{ proposalUrl }}">{{ "Solicitar propuesta" if isEs else "Request a proposal" }}</a>
+        <a class="px-4 py-2.5 text-center font-medium" href="{{ site.whatsapp }}" target="_blank" rel="noopener noreferrer">WhatsApp {{ site.phone }}</a>
       </nav>
     </div>
   </div>

@@ -4,7 +4,7 @@
   "@type": "LocalBusiness",
   "@id": "{{ site.baseUrl }}/#localbusiness",
   "name": "AAA Impressions",
-  "description": "{{ 'Marketing digital para negocios locales en Treasure Coast, Florida, a cargo de Adinel Perez Mendez: quince años en diseño e impresión y cinco en digital. Google Business Profile, Meta Ads, Google Ads, diseño web y branding.' if lang == 'es' else 'Digital marketing for local businesses in Treasure Coast, Florida, run by Adinel Perez Mendez — fifteen years in design and print, five in digital. Google Business Profile, Meta Ads, Google Ads, web design, and branding.' }}",
+  "description": "{{ 'Agencia bilingüe de marketing y documentación técnica para distribuidores, fabricantes, bodegas y constructoras que necesitan llegar a trabajadores y clientes hispanos. Treasure Coast, Florida, con servicio remoto en EE.UU.' if lang == 'es' else 'Bilingual marketing and technical documentation agency for distributors, manufacturers, warehouses and contractors that need to reach Hispanic workers and buyers. Treasure Coast, Florida, with remote service across the US.' }}",
   "url": "{{ site.baseUrl }}/",
   "telephone": "{{ site.phoneRaw }}",
   "email": "{{ site.email }}",
@@ -16,7 +16,7 @@
     "@type": "Person",
     "@id": "{{ site.baseUrl }}/#adinel",
     "name": "Adinel Perez Mendez",
-    "jobTitle": "{{ 'Especialista en marketing digital' if lang == 'es' else 'Digital marketing specialist' }}",
+    "jobTitle": "{{ 'Fundador, marketing B2B bilingüe' if lang == 'es' else 'Founder, bilingual B2B marketing' }}",
     "knowsLanguage": ["Spanish", "English"],
     "url": "{{ site.baseUrl }}{{ '/es/sobre-nosotros/' if lang == 'es' else '/en/about/' }}",
     "sameAs": [
@@ -38,24 +38,25 @@
     "addressCountry": "US"
   },
   "areaServed": [
-    { "@type": "Place", "name": "Port St. Lucie, FL" },
-    { "@type": "Place", "name": "Fort Pierce, FL" },
-    { "@type": "Place", "name": "Stuart, FL" },
-    { "@type": "Place", "name": "Vero Beach, FL" },
-    { "@type": "AdministrativeArea", "name": "Treasure Coast, Florida" }
+    { "@type": "AdministrativeArea", "name": "Treasure Coast, Florida" },
+    { "@type": "State", "name": "Florida" },
+    { "@type": "Country", "name": "United States" }
   ],
   "priceRange": "$$",
   "knowsLanguage": ["Spanish", "English"],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
-    "name": "{{ 'Servicios de marketing digital' if lang == 'es' else 'Digital marketing services' }}",
+    "name": "{{ 'Servicios B2B' if lang == 'es' else 'B2B services' }}",
     "itemListElement": [
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Google Business Profile" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Meta Ads" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Google Ads" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "{{ 'Diseno Web' if lang == 'es' else 'Web Design' }}" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Branding" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "{{ 'Contenido para Redes Sociales' if lang == 'es' else 'Social Media Content' }}" } }
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "{{ 'Fichas técnicas con tu marca' if lang == 'es' else 'Branded spec sheets' }}" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "{{ 'Seguridad y capacitación bilingüe' if lang == 'es' else 'Bilingual safety and training materials' }}" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "{{ 'Contenido de producto para e-commerce' if lang == 'es' else 'E-commerce product content' }}" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "{{ 'Jingles y audio en español' if lang == 'es' else 'Spanish jingles and audio spots' }}" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "{{ 'Automatización con IA bilingüe' if lang == 'es' else 'Bilingual AI automation' }}" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "{{ 'Sitios web B2B' if lang == 'es' else 'B2B websites' }}" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "{{ 'Google Ads y Microsoft Ads' if lang == 'es' else 'Google Ads and Microsoft Ads' }}" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "{{ 'Branding industrial' if lang == 'es' else 'Industrial branding' }}" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "{{ 'LinkedIn y redes para empresas' if lang == 'es' else 'LinkedIn and social media for companies' }}" } }
     ]
   }
 }

@@ -1,0 +1,199 @@
+---
+layout: "base.njk"
+---
+{% set isEs = lang == "es" %}
+{% set proposalUrl = "/es/contacto/" if isEs else "/en/contact/" %}
+
+{% if breadcrumb %}
+<nav class="breadcrumb pt-24 pb-4 bg-white border-b border-gray-100" aria-label="{{ 'Ruta' if isEs else 'Breadcrumb' }}">
+  <div class="mx-auto max-w-6xl px-5">
+    <ol class="flex flex-wrap items-center gap-2 text-xs text-gray-500">
+      <li><a href="{{ '/es/' if isEs else '/en/' }}" class="hover:underline">{{ "Inicio" if isEs else "Home" }}</a></li>
+      {% for b in breadcrumb %}<li aria-hidden="true">/</li><li>{% if b.url %}<a href="{{ b.url }}" class="hover:underline">{{ b.label }}</a>{% else %}<span class="font-medium" aria-current="page">{{ b.label }}</span>{% endif %}</li>{% endfor %}
+    </ol>
+  </div>
+</nav>
+{% endif %}
+
+<!-- HERO -->
+<section class="hero-b2b {{ 'py-16 lg:py-24' if breadcrumb else 'pt-32 pb-16 lg:pb-24' }}">
+{% include "hero-shapes.njk" %}
+  <div class="mx-auto max-w-6xl px-5{{ ' grid lg:grid-cols-2 gap-12 lg:gap-16 items-center' if hero.visual }}">
+    <div class="max-w-3xl">
+      <span class="accent-line"></span>
+      {% if hero.eyebrow %}<p class="text-xs font-semibold tracking-[0.18em] uppercase mb-4">{{ hero.eyebrow }}</p>{% endif %}
+      <h1 class="text-4xl sm:text-5xl mb-6 leading-tight">{{ hero.title | safe }}</h1>
+      {% if hero.lede %}<p class="text-xl leading-relaxed mb-8">{{ hero.lede | safe }}</p>{% endif %}
+      {% if hero.price %}<p class="text-sm mb-8" style="font-family:var(--mono)">{{ hero.price }}</p>{% endif %}
+      {% if not hero.noCta %}<div class="flex flex-col sm:flex-row gap-4">
+        <a href="{{ hero.cta1.url or proposalUrl }}" class="btn-primary justify-center">{{ hero.cta1.label or ("Solicitar propuesta" if isEs else "Request a proposal") }} →</a>
+        {% if hero.cta2 %}<a href="{{ hero.cta2.url }}" class="btn-secondary justify-center">{{ hero.cta2.label }}</a>{% endif %}
+      </div>{% endif %}
+      {% if hero.note %}<p class="text-sm mt-6">{{ hero.note | safe }}</p>{% endif %}
+    </div>
+    {% if hero.visual %}{% include "visual-" + hero.visual + ".njk" %}{% endif %}
+  </div>
+</section>
+
+{% for s in sections %}
+{% set bg = "background:var(--surf)" if loop.index is even else "background:#fff" %}
+
+{% if s.type == "cards" %}
+<section class="py-20 lg:py-24" style="{{ bg }}">
+  <div class="mx-auto max-w-6xl px-5">
+    <div class="max-w-3xl mb-12">
+      <span class="accent-line"></span>
+      {% if s.eyebrow %}<p class="text-xs font-semibold tracking-[0.18em] uppercase mb-3">{{ s.eyebrow }}</p>{% endif %}
+      <h2 class="text-3xl sm:text-4xl mb-4">{{ s.title | safe }}</h2>
+      {% if s.intro %}<p class="text-lg text-gray-500 leading-relaxed">{{ s.intro | safe }}</p>{% endif %}
+    </div>
+    {% set colcls = "lg:grid-cols-3" %}{% if s.columns == 4 %}{% set colcls = "lg:grid-cols-4" %}{% elif s.columns == 2 %}{% set colcls = "lg:grid-cols-2" %}{% endif %}
+    <div class="grid sm:grid-cols-2 {{ colcls }} border-t border-l" style="border-color:var(--border)">
+      {% for it in s.items %}
+      {% if it.url %}<a href="{{ it.url }}" class="b2b-card group">{% else %}<div class="b2b-card">{% endif %}
+        {% if it.code %}<span class="b2b-card__code">{{ it.code }}</span>{% endif %}
+        <h3 class="text-xl mb-3">{{ it.title }}</h3>
+        <p class="text-gray-500 leading-relaxed">{{ it.text | safe }}</p>
+        {% if it.price %}<span class="b2b-card__price">{{ it.price }}</span>{% endif %}
+        {% if it.url %}<span class="b2b-card__more">{{ "Ver más" if isEs else "Learn more" }} →</span>{% endif %}
+      {% if it.url %}</a>{% else %}</div>{% endif %}
+      {% endfor %}
+      {% if s.closer %}
+      <div class="b2b-card band-b2b">
+        <h3 class="text-xl mb-4">{{ s.closer.title }}</h3>
+        <a href="{{ s.closer.url or proposalUrl }}" class="btn-primary justify-center mt-auto">{{ s.closer.label }}</a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% elif s.type == "list" %}
+<section class="py-20 lg:py-24" style="{{ bg }}">
+  <div class="mx-auto max-w-6xl px-5 grid lg:grid-cols-5 gap-12">
+    <div class="lg:col-span-2">
+      <span class="accent-line"></span>
+      {% if s.eyebrow %}<p class="text-xs font-semibold tracking-[0.18em] uppercase mb-3">{{ s.eyebrow }}</p>{% endif %}
+      <h2 class="text-3xl sm:text-4xl mb-4">{{ s.title | safe }}</h2>
+      {% if s.intro %}<p class="text-lg text-gray-500 leading-relaxed">{{ s.intro | safe }}</p>{% endif %}
+    </div>
+    <div class="lg:col-span-3 b2b-list">
+      {% for it in s.items %}
+      {% if it.url %}<a href="{{ it.url }}" class="b2b-list__row">{% else %}<div class="b2b-list__row">{% endif %}
+        <span><strong class="b2b-list__title">{{ it.title }}</strong><span class="block text-gray-500 mt-1">{{ it.text | safe }}</span></span>
+        {% if it.price %}<span class="b2b-list__price">{{ it.price }}</span>{% endif %}
+      {% if it.url %}</a>{% else %}</div>{% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% elif s.type == "split" %}
+<section class="py-20 lg:py-24" style="{{ bg }}">
+  <div class="mx-auto max-w-6xl px-5 grid lg:grid-cols-2 gap-12 lg:gap-16">
+    <div>
+      <span class="accent-line"></span>
+      {% if s.eyebrow %}<p class="text-xs font-semibold tracking-[0.18em] uppercase mb-3">{{ s.eyebrow }}</p>{% endif %}
+      <h2 class="text-3xl sm:text-4xl mb-6">{{ s.title | safe }}</h2>
+      {% for p in s.paragraphs %}<p class="text-gray-500 leading-relaxed mb-5">{{ p | safe }}</p>{% endfor %}
+    </div>
+    <div>
+      {% if s.bullets %}
+      <ul class="b2b-checks">
+        {% for b in s.bullets %}<li>{{ b | safe }}</li>{% endfor %}
+      </ul>
+      {% endif %}
+      {% if s.note %}<p class="b2b-note mt-6">{{ s.note | safe }}</p>{% endif %}
+    </div>
+  </div>
+</section>
+
+{% elif s.type == "steps" %}
+<section class="py-20 lg:py-24" style="{{ bg }}">
+  <div class="mx-auto max-w-6xl px-5">
+    <div class="max-w-3xl mb-12">
+      <span class="accent-line"></span>
+      {% if s.eyebrow %}<p class="text-xs font-semibold tracking-[0.18em] uppercase mb-3">{{ s.eyebrow }}</p>{% endif %}
+      <h2 class="text-3xl sm:text-4xl">{{ s.title | safe }}</h2>
+    </div>
+    <ol class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {% for it in s.items %}
+      <li class="b2b-step">
+        <span class="b2b-step__num">{{ "0" if loop.index < 10 }}{{ loop.index }}</span>
+        <h3 class="text-lg mb-2">{{ it.title }}</h3>
+        <p class="text-gray-500 leading-relaxed">{{ it.text | safe }}</p>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+{% elif s.type == "beforeafter" %}
+<section class="py-20 lg:py-24" style="{{ bg }}">
+  <div class="mx-auto max-w-6xl px-5">
+    <div class="max-w-3xl mb-10">
+      <span class="accent-line"></span>
+      {% if s.eyebrow %}<p class="text-xs font-semibold tracking-[0.18em] uppercase mb-3">{{ s.eyebrow }}</p>{% endif %}
+      <h2 class="text-3xl sm:text-4xl mb-4">{{ s.title | safe }}</h2>
+      {% if s.intro %}<p class="text-lg text-gray-500 leading-relaxed">{{ s.intro | safe }}</p>{% endif %}
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      {% for side in [s.before, s.after] %}
+      <figure class="m-0">
+        {% if side.img %}<img src="{{ side.img }}" alt="{{ side.alt }}" class="w-full border" style="border-color:var(--border)" loading="lazy">
+        {% else %}<div class="b2b-placeholder{{ ' is-after' if loop.last }}">{{ side.placeholder }}</div>{% endif %}
+        <figcaption class="b2b-caption{{ ' is-after' if loop.last }}">{{ side.caption }}</figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% elif s.type == "faq" %}
+<section class="py-20 lg:py-24" style="{{ bg }}">
+  <div class="mx-auto max-w-3xl px-5">
+    <div class="text-center mb-10"><span class="accent-line mx-auto"></span><h2 class="text-3xl sm:text-4xl">{{ s.title }}</h2></div>
+    <div class="space-y-3">
+      {% for it in s.items %}
+      <details class="b2b-faq">
+        <summary>{{ it.q }}</summary>
+        <p class="text-gray-500 leading-relaxed">{{ it.a | safe }}</p>
+      </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{% for it in s.items %}{"@type":"Question","name":{{ it.q | dump | safe }},"acceptedAnswer":{"@type":"Answer","text":{{ it.a | striptags | dump | safe }}}}{{ "," if not loop.last }}{% endfor %}]}
+</script>
+
+{% elif s.type == "strip" %}
+<section class="border-b" style="border-color:var(--border);background:#fff">
+  <div class="mx-auto max-w-6xl px-5 py-7 flex flex-wrap items-center gap-x-8 gap-y-3">
+    <span class="text-xs font-semibold tracking-[0.18em] uppercase">{{ s.title }}</span>
+    {% for it in s.items %}{% if it.url %}<a href="{{ it.url }}" class="font-semibold hover:underline" style="color:var(--heading)">{{ it.title }}</a>{% else %}<span class="font-semibold" style="color:var(--heading)">{{ it.title }}</span>{% endif %}{% endfor %}
+  </div>
+</section>
+
+{% elif s.type == "html" %}
+{{ s.html | safe }}
+{% endif %}
+{% endfor %}
+
+{{ content | safe }}
+
+<!-- CTA BAND -->
+{% if not hideCta %}
+{% set c = cta if cta else {} %}
+<section class="py-20 lg:py-24" style="background:var(--dark)">
+  <div class="mx-auto max-w-3xl px-5 text-center">
+    <span class="accent-line mx-auto"></span>
+    <h2 class="text-3xl sm:text-4xl mb-5">{{ c.title or ("Cuéntanos qué necesitas. Si tienes un archivo de muestra, mándalo." if isEs else "Tell us what you need. Send a sample file if you have one.") }}</h2>
+    <p class="text-lg leading-relaxed mb-8 text-gray-500">{{ c.text or ("Recibes una propuesta por escrito con alcance, plazo y precio, en inglés o en español." if isEs else "You get a written proposal with scope, timeline and price — in English or Spanish.") }}</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="{{ proposalUrl }}" class="btn-primary justify-center">{{ "Solicitar propuesta" if isEs else "Request a proposal" }} →</a>
+      <a href="{{ site.whatsapp }}" target="_blank" rel="noopener noreferrer" class="btn-secondary justify-center">WhatsApp {{ site.phone }}</a>
+    </div>
+  </div>
+</section>
+{% endif %}
