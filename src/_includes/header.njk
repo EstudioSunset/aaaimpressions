@@ -26,13 +26,13 @@
 
 <header id="top" data-header class="site-header">
   <div class="site-nav-inner mx-auto max-w-6xl px-5">
-    <div class="site-nav-row flex items-center justify-between">
+    <div class="site-nav-row flex items-center justify-between gap-6">
 
       <a href="{{ '/es/' if isEs else '/en/' }}" class="site-brand flex items-center gap-3" aria-label="AAA Impressions - {{ 'Inicio' if isEs else 'Home' }}">
-        <img src="/assets/img/logo.webp" alt="AAA Impressions" width="180" height="36" class="h-9 w-auto">
+        <img src="/assets/img/aaa-impressions-logo.webp" alt="AAA Impressions" width="145" height="48" class="h-11 xl:h-12 w-auto">
       </a>
 
-      <nav class="hidden lg:flex items-center gap-6 xl:gap-8" aria-label="{{ 'Navegación principal' if isEs else 'Main navigation' }}">
+      <nav class="hidden lg:flex items-center gap-5" aria-label="{{ 'Navegación principal' if isEs else 'Main navigation' }}">
         {% for item in navItems %}<a class="nav-link{{ ' active' if page.url.startsWith(item[0]) }}" href="{{ item[0] }}">{{ item[1] }}</a>
         {% endfor %}
       </nav>
