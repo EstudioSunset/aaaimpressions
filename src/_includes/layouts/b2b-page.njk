@@ -215,7 +215,7 @@ layout: "base.njk"
 {% if compliance %}
 <section class="py-12" style="background:#fff">
   <div class="mx-auto max-w-4xl px-5">
-    <p class="b2b-note text-sm leading-relaxed">{% if isEs %}<strong>Contenido técnico aprobado por el cliente.</strong> AAA Impressions ofrece diseño de documentos, redacción controlada, traducción, diagramación y producción. No determinamos peligros del lugar de trabajo, aplicabilidad de normas, clasificación de químicos, valores de ingeniería ni cumplimiento legal: eso lo define el empleador, su responsable de seguridad (EHS), el fabricante o un profesional calificado.{% else %}<strong>Regulatory and technical content is supplied or approved by the client.</strong> AAA Impressions provides document design, controlled copy preparation, translation, layout and production. We do not determine workplace hazards, regulatory applicability, chemical classification, engineering values or legal compliance — those come from the employer, its EHS/safety lead, the manufacturer or a qualified professional.{% endif %}</p>
+    <p class="b2b-note text-sm leading-relaxed">{% if isEs %}<strong>Contenido técnico aprobado por el cliente.</strong> AAA Impressions ofrece diseño de documentos, redacción controlada, traducción, diagramación y producción. No determinamos peligros del lugar de trabajo, aplicabilidad de normas, clasificación de químicos, valores de ingeniería ni cumplimiento legal: eso lo define el empleador, su responsable de seguridad (EHS), el fabricante o un profesional calificado.{% else %}<strong>Regulatory and technical content is supplied or approved by the client.</strong> AAA Impressions provides document design, controlled copy preparation, translation, layout and production. We do not determine workplace hazards, regulatory applicability, chemical classification, engineering values or legal compliance. Those come from the employer, its EHS/safety lead, the manufacturer or a qualified professional.{% endif %}</p>
   </div>
 </section>
 {% endif %}
@@ -229,7 +229,7 @@ layout: "base.njk"
   <div class="mx-auto max-w-3xl px-5 text-center">
     <span class="accent-line mx-auto"></span>
     <h2 class="text-3xl sm:text-4xl mb-5">{{ c.title or ("Cuéntanos qué necesitas. Si tienes un archivo de muestra, mándalo." if isEs else "Tell us what you need. Send a sample file if you have one.") }}</h2>
-    <p class="text-lg leading-relaxed mb-8 text-gray-500">{{ c.text or ("Recibes una propuesta por escrito con alcance, plazo y precio, en inglés o en español." if isEs else "You get a written proposal with scope, timeline and price — in English or Spanish.") }}</p>
+    <p class="text-lg leading-relaxed mb-8 text-gray-500">{{ c.text or ("Recibes una propuesta por escrito con alcance, plazo y precio, en inglés o en español." if isEs else "You get a written proposal with scope, timeline and price, in English or Spanish.") }}</p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
       <a href="{{ proposalUrl }}" class="btn-primary justify-center">{{ "Solicitar propuesta" if isEs else "Request a proposal" }} →</a>
       <a href="{{ site.whatsapp }}" target="_blank" rel="noopener noreferrer" class="btn-secondary justify-center">WhatsApp {{ site.phone }}</a>

@@ -1,4 +1,4 @@
-/* AAA Impressions — website AI assistant widget (talks to api.aaaimpressions.com/chat). */
+/* AAA Impressions: website AI assistant widget (talks to api.aaaimpressions.com/chat). */
 (function () {
   var script = document.currentScript;
   var ENDPOINT = script && script.getAttribute("data-endpoint");
@@ -16,7 +16,7 @@
       placeholder: "Type your question…",
       send: "Send",
       close: "Close chat",
-      note: "AI assistant — it can make mistakes. For a quote, Adinel replies personally.",
+      note: "AI assistant: it can make mistakes. For a quote, Adinel replies personally.",
       contact: "Request a proposal",
       contactUrl: "/en/contact/",
       error: "I couldn't connect. Please try again, or use the contact form / WhatsApp +1 772-940-1928.",

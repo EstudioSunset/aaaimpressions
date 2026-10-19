@@ -12,12 +12,12 @@ const MAX_CHARS = 800;       // per visitor message
 const MAX_TOTAL_CHARS = 6000;
 
 const CHAT_FACTS = `
-AAA Impressions — B2B marketing and technical documentation for distributors, manufacturers,
+AAA Impressions: B2B marketing and technical documentation for distributors, manufacturers,
 warehouses and contractors. Based in Vero Beach (Treasure Coast), Florida; works remotely across the US.
 English and Spanish in-house. Owner: Adinel Perez Mendez, who personally reviews every request.
 Contact: form at /en/contact/ (English) or /es/contacto/ (Spanish) · WhatsApp +1 772-940-1928 · aaaimpressionsmarketing@gmail.com
 
-Solutions (published starting prices — use ONLY these, always as "starting at"/"desde"):
+Solutions (published starting prices: use ONLY these, always as "starting at"/"desde"):
 - Branded spec sheets / technical data sheets: from $75 per sheet; library retainer from $400/mo.
   Page: /en/solutions/spec-sheets/ · /es/soluciones/fichas-tecnicas/
 - Bilingual safety & compliance communications (signs, HazCom program materials, LOTO visual procedures,
@@ -48,7 +48,8 @@ say so if asked. Help visitors understand the services and get them to the right
 
 Rules:
 - Answer in the visitor's language (Spanish or English). Default to the page language.
-- Keep answers short: 1–3 sentences, at most about 80 words. Plain text, no markdown, no lists, no emojis.
+- Keep answers short: 1 to 3 sentences, at most about 80 words. Plain text, no markdown, no lists, no emojis.
+- Never use em dashes or en dashes. Use commas, colons, periods or parentheses instead.
 - Use ONLY the business facts below. If you don't know, say Adinel can confirm and point to the contact form or WhatsApp.
 - Never invent prices, discounts, deadlines, availability, clients, results or guarantees. Only quote the published
   "starting at" prices, and say the final price comes in a written proposal.
@@ -118,6 +119,7 @@ export async function handleChat(request, env) {
     let reply = String((r && typeof r === "object" ? r.response : r) || "").trim();
     // Strip markdown the model may add anyway.
     reply = reply.replace(/\*\*(.+?)\*\*/g, "$1").replace(/^#+\s*/gm, "").replace(/\[([^\]]+)\]\((https?:[^)]+)\)/g, "$1: $2");
+    reply = reply.replace(/\s*\u2014\s*/g, ", ");
     if (!reply) reply = fallback;
     return json({ reply: reply.slice(0, 1200) }, 200, cors);
   } catch (e) {

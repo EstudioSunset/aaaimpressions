@@ -1,10 +1,10 @@
 import { handleChat } from "./chat.js";
-// AAA Impressions — contact form endpoint with instant bilingual AI reply.
+// AAA Impressions: contact form endpoint with instant bilingual AI reply.
 // Flow: form POST -> validate + anti-spam -> redirect visitor to thank-you page immediately
 //       -> (background) Claude drafts reply + internal summary -> email lead + email owner.
 
 const SERVICES_FACTS = `
-AAA Impressions — B2B marketing and technical documentation for distributors, manufacturers,
+AAA Impressions: B2B marketing and technical documentation for distributors, manufacturers,
 warehouses and contractors. Based in Vero Beach (Treasure Coast), Florida; remote across the US.
 English and Spanish in-house. Owner: Adinel Perez Mendez.
 
@@ -31,6 +31,7 @@ Hard rules:
 - Reply in the language of the visitor's message (Spanish if they wrote in Spanish, otherwise English).
 - "paragraphs" is the BODY only: 2 or 3 short paragraphs, 70–130 words total. No greeting, no sign-off,
   no signature (those are added automatically). Plain text, no markdown, no emojis.
+- Never use em dashes or en dashes. Use commas, colons, periods or parentheses instead.
 - Write TO the visitor in second person ("you" / "usted"), thanking them and restating their request,
   e.g. "Thanks for your request about flyers for your industrial equipment and a website update."
   Never describe the request in third person and never say the team "needs" something.
@@ -104,13 +105,13 @@ async function handleLead(f, lang, env) {
   catch (e) { console.log("ai error", e.message); }
 
   const fallback = lang === "es"
-    ? { subject: "Recibimos tu solicitud — AAA Impressions", reply: `Hola${f.name ? " " + f.name.split(" ")[0] : ""},\n\nGracias por escribirnos. Recibimos tu solicitud${f.service ? " sobre " + f.service : ""} y Adinel te responderá personalmente con los siguientes pasos.\n\nSi tienes un archivo de muestra, puedes responder a este correo y adjuntarlo, o enviarlo por WhatsApp al +1 772-940-1928.\n\nSaludos,\nEquipo de AAA Impressions` }
-    : { subject: "We received your request — AAA Impressions", reply: `Hi${f.name ? " " + f.name.split(" ")[0] : ""},\n\nThanks for reaching out. We received your request${f.service ? " about " + f.service : ""} and Adinel will follow up personally with next steps.\n\nIf you have a sample file, just reply to this email and attach it, or send it by WhatsApp to +1 772-940-1928.\n\nBest,\nThe AAA Impressions team` };
+    ? { subject: "Recibimos tu solicitud | AAA Impressions", reply: `Hola${f.name ? " " + f.name.split(" ")[0] : ""},\n\nGracias por escribirnos. Recibimos tu solicitud${f.service ? " sobre " + f.service : ""} y Adinel te responderá personalmente con los siguientes pasos.\n\nSi tienes un archivo de muestra, puedes responder a este correo y adjuntarlo, o enviarlo por WhatsApp al +1 772-940-1928.\n\nSaludos,\nEquipo de AAA Impressions` }
+    : { subject: "We received your request | AAA Impressions", reply: `Hi${f.name ? " " + f.name.split(" ")[0] : ""},\n\nThanks for reaching out. We received your request${f.service ? " about " + f.service : ""} and Adinel will follow up personally with next steps.\n\nIf you have a sample file, just reply to this email and attach it, or send it by WhatsApp to +1 772-940-1928.\n\nBest,\nThe AAA Impressions team` };
 
   const spam = ai?.spam === true;
   const rl = ai?.language === "es" || ai?.language === "en" ? ai.language : lang; // reply language
   const first = f.name ? " " + f.name.split(" ")[0] : "";
-  const subject = (ai?.subject || (rl === lang ? fallback.subject : (rl === "es" ? "Recibimos tu solicitud — AAA Impressions" : "We received your request — AAA Impressions"))).slice(0, 140);
+  const subject = (ai?.subject || (rl === lang ? fallback.subject : (rl === "es" ? "Recibimos tu solicitud | AAA Impressions" : "We received your request | AAA Impressions"))).slice(0, 140);
   const reply = ai?.body
     ? (rl === "es" ? `Hola${first},\n\n${ai.body}\n\nSaludos,\nEquipo de AAA Impressions` : `Hi${first},\n\n${ai.body}\n\nBest,\nThe AAA Impressions team`).slice(0, 2500)
     : fallback.reply;
@@ -119,14 +120,14 @@ async function handleLead(f, lang, env) {
     ? (rl === "es" ? "\nEsta primera respuesta fue redactada con ayuda de IA; Adinel revisa cada solicitud personalmente." : "\nThis first reply was drafted with AI assistance; Adinel reviews every request personally.")
     : "";
   const sig = (rl === "es"
-    ? "\n\n—\nAAA Impressions · Marketing B2B y documentación técnica\nwww.aaaimpressions.com · WhatsApp +1 772-940-1928"
-    : "\n\n—\nAAA Impressions · B2B marketing & technical documentation\nwww.aaaimpressions.com · WhatsApp +1 772-940-1928") + aiNote;
+    ? "\n\n--\nAAA Impressions · Marketing B2B y documentación técnica\nwww.aaaimpressions.com · WhatsApp +1 772-940-1928"
+    : "\n\n--\nAAA Impressions · B2B marketing & technical documentation\nwww.aaaimpressions.com · WhatsApp +1 772-940-1928") + aiNote;
 
   if (!spam) {
     await sendEmail(env, { to: f.email, subject, text: reply + sig, reply_to: env.OWNER_EMAIL });
   }
 
-  const ownerSubject = `${spam ? "[SPAM?] " : ""}[${(ai?.priority || "media").toUpperCase()}] Nuevo lead: ${f.company || f.name || f.email} — ${f.service || "sin servicio"}`;
+  const ownerSubject = `${spam ? "[SPAM?] " : ""}[${(ai?.priority || "media").toUpperCase()}] Nuevo lead: ${f.company || f.name || f.email} | ${f.service || "sin servicio"}`;
   const ownerText = [
     ai?.summary_es ? `Resumen IA:\n${ai.summary_es}\n` : "Resumen IA: no disponible (se envió respuesta estándar)\n",
     "Datos del formulario:", leadText, "",
@@ -217,7 +218,7 @@ function checkDraft(out) {
     .filter((p) => !/^(best|regards|saludos|atentamente|cordialmente|thanks|gracias)[,!.]?(\s|$)/i.test(p) || p.length > 60);
   const body = paras.join("\n\n");
   if (body.length < 40) throw new Error("bad reply");
-  out.body = body;
+  out.body = body.replace(/\s*\u2014\s*/g, ", ");
   return out;
 }
 
