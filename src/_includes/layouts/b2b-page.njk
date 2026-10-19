@@ -19,7 +19,8 @@ layout: "base.njk"
 <section class="hero-b2b {{ 'py-16 lg:py-24' if breadcrumb else 'pt-32 pb-16 lg:pb-24' }}">
 {% include "hero-shapes.njk" %}
   <div class="mx-auto max-w-6xl px-5{{ ' grid lg:grid-cols-2 gap-12 lg:gap-16 items-center' if hero.visual }}">
-    <div class="max-w-3xl">
+    <div class="max-w-3xl{{ ' hero-copy' if hero.animation }}">
+      {% if hero.animation %}{% include "hero-factory.njk" %}{% endif %}
       <span class="accent-line"></span>
       {% if hero.eyebrow %}<p class="text-xs font-semibold tracking-[0.18em] uppercase mb-4">{{ hero.eyebrow }}</p>{% endif %}
       <h1 class="text-4xl sm:text-5xl mb-6 leading-tight">{{ hero.title | safe }}</h1>
@@ -140,7 +141,10 @@ layout: "base.njk"
     <div class="grid md:grid-cols-2 gap-6">
       {% for side in [s.before, s.after] %}
       <figure class="m-0">
-        {% if side.img %}<img src="{{ side.img }}" alt="{{ side.alt }}" class="w-full border" style="border-color:var(--border)" loading="lazy">
+        {% if side.img %}<img src="{{ side.img }}" alt="{{ side.alt | escape }}"
+          {% if side.width and side.height %}width="{{ side.width }}" height="{{ side.height }}"{% endif %}
+          {% if side.srcset %}srcset="{{ side.srcset }}" sizes="(min-width: 1152px) 544px, (min-width: 768px) calc((100vw - 64px) / 2), calc(100vw - 40px)"{% endif %}
+          class="w-full border" style="border-color:var(--border)" loading="lazy" decoding="async">
         {% else %}<div class="b2b-placeholder{{ ' is-after' if loop.last }}">{{ side.placeholder }}</div>{% endif %}
         <figcaption class="b2b-caption{{ ' is-after' if loop.last }}">{{ side.caption }}</figcaption>
       </figure>
@@ -157,12 +161,17 @@ layout: "base.njk"
       {% if s.eyebrow %}<p class="text-xs font-semibold tracking-[0.18em] uppercase mb-3">{{ s.eyebrow }}</p>{% endif %}
       <h2 class="text-3xl sm:text-4xl mb-4">{{ s.title | safe }}</h2>
       {% if s.intro %}<p class="text-lg text-gray-500 leading-relaxed">{{ s.intro | safe }}</p>{% endif %}
+      <p class="text-sm text-gray-500 mt-4">{{ portfolio.disclaimer_es if isEs else portfolio.disclaimer_en }}</p>
     </div>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {% set shown = 0 %}
       {% for it in portfolio.items %}{% if it.show and (not s.limit or loop.index <= s.limit) %}
       <figure class="b2b-gallery m-0">
-        {% if it.img %}<img src="{{ it.img }}" alt="{{ it.es if isEs else it.en }}" loading="lazy" class="b2b-gallery__img">
+        {% if it.img %}{% set imageAlt = (it.alt_es if isEs else it.alt_en) or (it.es if isEs else it.en) %}
+        <img src="{{ it.img }}" alt="{{ imageAlt | escape }}"
+          {% if it.width and it.height %}width="{{ it.width }}" height="{{ it.height }}"{% endif %}
+          {% if it.srcset %}srcset="{{ it.srcset }}" sizes="(min-width: 1152px) 355px, (min-width: 1024px) calc((100vw - 88px) / 3), (min-width: 640px) calc((100vw - 64px) / 2), calc(100vw - 40px)"{% endif %}
+          loading="lazy" decoding="async" class="b2b-gallery__img">
         {% else %}<div class="b2b-gallery__ph" aria-hidden="true"><span>{{ it.es if isEs else it.en }}</span></div>{% endif %}
         <figcaption><strong>{{ it.es if isEs else it.en }}</strong><span>{{ it.note_es if isEs else it.note_en }}</span></figcaption>
       </figure>

@@ -1,0 +1,17 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": {{ (canonicalHref + "#webpage") | dump | safe }},
+  "url": {{ canonicalHref | dump | safe }},
+  "inLanguage": {{ lang | dump | safe }},
+  "primaryImageOfPage": {
+    "@type": "ImageObject",
+    "@id": {{ (canonicalHref + "#primary-image") | dump | safe }},
+    "contentUrl": {{ (site.baseUrl + ogImage) | dump | safe }},
+    "caption": {{ ogImageAlt | dump | safe }},
+    "width": {{ ogImageWidth | dump | safe }},
+    "height": {{ ogImageHeight | dump | safe }}
+  }
+}
+</script>

@@ -28,7 +28,8 @@
     <div class="lg:col-span-3">
       <h2 class="text-2xl mb-2">Solicita una propuesta</h2>
       <p class="text-gray-500 mb-8">Respondemos en un día hábil con preguntas o una cotización por escrito.</p>
-      <form action="https://api.web3forms.com/submit" method="POST" class="grid sm:grid-cols-2 gap-5">
+      <form action="{{ site.contactEndpoint or 'https://api.web3forms.com/submit' }}" method="POST" class="grid sm:grid-cols-2 gap-5">
+        <input type="hidden" name="lang" value="es">
         <input type="hidden" name="access_key" value="b7214d3c-a9cb-45a9-a3e9-718367dbc5fd">
         <input type="hidden" name="subject" value="Nueva solicitud de propuesta B2B — AAA Impressions">
         <input type="hidden" name="from_name" value="AAA Impressions Web">
@@ -43,13 +44,14 @@
         <div><label for="ct-volume" class="block text-sm font-semibold mb-2">Volumen aproximado</label><select id="ct-volume" name="volume" class="w-full border px-4 py-3 bg-white"><option>1–25 unidades</option><option>26–100 unidades</option><option>Más de 100</option><option>Continuo / mensual</option><option>Aún no lo sé</option></select></div>
         <div class="sm:col-span-2"><label for="ct-message" class="block text-sm font-semibold mb-2">¿Qué necesitas? <span style="color:var(--accent)" aria-hidden="true">*</span></label><textarea id="ct-message" name="message" required rows="5" class="w-full border px-4 py-3"></textarea></div>
         <p class="sm:col-span-2 b2b-note text-sm">¿Tienes un archivo de muestra? Después de enviar, mándalo a <a class="underline" href="mailto:{{ site.email }}">{{ site.email }}</a> o por <a class="underline" href="{{ site.whatsapp }}" target="_blank" rel="noopener noreferrer">WhatsApp</a>.</p>
+        {% if site.turnstileSiteKey %}<div class="sm:col-span-2 cf-turnstile" data-sitekey="{{ site.turnstileSiteKey }}" data-language="es"></div><script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>{% endif %}
         <button type="submit" class="sm:col-span-2 btn-primary justify-center py-4">Enviar solicitud →</button>
         <p class="sm:col-span-2 text-xs text-gray-500 text-center">Solo usamos tus datos para responder a esta solicitud.</p>
       </form>
     </div>
     <aside class="lg:col-span-2 space-y-8">
       <div><h3 class="text-lg mb-1">WhatsApp</h3><p class="text-gray-500 mb-2">La forma más rápida de mandar un archivo o una pregunta.</p><a class="font-semibold underline" href="{{ site.whatsapp }}" target="_blank" rel="noopener noreferrer">{{ site.phone }}</a></div>
-      <div><h3 class="text-lg mb-1">Teléfono</h3><p class="text-gray-500 mb-2">Se atiende en inglés o español, de día o de noche.</p><a class="font-semibold underline" href="tel:{{ site.phoneRaw }}">{{ site.phone }}</a></div>
+      <div><h3 class="text-lg mb-1">Teléfono</h3><p class="text-gray-500 mb-2">Se atiende en inglés o en español.</p><a class="font-semibold underline" href="tel:{{ site.phoneRaw }}">{{ site.phone }}</a></div>
       <div><h3 class="text-lg mb-1">Email</h3><a class="font-semibold underline" href="mailto:{{ site.email }}">{{ site.email }}</a></div>
       <div><h3 class="text-lg mb-1">Ubicación</h3><p class="text-gray-500">Treasure Coast, Florida · Remoto en todo EE.UU.</p></div>
     </aside>

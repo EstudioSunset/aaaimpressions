@@ -1,0 +1,30 @@
+name = "aaa-contact"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+# api.aaaimpressions.com -> this Worker (the DNS zone already lives in Cloudflare)
+routes = [ { pattern = "api.aaaimpressions.com", custom_domain = true } ]
+
+[vars]
+SITE_URL      = "https://www.aaaimpressions.com"
+OWNER_EMAIL   = "aaaimpressionsmarketing@gmail.com"
+FROM_EMAIL    = "AAA Impressions <hola@aaaimpressions.com>"
+CLAUDE_MODEL  = "claude-haiku-5-5"        # used only if ANTHROPIC_API_KEY is set
+WORKERS_AI_MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast"  # free option (Cloudflare Workers AI)
+
+[ai]
+binding = "AI"
+
+# Secrets (never in this file) — set once with:
+#   npx wrangler secret put ANTHROPIC_API_KEY   (optional — without it the free Workers AI is used)
+#   npx wrangler secret put RESEND_API_KEY
+#   npx wrangler secret put TURNSTILE_SECRET   (optional, recommended)
+
+# Chat assistant: max 12 messages per visitor IP per minute (protects the free AI allowance).
+[[ratelimits]]
+name = "CHAT_LIMITER"
+namespace_id = "1001"
+
+  [ratelimits.simple]
+  limit = 12
+  period = 60

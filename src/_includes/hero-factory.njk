@@ -1,0 +1,63 @@
+{% set isEs = lang == "es" %}
+<div class="hero-anim" role="img" aria-label="{{ 'Animación: un brazo robótico coloca un producto en una caja, la caja se cierra, recibe su etiqueta y sale a envío' if isEs else 'Animation: a robotic arm places a product in a box, the box closes, gets its label and ships' }}">
+<svg viewBox="0 0 1000 300" aria-hidden="true">
+  <defs>
+    <linearGradient id="haMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F4F6FF"/><stop offset="1" stop-color="#C9D1F5"/></linearGradient>
+    <linearGradient id="haMetalSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#E9EDFF"/><stop offset="1" stop-color="#B7C1EE"/></linearGradient>
+    <linearGradient id="haBox" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EEF1FF"/><stop offset="1" stop-color="#CDD5F7"/></linearGradient>
+    <linearGradient id="haProd" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D8D3FF"/><stop offset="1" stop-color="#9E8CF5"/></linearGradient>
+  </defs>
+  <!-- floor -->
+  <line x1="20" y1="276" x2="985" y2="276" stroke="#C9D3FF" stroke-opacity=".55" stroke-width="2"/>
+  <!-- product pedestal -->
+  <rect x="45" y="215" width="60" height="61" rx="4" fill="url(#haMetalSide)"/>
+  <rect x="45" y="215" width="60" height="8" rx="3" fill="#F4F6FF"/>
+  <g class="ha-prod-rest"><rect x="53" y="181" width="44" height="34" rx="3" fill="url(#haProd)"/><rect x="70" y="181" width="10" height="34" fill="#fff" fill-opacity=".35"/></g>
+  <!-- robot base -->
+  <path d="M140 276 L150 222 H250 L260 276 Z" fill="url(#haMetalSide)"/>
+  <rect x="134" y="268" width="132" height="10" rx="3" fill="#182C8C"/>
+  <rect x="160" y="208" width="80" height="16" rx="4" fill="#182C8C"/>
+  <rect x="184" y="150" width="32" height="64" rx="10" fill="url(#haMetal)"/>
+  <!-- arm -->
+  <g class="ha-sh">
+    <rect x="183" y="133" width="149" height="34" rx="17" fill="url(#haMetal)"/>
+    <rect x="222" y="133" width="16" height="34" fill="#7A5CFF" fill-opacity=".55"/>
+    <g class="ha-el">
+      <rect x="302" y="137" width="121" height="26" rx="13" fill="url(#haMetal)"/>
+      <g class="ha-wr">
+        <rect x="418" y="122" width="10" height="56" rx="3" fill="#E9EDFF"/>
+        <path d="M426 124 h20 v10 h-10 v14 h-10 z M426 176 h20 v-10 h-10 v-14 h-10 z" fill="#E9EDFF"/>
+        <rect x="430" y="140" width="8" height="20" fill="#182C8C"/>
+        <g class="ha-prod-carry"><rect x="445" y="128" width="34" height="44" rx="3" fill="url(#haProd)"/><rect x="445" y="145" width="34" height="10" fill="#fff" fill-opacity=".35"/></g>
+        <circle cx="410" cy="150" r="13" fill="#fff"/><circle cx="410" cy="150" r="6" fill="#182C8C"/>
+      </g>
+      <circle cx="315" cy="150" r="20" fill="#fff"/><circle cx="315" cy="150" r="11" fill="#182C8C"/><circle cx="315" cy="150" r="5" fill="#C9D3FF"/>
+    </g>
+    <circle cx="200" cy="150" r="24" fill="#fff"/><circle cx="200" cy="150" r="13" fill="#7A5CFF"/><circle cx="200" cy="150" r="6" fill="#E6EAFF"/>
+  </g>
+  <!-- conveyor -->
+  <rect x="318" y="230" width="34" height="46" fill="url(#haMetalSide)"/><rect x="690" y="230" width="34" height="46" fill="url(#haMetalSide)"/>
+  <rect x="300" y="226" width="440" height="30" rx="15" fill="#E6EAFF"/>
+  <rect x="306" y="232" width="428" height="18" rx="9" fill="#182C8C"/>
+  <g class="ha-rollers" fill="#C9D3FF">
+    <circle cx="324" cy="241" r="6"/><circle cx="368" cy="241" r="6"/><circle cx="412" cy="241" r="6"/><circle cx="456" cy="241" r="6"/><circle cx="500" cy="241" r="6"/><circle cx="544" cy="241" r="6"/><circle cx="588" cy="241" r="6"/><circle cx="632" cy="241" r="6"/><circle cx="676" cy="241" r="6"/><circle cx="716" cy="241" r="6"/>
+  </g>
+  <!-- box -->
+  <g class="ha-box">
+    <rect x="340" y="168" width="80" height="58" fill="url(#haBox)"/>
+    <rect x="340" y="168" width="16" height="58" fill="#B7C1EE" fill-opacity=".6"/>
+    <path class="ha-flap-l" d="M340 168 h40 l-4 6 h-36 z" fill="#DCE3FF"/>
+    <path class="ha-flap-r" d="M420 168 h-40 l4 6 h36 z" fill="#C9D3FF"/>
+    <g class="ha-label"><rect x="362" y="188" width="46" height="24" rx="2" fill="#fff"/><path d="M367 193v14M370 193v14M374 193v14M376 193v14M380 193v14" stroke="#182C8C" stroke-width="1.6"/><path d="M386 196h17M386 202h12" stroke="#7A5CFF" stroke-width="2"/></g>
+  </g>
+  <!-- truck -->
+  <rect x="780" y="152" width="140" height="98" rx="4" fill="url(#haBox)"/>
+  <rect x="780" y="152" width="12" height="98" fill="#B7C1EE"/>
+  <path d="M920 180 h34 l24 30 v40 h-58 z" fill="#E9EDFF"/>
+  <path d="M928 188 h24 l16 20 h-40 z" fill="#182C8C"/>
+  <rect x="780" y="246" width="200" height="10" fill="#182C8C"/>
+  <rect x="776" y="226" width="6" height="16" fill="#7A5CFF"/>
+  <g class="ha-wheel"><circle cx="820" cy="258" r="18" fill="#182C8C"/><circle cx="820" cy="258" r="9" fill="#E6EAFF"/><circle cx="820" cy="258" r="3.5" fill="#7A5CFF"/></g>
+  <g class="ha-wheel"><circle cx="946" cy="258" r="18" fill="#182C8C"/><circle cx="946" cy="258" r="9" fill="#E6EAFF"/><circle cx="946" cy="258" r="3.5" fill="#7A5CFF"/></g>
+</svg>
+</div>
