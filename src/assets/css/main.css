@@ -1320,3 +1320,10 @@ a.b2b-list__row:hover .b2b-list__title { color:var(--accent); }
   .aaa-chat-launcher{padding:0 16px}
 }
 @media print{.aaa-chat{display:none}}
+
+/* Mobile header: the proposal button lives in the menu below 640px, so the row
+   (logo + ES/EN + menu button) always fits the screen. */
+@media (max-width: 639px) {
+  .site-nav-row .nav-cta { display: none !important; }
+  .site-nav-row { gap: 12px; }
+}
