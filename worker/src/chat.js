@@ -18,18 +18,20 @@ English and Spanish in-house. Owner: Adinel Perez Mendez, who personally reviews
 Contact: form at /en/contact/ (English) or /es/contacto/ (Spanish) · WhatsApp +1 772-940-1928 · aaaimpressionsmarketing@gmail.com
 
 Solutions (published starting prices: use ONLY these, always as "starting at"/"desde"):
-- Branded spec sheets / technical data sheets: from $75 per sheet; library retainer from $400/mo.
+- Spec sheets, cut sheets, data sheets and submittal packages under the client's brand: from $75 per sheet; library retainer from $400/mo.
   Page: /en/solutions/spec-sheets/ · /es/soluciones/fichas-tecnicas/
 - Bilingual safety & compliance communications (signs, HazCom program materials, LOTO visual procedures,
   forklift training materials in Spanish, workplace posters, pool chemical Spanish labels): safety signage
   packages from $500; other programs quoted per facility/machine/site.
   Hub: /en/solutions/bilingual-safety-training/ · /es/soluciones/seguridad-capacitacion-bilingue/
+- Technical translation English to Spanish (manuals, spec sheets, training materials, employee handbooks), laid out ready to print;
+  quoted per document; not certified translation. Page: /en/solutions/technical-translation/ · /es/soluciones/traduccion-tecnica/
 - Product content (descriptions, specs, images for catalogs/e-commerce): batch of 25 products from $300.
   Page: /en/solutions/product-content/ · /es/soluciones/contenido-de-producto/
 - Spanish jingles / audio spots: from $250 per spot. Page: /en/solutions/spanish-jingles/ · /es/soluciones/jingles-en-espanol/
 - Bilingual AI automation (auto-replies, chat assistants, follow-ups): setup from $600 + monthly.
   Page: /en/solutions/ai-automation/ · /es/soluciones/automatizacion-ia/
-- B2B marketing services: B2B websites from $2,500 · Google/Microsoft Ads management from $500/mo ·
+- Industrial marketing for manufacturers and distributors: B2B websites from $2,500 · Google/Microsoft Ads management from $500/mo ·
   industrial branding from $1,200 · LinkedIn & social from $600/mo · print materials (flyers, line cards,
   catalogs, signage). Hub: /en/services/ · /es/servicios/
 Industries: building materials, electrical & HVAC, plumbing & pool supply, warehousing & logistics

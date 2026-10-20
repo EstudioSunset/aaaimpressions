@@ -1,8 +1,8 @@
 {% set isEs = lang == "es" %}
 {% if isEs %}
-  {% set navItems = [["/es/servicios/","Marketing B2B"],["/es/soluciones/","Soluciones"],["/es/industrias/","Industrias"],["/es/blog/","Recursos"],["/es/sobre-nosotros/","Nosotros"],["/es/contacto/","Contacto"]] %}
+  {% set navItems = [["/es/servicios/","Marketing industrial"],["/es/soluciones/","Soluciones"],["/es/industrias/","Industrias"],["/es/blog/","Recursos"],["/es/sobre-nosotros/","Nosotros"],["/es/contacto/","Contacto"]] %}
 {% else %}
-  {% set navItems = [["/en/services/","B2B Marketing"],["/en/solutions/","Solutions"],["/en/industries/","Industries"],["/en/blog/","Resources"],["/en/about/","About"],["/en/contact/","Contact"]] %}
+  {% set navItems = [["/en/services/","Industrial Marketing"],["/en/solutions/","Solutions"],["/en/industries/","Industries"],["/en/blog/","Resources"],["/en/about/","About"],["/en/contact/","Contact"]] %}
 {% endif %}
 {% set proposalUrl = "/es/contacto/" if isEs else "/en/contact/" %}
 
