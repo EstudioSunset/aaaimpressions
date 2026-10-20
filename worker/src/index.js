@@ -4,7 +4,7 @@ import { handleChat } from "./chat.js";
 //       -> (background) Claude drafts reply + internal summary -> email lead + email owner.
 
 const SERVICES_FACTS = `
-AAA Impressions: B2B marketing and technical documentation for distributors, manufacturers,
+AAA Impressions: B2B marketing and technical documentation for manufacturers,
 warehouses and contractors. Based in Vero Beach (Treasure Coast), Florida; remote across the US.
 English and Spanish in-house. Owner: Adinel Perez Mendez.
 

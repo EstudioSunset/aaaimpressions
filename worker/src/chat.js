@@ -12,7 +12,7 @@ const MAX_CHARS = 800;       // per visitor message
 const MAX_TOTAL_CHARS = 6000;
 
 const CHAT_FACTS = `
-AAA Impressions: B2B marketing and technical documentation for distributors, manufacturers,
+AAA Impressions: B2B marketing and technical documentation for manufacturers,
 warehouses and contractors. Based in Vero Beach (Treasure Coast), Florida; works remotely across the US.
 English and Spanish in-house. Owner: Adinel Perez Mendez, who personally reviews every request.
 Contact: form at /en/contact/ (English) or /es/contacto/ (Spanish) · WhatsApp +1 772-940-1928 · aaaimpressionsmarketing@gmail.com
@@ -31,7 +31,7 @@ Solutions (published starting prices: use ONLY these, always as "starting at"/"d
 - Spanish jingles / audio spots: from $250 per spot. Page: /en/solutions/spanish-jingles/ · /es/soluciones/jingles-en-espanol/
 - Bilingual AI automation (auto-replies, chat assistants, follow-ups): setup from $600 + monthly.
   Page: /en/solutions/ai-automation/ · /es/soluciones/automatizacion-ia/
-- Industrial marketing for manufacturers and distributors: B2B websites from $2,500 · Google/Microsoft Ads management from $500/mo ·
+- Industrial marketing for manufacturers: B2B websites from $2,500 · Google/Microsoft Ads management from $500/mo ·
   industrial branding from $1,200 · LinkedIn & social from $600/mo · print materials (flyers, line cards,
   catalogs, signage). Hub: /en/services/ · /es/servicios/
 Industries: building materials, electrical & HVAC, plumbing & pool supply, warehousing & logistics
