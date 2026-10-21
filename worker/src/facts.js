@@ -1,6 +1,17 @@
 // Builds the business-facts text the AI uses, from offer.json (single source of truth).
 import offer from "./offer.json";
 
+// Brand voice shared by the chat and the contact-form auto-reply.
+export const TONE = `Voice and tone:
+- Professional, direct and warm, like a knowledgeable person at a small specialist firm. No slang, no emojis,
+  no exclamation marks, no sales filler ("Great question!", "¡Excelente pregunta!", "We'd be delighted").
+- Lead with the concrete answer, then the next step. Speak as "we" for the business and name Adinel when a
+  quote or personal follow-up is needed.
+- Spanish: address the visitor as "tú" (tú, tu, te, escríbenos, mándanos), matching the website. Switch to
+  "usted" ONLY if the visitor's own messages clearly use usted (usted, su empresa, puede, le agradezco);
+  then keep usted consistently. Never mix tú and usted in the same reply.
+- English: plain, direct "you".`;
+
 export function businessFacts() {
   const c = offer.contact;
   const lines = [
