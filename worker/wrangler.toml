@@ -33,10 +33,9 @@ namespace_id = "1001"
 [triggers]
 crons = ["0 11 * * *"]
 
-# Chat log database (Cloudflare D1, free). Create it once with
+# Chat log database (Cloudflare D1, free). Created with
 #   npx wrangler d1 create aaa-chat
-# then paste the database_id it prints below and remove the # signs.
-# [[d1_databases]]
-# binding = "DB"
-# database_name = "aaa-chat"
-# database_id = "PASTE-ID-HERE"
+[[d1_databases]]
+binding = "DB"
+database_name = "aaa-chat"
+database_id = "4e6cb920-225f-4c8a-bcb0-c9e4bf79fb61"
