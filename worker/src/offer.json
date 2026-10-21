@@ -1,0 +1,92 @@
+{
+  "_readme": "Single source of truth for what the AI chat and the contact-form auto-reply say about the business. When you change a price or a service here, change the page too, then run `npm run check:offer` from the repo root: it fails if a price below is missing from its page or a page shows a price that is not listed here.",
+  "about": [
+    "AAA Impressions: industrial marketing and bilingual technical documentation for manufacturers, warehouses and contractors.",
+    "Based in Vero Beach (Treasure Coast), Florida; works remotely across the US. English and Spanish in-house.",
+    "Owner: Adinel Perez Mendez, who personally reviews every request."
+  ],
+  "contact": {
+    "form_en": "/en/contact/",
+    "form_es": "/es/contacto/",
+    "whatsapp": "+1 772-940-1928",
+    "email": "aaaimpressionsmarketing@gmail.com"
+  },
+  "items": [
+    {
+      "name": "Spec sheets, cut sheets, data sheets and submittal packages under the client's brand",
+      "prices": [
+        { "text": "from $75 per sheet", "match": "$75" },
+        { "text": "library retainer from $400/mo", "match": "$400" }
+      ],
+      "page_en": "/en/solutions/spec-sheets/",
+      "page_es": "/es/soluciones/fichas-tecnicas/"
+    },
+    {
+      "name": "Bilingual safety and compliance communications: HazCom program materials, LOTO visual procedures, forklift training materials in Spanish, workplace posters, pool chemical Spanish labels",
+      "prices": [],
+      "note": "Quoted per facility, machine or site.",
+      "not_prices": ["$16,550", "$165,514"],
+      "page_en": "/en/solutions/bilingual-safety-training/",
+      "page_es": "/es/soluciones/seguridad-capacitacion-bilingue/"
+    },
+    {
+      "name": "Custom OSHA/ANSI-format safety signs in English and Spanish",
+      "prices": [{ "text": "packages from $500", "match": "$500" }],
+      "page_en": "/en/solutions/osha-ansi-safety-signs/",
+      "page_es": "/es/soluciones/senalizacion-seguridad-osha-ansi/"
+    },
+    {
+      "name": "Technical translation English to Spanish (manuals, spec sheets, training materials, employee handbooks), laid out ready to print",
+      "prices": [],
+      "note": "Quoted per document. Not certified translation.",
+      "page_en": "/en/solutions/technical-translation/",
+      "page_es": "/es/soluciones/traduccion-tecnica/"
+    },
+    {
+      "name": "Product content for catalogs and e-commerce (titles, descriptions, spec tables)",
+      "prices": [
+        { "text": "batch of 25 products in English from $300", "match": "$300" },
+        { "text": "Spanish version of the same batch from $150", "match": "$150" }
+      ],
+      "page_en": "/en/solutions/product-content/",
+      "page_es": "/es/soluciones/contenido-de-producto/"
+    },
+    {
+      "name": "Spanish jingles and audio",
+      "prices": [
+        { "text": "30-second radio or social spot from $250", "match": "$250" },
+        { "text": "sonic logo from $400", "match": "$400" }
+      ],
+      "note": "Full jingles are quoted.",
+      "page_en": "/en/solutions/spanish-jingles/",
+      "page_es": "/es/soluciones/jingles-en-espanol/"
+    },
+    {
+      "name": "Bilingual AI automation (instant replies, chat assistants, follow-ups)",
+      "prices": [{ "text": "setup from $600 plus a flat monthly fee", "match": "$600" }],
+      "page_en": "/en/solutions/ai-automation/",
+      "page_es": "/es/soluciones/automatizacion-ia/"
+    },
+    {
+      "name": "Industrial marketing services: B2B websites, Google/Microsoft Ads, industrial branding, LinkedIn and social, business printing (catalogs, line cards, signage)",
+      "prices": [
+        { "text": "B2B websites from $2,500", "match": "$2,500" },
+        { "text": "Google/Microsoft Ads management from $500/mo", "match": "$500" },
+        { "text": "industrial branding from $1,200", "match": "$1,200" },
+        { "text": "LinkedIn and social from $600/mo", "match": "$600" }
+      ],
+      "page_en": "/en/services/",
+      "page_es": "/es/servicios/"
+    }
+  ],
+  "more_pages": [
+    { "name": "Industries served: building materials, electrical and HVAC, plumbing and pool supply, warehousing and logistics", "page_en": "/en/industries/", "page_es": "/es/industrias/" },
+    { "name": "Work samples", "page_en": "/en/case-studies/", "page_es": "/es/casos-de-estudio/" },
+    { "name": "How we work", "page_en": "/en/how-we-work/", "page_es": "/es/como-trabajamos/" }
+  ],
+  "rules": [
+    "Every project gets a written proposal with scope, timeline and price before work starts.",
+    "Compliance content (OSHA, HazCom, LOTO, forklift, FIFRA) is designed from content the CLIENT approves. AAA Impressions does not determine hazards, applicability or legal compliance and never says anything is \"certified\" or \"OSHA-compliant\".",
+    "Sample files are welcome by email or WhatsApp."
+  ]
+}

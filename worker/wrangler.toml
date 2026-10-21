@@ -28,3 +28,15 @@ namespace_id = "1001"
   [ratelimits.simple]
   limit = 12
   period = 60
+
+# Daily chat digest: 11:00 UTC = 7:00 am in Vero Beach (6:00 am in winter).
+[triggers]
+crons = ["0 11 * * *"]
+
+# Chat log database (Cloudflare D1, free). Create it once with
+#   npx wrangler d1 create aaa-chat
+# then paste the database_id it prints below and remove the # signs.
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "aaa-chat"
+# database_id = "PASTE-ID-HERE"

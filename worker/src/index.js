@@ -1,28 +1,11 @@
 import { handleChat } from "./chat.js";
+import { businessFacts } from "./facts.js";
+import { sendChatDigest } from "./chatlog.js";
 // AAA Impressions: contact form endpoint with instant bilingual AI reply.
 // Flow: form POST -> validate + anti-spam -> redirect visitor to thank-you page immediately
 //       -> (background) Claude drafts reply + internal summary -> email lead + email owner.
 
-const SERVICES_FACTS = `
-AAA Impressions: B2B marketing and technical documentation for manufacturers,
-warehouses and contractors. Based in Vero Beach (Treasure Coast), Florida; remote across the US.
-English and Spanish in-house. Owner: Adinel Perez Mendez.
-
-Published starting prices (use ONLY these, always as "starting at / desde"):
-- Branded spec sheets: from $75 per sheet; library retainer from $400/mo
-- Safety signage packages: from $500 (other compliance programs quoted per facility/machine/site)
-- Product content: batch of 25 products from $300
-- Spanish jingles / audio spots: from $250 per spot
-- Bilingual AI automation: setup from $600 + monthly
-- B2B websites: from $2,500 · Google/Microsoft Ads management: from $500/mo
-- Industrial branding: from $1,200 · LinkedIn & social: from $600/mo
-
-Rules of the business:
-- Compliance content (OSHA, HazCom, LOTO, forklift, FIFRA) is designed from content the CLIENT approves.
-  AAA Impressions does not determine hazards, applicability or legal compliance and never says "certified".
-- Every project gets a written proposal with scope, timeline and price before work starts.
-- Sample files are welcome: email ${'${OWNER}'} or WhatsApp +1 772-940-1928.
-`;
+const SERVICES_FACTS = businessFacts();
 
 const SYSTEM = `You write the first reply to a B2B inquiry received through the AAA Impressions website contact form.
 Write as "the AAA Impressions team" (never pretend to be a human by name), friendly, concise and professional.
@@ -53,10 +36,15 @@ Return ONLY a JSON object with these keys:
 const MAX = { name: 120, company: 160, role: 120, email: 200, phone: 40, service: 120, volume: 60, message: 4000 };
 
 export default {
+  // Daily cron (see wrangler.toml): emails the owner yesterday's chat conversations.
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(sendChatDigest(env, sendEmail));
+  },
+
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     if (request.method === "GET" && url.pathname === "/health") return new Response("ok");
-    if (url.pathname === "/chat") return handleChat(request, env);
+    if (url.pathname === "/chat") return handleChat(request, env, ctx);
     if (request.method !== "POST" || url.pathname !== "/contact") return new Response("Not found", { status: 404 });
 
     const form = await request.formData();

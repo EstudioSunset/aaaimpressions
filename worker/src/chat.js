@@ -1,5 +1,9 @@
 // Website chat assistant: answers visitor questions about AAA Impressions using Cloudflare Workers AI
 // (free daily allowance). Short answers, no invented prices or promises, always points to a human for quotes.
+// Business facts come from offer.json. Each exchange is logged to D1 (if bound) for the daily digest.
+
+import { businessFacts, pageTopic } from "./facts.js";
+import { logChat } from "./chatlog.js";
 
 const ALLOWED_ORIGINS = [
   "https://www.aaaimpressions.com",
@@ -11,39 +15,7 @@ const MAX_TURNS = 12;        // messages of history kept per request
 const MAX_CHARS = 800;       // per visitor message
 const MAX_TOTAL_CHARS = 6000;
 
-const CHAT_FACTS = `
-AAA Impressions: B2B marketing and technical documentation for manufacturers,
-warehouses and contractors. Based in Vero Beach (Treasure Coast), Florida; works remotely across the US.
-English and Spanish in-house. Owner: Adinel Perez Mendez, who personally reviews every request.
-Contact: form at /en/contact/ (English) or /es/contacto/ (Spanish) · WhatsApp +1 772-940-1928 · aaaimpressionsmarketing@gmail.com
-
-Solutions (published starting prices: use ONLY these, always as "starting at"/"desde"):
-- Spec sheets, cut sheets, data sheets and submittal packages under the client's brand: from $75 per sheet; library retainer from $400/mo.
-  Page: /en/solutions/spec-sheets/ · /es/soluciones/fichas-tecnicas/
-- Bilingual safety & compliance communications (signs, HazCom program materials, LOTO visual procedures,
-  forklift training materials in Spanish, workplace posters, pool chemical Spanish labels): safety signage
-  packages from $500; other programs quoted per facility/machine/site.
-  Hub: /en/solutions/bilingual-safety-training/ · /es/soluciones/seguridad-capacitacion-bilingue/
-- Technical translation English to Spanish (manuals, spec sheets, training materials, employee handbooks), laid out ready to print;
-  quoted per document; not certified translation. Page: /en/solutions/technical-translation/ · /es/soluciones/traduccion-tecnica/
-- Product content (descriptions, specs, images for catalogs/e-commerce): batch of 25 products from $300.
-  Page: /en/solutions/product-content/ · /es/soluciones/contenido-de-producto/
-- Spanish jingles / audio spots: from $250 per spot. Page: /en/solutions/spanish-jingles/ · /es/soluciones/jingles-en-espanol/
-- Bilingual AI automation (auto-replies, chat assistants, follow-ups): setup from $600 + monthly.
-  Page: /en/solutions/ai-automation/ · /es/soluciones/automatizacion-ia/
-- Industrial marketing for manufacturers: B2B websites from $2,500 · Google/Microsoft Ads management from $500/mo ·
-  industrial branding from $1,200 · LinkedIn & social from $600/mo · print materials (flyers, line cards,
-  catalogs, signage). Hub: /en/services/ · /es/servicios/
-Industries: building materials, electrical & HVAC, plumbing & pool supply, warehousing & logistics
-(/en/industries/ · /es/industrias/). Work samples: /en/case-studies/ · /es/casos-de-estudio/
-How we work: /en/how-we-work/ · /es/como-trabajamos/
-
-Rules of the business:
-- Every project gets a written proposal with scope, timeline and price before work starts.
-- Compliance content is designed from content the CLIENT approves. AAA Impressions does not determine
-  hazards, applicability or legal compliance and never says anything is "certified" or "OSHA-compliant".
-- Sample files are welcome by email or WhatsApp.
-`;
+const CHAT_FACTS = businessFacts();
 
 const CHAT_SYSTEM = `You are the website assistant for AAA Impressions. You are an AI assistant, not a person;
 say so if asked. Help visitors understand the services and get them to the right next step.
@@ -80,7 +52,7 @@ export function chatCors(origin) {
 const json = (obj, status, cors) =>
   new Response(JSON.stringify(obj), { status, headers: { "Content-Type": "application/json", ...cors } });
 
-export async function handleChat(request, env) {
+export async function handleChat(request, env, ctx) {
   const origin = request.headers.get("Origin") || "";
   const cors = chatCors(origin);
   if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: cors });
@@ -96,6 +68,9 @@ export async function handleChat(request, env) {
   let body;
   try { body = await request.json(); } catch { return json({ error: "bad_request" }, 400, cors); }
   const lang = body?.lang === "es" ? "es" : "en";
+  const page = typeof body?.page === "string" ? body.page.slice(0, 200) : "";
+  const sid = typeof body?.sid === "string" && /^[a-z0-9]{8,32}$/.test(body.sid) ? body.sid : "";
+  const topic = pageTopic(page);
   const raw = Array.isArray(body?.messages) ? body.messages.slice(-MAX_TURNS) : [];
   const messages = raw
     .filter((m) => m && (m.role === "user" || m.role === "assistant") && typeof m.content === "string")
@@ -108,11 +83,19 @@ export async function handleChat(request, env) {
     ? "Ahora mismo no puedo responder. Escríbenos por el formulario https://www.aaaimpressions.com/es/contacto/ o por WhatsApp al +1 772-940-1928 y Adinel te contesta personalmente."
     : "I can't answer right now. Please use the form at https://www.aaaimpressions.com/en/contact/ or WhatsApp +1 772-940-1928 and Adinel will reply personally.";
 
+  const question = messages[messages.length - 1].content;
+  const log = (failed, answer) => {
+    if (env.DB && ctx) ctx.waitUntil(logChat(env.DB, {
+      sid, lang, page, country: request.cf?.country || "", question, answer, failed,
+    }).catch((e) => console.log("chat log error", e.message)));
+  };
+
   if (!env.AI) return json({ reply: fallback }, 200, cors);
   try {
     const r = await env.AI.run(env.CHAT_MODEL || env.WORKERS_AI_MODEL || "@cf/meta/llama-3.3-70b-instruct-fp8-fast", {
       messages: [
-        { role: "system", content: CHAT_SYSTEM + `\nPage language: ${lang}` },
+        { role: "system", content: CHAT_SYSTEM + `\nPage language: ${lang}` +
+          (page ? `\nThe visitor is on the page ${page}${topic ? ` (topic: ${topic})` : ""}. If their question is vague, assume it is about that topic.` : "") },
         ...messages,
       ],
       max_tokens: 300,
@@ -123,9 +106,12 @@ export async function handleChat(request, env) {
     reply = reply.replace(/\*\*(.+?)\*\*/g, "$1").replace(/^#+\s*/gm, "").replace(/\[([^\]]+)\]\((https?:[^)]+)\)/g, "$1: $2");
     reply = reply.replace(/\s*\u2014\s*/g, ", ");
     if (!reply) reply = fallback;
-    return json({ reply: reply.slice(0, 1200) }, 200, cors);
+    reply = reply.slice(0, 1200);
+    log(false, reply);
+    return json({ reply }, 200, cors);
   } catch (e) {
     console.log("chat ai error", e.message);
+    log(true, fallback);
     return json({ reply: fallback }, 200, cors);
   }
 }

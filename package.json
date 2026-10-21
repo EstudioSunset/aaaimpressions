@@ -8,7 +8,8 @@
     "build": "npm run build:11ty && npm run build:css",
     "dev:css": "tailwindcss -i ./src/assets/css/main.css -o ./_site/assets/css/main.css --watch",
     "dev:11ty": "eleventy --serve --port 8080",
-    "dev": "concurrently \"npm run dev:11ty\" \"npm run dev:css\""
+    "dev": "concurrently \"npm run dev:11ty\" \"npm run dev:css\"",
+    "check:offer": "node scripts/check-offer.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",

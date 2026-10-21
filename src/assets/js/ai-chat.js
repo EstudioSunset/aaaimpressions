@@ -41,6 +41,15 @@
     },
   }[LANG];
 
+  // Random id per browser tab so the daily digest can group one visitor's questions. No personal data.
+  var SID = (function () {
+    try {
+      var v = sessionStorage.getItem(STORE + "-sid");
+      if (!v) { v = Math.random().toString(36).slice(2, 12) + Date.now().toString(36); sessionStorage.setItem(STORE + "-sid", v); }
+      return v;
+    } catch (e) { return ""; }
+  })();
+
   function load() { try { return JSON.parse(sessionStorage.getItem(STORE)) || []; } catch (e) { return []; } }
   function save(h) { try { sessionStorage.setItem(STORE, JSON.stringify(h.slice(-20))); } catch (e) {} }
   function track(name) { try { if (window.gtag) window.gtag("event", name, { event_category: "ai_chat" }); } catch (e) {} }
@@ -189,7 +198,7 @@
     fetch(ENDPOINT, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ lang: LANG, page: location.pathname, messages: history.slice(-12) }),
+      body: JSON.stringify({ lang: LANG, page: location.pathname, sid: SID, messages: history.slice(-12) }),
     })
       .then(function (r) {
         if (r.status === 429) return { reply: T.limited, transient: true };
