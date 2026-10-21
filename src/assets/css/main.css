@@ -1335,3 +1335,9 @@ a.b2b-list__row:hover .b2b-list__title { color:var(--accent); }
   .site-nav-row { gap: 16px; }
   .site-nav-row .nav-cta { padding: 10px 14px; }
 }
+
+/* Hero: real spec sheet sample (homepage) */
+.spec-photo { width:100%; max-width:460px; margin-left:auto; margin-right:auto; }
+.spec-photo img { display:block; width:100%; height:auto; background:#fff; border:1px solid #CBD3EE; box-shadow:0 24px 48px -24px rgba(11,20,55,.45); }
+.hero-b2b .spec-photo .spec-photo__sample, .spec-photo__sample { margin-top:10px; font-family:var(--mono); font-size:11px !important; color:rgba(255,255,255,.75) !important; text-align:right; }
+@media (min-width:1024px) { .spec-photo { margin-right:0; } }

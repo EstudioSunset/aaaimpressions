@@ -1,0 +1,12 @@
+{% set isEs = lang == "es" %}
+<figure class="spec-photo m-0">
+  <picture>
+    <source type="image/webp"
+            srcset="/assets/img/ficha-tecnica-thhn-12awg-520.webp 520w, /assets/img/ficha-tecnica-thhn-12awg-800.webp 800w"
+            sizes="(min-width: 1024px) 460px, 92vw">
+    <img src="/assets/img/Ficha-tecnica-THHN_THWN-2-12-AWG.jpg"
+         alt="{{ 'Ejemplo de ficha técnica bilingüe de cable THHN/THWN-2 12 AWG para una distribuidora ficticia' if isEs else 'Sample bilingual data sheet for THHN/THWN-2 12 AWG wire from a fictional distributor' }}"
+         width="800" height="1034" fetchpriority="high" decoding="async">
+  </picture>
+  <figcaption class="spec-photo__sample">{{ "Marca ficticia · ejemplo de diseño" if isEs else "Fictional brand · design sample" }}</figcaption>
+</figure>
