@@ -42,5 +42,18 @@
   {"from": "/es/marketing-para-comercios/", "to": "/es/", "lang": "es"},
   {"from": "/es/casos-de-estudio/gabriel-landscaping/", "to": "/es/casos-de-estudio/", "lang": "es"},
   {"from": "/es/casos-de-estudio/taqueria-la-guera/", "to": "/es/casos-de-estudio/", "lang": "es"},
-  {"from": "/es/casos-de-estudio/invitaciones-boda-maria/", "to": "/es/casos-de-estudio/", "lang": "es"}
+  {"from": "/es/casos-de-estudio/invitaciones-boda-maria/", "to": "/es/casos-de-estudio/", "lang": "es"},
+
+  {"from": "/en/blog/email-marketing-campaigns-small-business/", "to": "/en/blog/email-marketing-for-manufacturers/", "lang": "en"},
+  {"from": "/en/blog/internet-health-test/", "to": "/en/blog/b2b-website-checklist-manufacturers/", "lang": "en"},
+  {"from": "/en/blog/what-businesses-need-to-grow-online-presence/", "to": "/en/blog/b2b-website-checklist-manufacturers/", "lang": "en"},
+  {"from": "/en/blog/internet-marketing-agency-near-me/", "to": "/en/services/", "lang": "en"},
+  {"from": "/en/blog/internet-marketing-services-small-business/", "to": "/en/services/", "lang": "en"},
+  {"from": "/en/blog/internet-marketing-consultant-seo/", "to": "/en/services/digital-marketing-treasure-coast/", "lang": "en"},
+  {"from": "/es/blog/campanas-de-email-marketing-para-negocios/", "to": "/es/blog/email-marketing-para-fabricantes/", "lang": "es"},
+  {"from": "/es/blog/test-de-salud-online/", "to": "/es/blog/checklist-sitio-web-b2b-fabricantes/", "lang": "es"},
+  {"from": "/es/blog/que-necesita-un-negocio-para-aumentar-presencia-online/", "to": "/es/blog/checklist-sitio-web-b2b-fabricantes/", "lang": "es"},
+  {"from": "/es/blog/como-elegir-agencia-de-internet-marketing-cerca-de-mi/", "to": "/es/servicios/", "lang": "es"},
+  {"from": "/es/blog/servicios-de-internet-marketing-para-pequenos-negocios/", "to": "/es/servicios/", "lang": "es"},
+  {"from": "/es/blog/consultor-de-internet-marketing-y-seo/", "to": "/es/servicios/agencia-marketing-digital-treasure-coast/", "lang": "es"}
 ]
