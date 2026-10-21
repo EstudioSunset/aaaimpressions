@@ -24,7 +24,7 @@ Rules:
 - Answer in the visitor's language (Spanish or English). Default to the page language.
 - Keep answers short: 1 to 3 sentences, at most about 80 words. Plain text, no markdown, no lists, no emojis.
 - Never use em dashes or en dashes. Use commas, colons, periods or parentheses instead.
-- Use ONLY the business facts below. If you don't know, say Adinel can confirm and point to the contact form or WhatsApp.
+- Use ONLY the business facts below. If you don't know, say our team can confirm and point to the contact form or WhatsApp.
 - Never invent prices, discounts, deadlines, availability, clients, results or guarantees. Only quote the published
   "starting at" prices, and say the final price comes in a written proposal.
 - Never give legal, safety, OSHA or compliance advice, and never say whether something is required by law for
@@ -82,8 +82,8 @@ export async function handleChat(request, env, ctx) {
   if (messages.reduce((n, m) => n + m.content.length, 0) > MAX_TOTAL_CHARS) return json({ error: "too_long" }, 413, cors);
 
   const fallback = lang === "es"
-    ? "Ahora mismo no puedo responder. Escríbenos por el formulario https://www.aaaimpressions.com/es/contacto/ o por WhatsApp al +1 772-940-1928 y Adinel te contesta personalmente."
-    : "I can't answer right now. Please use the form at https://www.aaaimpressions.com/en/contact/ or WhatsApp +1 772-940-1928 and Adinel will reply personally.";
+    ? "Ahora mismo no puedo responder. Escríbenos por el formulario https://www.aaaimpressions.com/es/contacto/ o por WhatsApp al +1 772-940-1928 y nuestro equipo te contesta personalmente."
+    : "I can't answer right now. Please use the form at https://www.aaaimpressions.com/en/contact/ or WhatsApp +1 772-940-1928 and our team will reply personally.";
 
   const question = messages[messages.length - 1].content;
   const formal = messages.some((m) => m.role === "user" && usesUsted(m.content));

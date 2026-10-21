@@ -21,7 +21,7 @@ Hard rules:
   Never describe the request in third person and never say the team "needs" something.
 - Paragraph 1: thank them and restate what they asked for. Paragraph 2: ask at most TWO specific
   questions that help scope it (e.g., number of sheets/SKUs, deadline, file format, location) and invite
-  them to reply with a sample file. Paragraph 3 (one sentence): Adinel will follow up personally with
+  them to reply with a sample file. Paragraph 3 (one sentence): our team will follow up personally with
   next steps or a written proposal.
 - Never invent prices, discounts, deadlines, availability, guarantees, clients or capabilities.
   You may mention a published "starting at" price only if it matches their request.
@@ -97,8 +97,8 @@ async function handleLead(f, lang, env) {
   catch (e) { console.log("ai error", e.message); }
 
   const fallback = lang === "es"
-    ? { subject: "Recibimos tu solicitud | AAA Impressions", reply: `Hola${f.name ? " " + f.name.split(" ")[0] : ""},\n\nGracias por escribirnos. Recibimos tu solicitud${f.service ? " sobre " + f.service : ""} y Adinel te responderá personalmente con los siguientes pasos.\n\nSi tienes un archivo de muestra, puedes responder a este correo y adjuntarlo, o enviarlo por WhatsApp al +1 772-940-1928.\n\nSaludos,\nEquipo de AAA Impressions` }
-    : { subject: "We received your request | AAA Impressions", reply: `Hi${f.name ? " " + f.name.split(" ")[0] : ""},\n\nThanks for reaching out. We received your request${f.service ? " about " + f.service : ""} and Adinel will follow up personally with next steps.\n\nIf you have a sample file, just reply to this email and attach it, or send it by WhatsApp to +1 772-940-1928.\n\nBest,\nThe AAA Impressions team` };
+    ? { subject: "Recibimos tu solicitud | AAA Impressions", reply: `Hola${f.name ? " " + f.name.split(" ")[0] : ""},\n\nGracias por escribirnos. Recibimos tu solicitud${f.service ? " sobre " + f.service : ""} y nuestro equipo te responderá personalmente con los siguientes pasos.\n\nSi tienes un archivo de muestra, puedes responder a este correo y adjuntarlo, o enviarlo por WhatsApp al +1 772-940-1928.\n\nSaludos,\nEquipo de AAA Impressions` }
+    : { subject: "We received your request | AAA Impressions", reply: `Hi${f.name ? " " + f.name.split(" ")[0] : ""},\n\nThanks for reaching out. We received your request${f.service ? " about " + f.service : ""} and our team will follow up personally with next steps.\n\nIf you have a sample file, just reply to this email and attach it, or send it by WhatsApp to +1 772-940-1928.\n\nBest,\nThe AAA Impressions team` };
 
   const spam = ai?.spam === true;
   const rl = ai?.language === "es" || ai?.language === "en" ? ai.language : lang; // reply language
@@ -109,7 +109,7 @@ async function handleLead(f, lang, env) {
     : fallback.reply;
   // Only say the reply was AI-drafted when it actually was.
   const aiNote = ai?.body
-    ? (rl === "es" ? "\nEsta primera respuesta fue redactada con ayuda de IA; Adinel revisa cada solicitud personalmente." : "\nThis first reply was drafted with AI assistance; Adinel reviews every request personally.")
+    ? (rl === "es" ? "\nEsta primera respuesta fue redactada con ayuda de IA; nuestro equipo revisa cada solicitud personalmente." : "\nThis first reply was drafted with AI assistance; our team reviews every request personally.")
     : "";
   const sig = (rl === "es"
     ? "\n\n--\nAAA Impressions · Marketing B2B y documentación técnica\nwww.aaaimpressions.com · WhatsApp +1 772-940-1928"
