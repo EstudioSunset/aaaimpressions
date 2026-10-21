@@ -2,7 +2,7 @@
 // (free daily allowance). Short answers, no invented prices or promises, always points to a human for quotes.
 // Business facts come from offer.json. Each exchange is logged to D1 (if bound) for the daily digest.
 
-import { businessFacts, pageTopic, TONE } from "./facts.js";
+import { businessFacts, pageTopic, TONE, usesUsted } from "./facts.js";
 import { logChat } from "./chatlog.js";
 
 const ALLOWED_ORIGINS = [
@@ -86,6 +86,7 @@ export async function handleChat(request, env, ctx) {
     : "I can't answer right now. Please use the form at https://www.aaaimpressions.com/en/contact/ or WhatsApp +1 772-940-1928 and Adinel will reply personally.";
 
   const question = messages[messages.length - 1].content;
+  const formal = messages.some((m) => m.role === "user" && usesUsted(m.content));
   const log = (failed, answer) => {
     if (env.DB && ctx) ctx.waitUntil(logChat(env.DB, {
       sid, lang, page, country: request.cf?.country || "", question, answer, failed,
@@ -97,6 +98,7 @@ export async function handleChat(request, env, ctx) {
     const r = await env.AI.run(env.CHAT_MODEL || env.WORKERS_AI_MODEL || "@cf/meta/llama-3.3-70b-instruct-fp8-fast", {
       messages: [
         { role: "system", content: CHAT_SYSTEM + `\nPage language: ${lang}` +
+          (formal ? `\nThis visitor writes formally: if you answer in Spanish, use "usted" (usted, su, le, puede, contáctenos), never "tú".` : "") +
           (page ? `\nThe visitor is on the page ${page}${topic ? ` (topic: ${topic})` : ""}. If their question is vague, assume it is about that topic.` : "") },
         ...messages,
       ],

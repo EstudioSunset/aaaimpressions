@@ -37,3 +37,10 @@ export function pageTopic(path) {
   const hit = all.find((it) => path.startsWith(it.page_en) || path.startsWith(it.page_es));
   return hit ? hit.name : "";
 }
+
+// True when a Spanish-speaking visitor writes formally (usted). "ustedes" alone does not count:
+// in Latin American Spanish it is the normal plural for tú too.
+const FORMAL = /\busted\b|\ble (agradezco|agradecer[íi]a|escribo|consulto|saludo)\b|\bsu (atenci[óo]n|empresa|ayuda|tiempo|respuesta|equipo)\b|\bpodr[íi]a usted\b|\bdisculpe\b/i;
+export function usesUsted(text) {
+  return typeof text === "string" && FORMAL.test(text);
+}

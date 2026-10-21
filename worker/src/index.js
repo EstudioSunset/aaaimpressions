@@ -1,5 +1,5 @@
 import { handleChat } from "./chat.js";
-import { businessFacts, TONE } from "./facts.js";
+import { businessFacts, TONE, usesUsted } from "./facts.js";
 import { sendChatDigest } from "./chatlog.js";
 // AAA Impressions: contact form endpoint with instant bilingual AI reply.
 // Flow: form POST -> validate + anti-spam -> redirect visitor to thank-you page immediately
@@ -87,7 +87,8 @@ async function handleLead(f, lang, env) {
   const leadText = [
     `Company: ${f.company || "-"}`, `Name: ${f.name || "-"}`, `Role: ${f.role || "-"}`,
     `Email: ${f.email}`, `Phone: ${f.phone || "-"}`, `Service: ${f.service || "-"}`,
-    `Approximate volume: ${f.volume || "-"}`, `Page language: ${lang}`, `Message:\n${f.message}`,
+    `Approximate volume: ${f.volume || "-"}`, `Page language: ${lang}`,
+    `Spanish form of address for the reply: ${usesUsted(f.message) ? "usted" : "tú"}`, `Message:\n${f.message}`,
   ].join("\n");
 
   let ai = null;
